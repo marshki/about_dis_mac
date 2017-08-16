@@ -1,7 +1,8 @@
 #!/bin/bash 
 # mjk 2017.02.04 
-# Retrieve operating system, serial number, hardware model, and RAM profile in OS X. 
+# Retrieve: marketing name, operating systemi version, hardware model, processor, memory, startupdisk, graphics, & serial number. 
 # Useful for determining upgradeability of RAM 
+# Possibly more   
 
 ### Display header message ###
 
