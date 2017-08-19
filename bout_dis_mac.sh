@@ -1,6 +1,6 @@
 #!/bin/bash 
 # mjk 2017.02.04 
-# Retrieve: marketing name, operating systemi version, hardware model, processor, memory, startupdisk, graphics, & serial number. 
+# Retrieve: marketing name, operating system version, hardware model, processor, memory, startupdisk, graphics, & serial number. 
 # Useful for determining upgradeability of RAM 
 # Possibly more   
 
@@ -12,6 +12,8 @@ function write_header(){
 	echo "${h}" 			# insert local variable in to header 
 	echo "--------------------"
 } 
+
+### Retrieve Apple's marketing name for operating system ### 
 
 ### Retrieve operating system version ###
 
@@ -35,6 +37,15 @@ function hardware_model(){
 	echo ""
 } 
 
+### Retrieve processor information ###
+
+### Retrieve memory information ### 
+
+### Retrieve startup disk information ### 
+
+### Retrieve graphics information ### 
+
+
 ### Retrieve serial number ### 
 
 function serial_number(){
@@ -48,14 +59,13 @@ function serial_number(){
 
 ### Retrieve RAM profile ###
 
-function ram_profile(){
-	local onboardram=$(system_profiler SPMemoryDataType)  	
-	# Use system_profiler to poll info, then print output 
-
-	write_header "RAM Profile"
-	echo "${onboardram}" 
-	echo "" 
-}
+# function ram_profile(){
+# 	local onboardram=$(system_profiler SPMemoryDataType)  	
+# 	# Use system_profiler to poll info, then print output
+# 	write_header "RAM Profile"
+# 	echo "${onboardram}" 
+# 	echo "" 
+# }
 
 ### Main logic ### 
 
