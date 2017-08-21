@@ -14,6 +14,12 @@ function write_header(){
 } 
 
 ### Retrieve Apple's marketing name for operating system ### 
+function marketing_name(){
+        local marketing=$(grep -oE 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]' '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf' | awk -F 'OS X ' '{print $NF}')
+
+	write_header "Marketing Name" 
+	echo "${marketing}"
+	echo ""
 
 ### Retrieve operating system version ###
 
@@ -59,21 +65,13 @@ function serial_number(){
 
 ### Retrieve RAM profile ###
 
-# function ram_profile(){
-# 	local onboardram=$(system_profiler SPMemoryDataType)  	
-# 	# Use system_profiler to poll info, then print output
-# 	write_header "RAM Profile"
-# 	echo "${onboardram}" 
-# 	echo "" 
-# }
-
 ### Main logic ### 
 
 main(){
+	marketing_name
 	operating_system 
 	hardware_model
 	serial_number 
-	ram_profile	
 }
 
 main "$@" 
