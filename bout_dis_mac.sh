@@ -15,12 +15,12 @@ function write_header(){
 ### Retrieve Apple's marketing name for operating system ### 
 ### grep OSXSoftwareLicense.rtf to find pattern match, then awk to find match starting with, & print last column ###    
 
-function marketing_name(){
+function OS_X_name(){
         local marketing=$(grep --only-matching --extended-regexp 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\
         '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf'\
         | awk -F 'OS X ' '{print $NF}')
 	
-        write_header "Marketing Name"
+        write_header "OS X Name"
         echo "${marketing}"
         echo ""
 }
@@ -49,6 +49,18 @@ function hardware_model(){
 } 
 
 ### Retrieve processor information ###
+### ###
+
+function processor(){ 
+	local cpu=$()
+
+	write_header "Processor"
+	echo "${cpu}"
+	echo "" 
+} 
+
+
+
 
 ### Retrieve memory information ### 
 
@@ -69,13 +81,13 @@ function serial_number(){
 } 
 
 ### Retrieve RAM profile ###
-### Placeholder, may not make it to final draft 
+### Placeholder; may not make it to final draft 
 
 ### Main logic ### 
 ### The guts of el programa ### 
 
 main(){
-	marketing_name
+	OS_X_name
 	operating_system 
 	hardware_model
 	serial_number 
