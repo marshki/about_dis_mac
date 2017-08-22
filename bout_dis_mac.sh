@@ -1,7 +1,7 @@
 #!/bin/bash 
 # mjk 2017.02.04 
 # Text-based alternative to OS X's "About this Mac" 
-# Retrieve's a systems: marketing name, operating system version, hardware model, processor, memory, startupdisk, graphics, & serial number. 
+# Retrieve's system info on: marketing name, operating system version, hardware model, processor, memory, startupdisk, graphics, & serial number. 
 
 ### Display header message ###
 
@@ -18,6 +18,8 @@ function marketing_name(){
         local marketing=$(grep -oE 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\
         '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf'\
         | awk -F 'OS X ' '{print $NF}')
+	# 
+	
 
         write_header "Marketing Name"
         echo "${marketing}"
