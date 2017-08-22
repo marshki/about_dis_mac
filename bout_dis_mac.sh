@@ -49,7 +49,7 @@ function hardware_model(){
 } 
 
 ### Retrieve processor information ###
-### ###
+### Use system_profiler to poll info, then print 3rd-5th columns of Processor Name, Processor Speed ###
 
 function processor(){ 
 	local cpu=$(system_profiler SPHardwareDataType |awk '/Processor Name|Processor Speed/ {print $3,$4,$5}')
