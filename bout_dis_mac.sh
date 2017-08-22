@@ -1,7 +1,7 @@
 #!/bin/bash 
 # mjk 2017.08.04 
 # Text-based alternative to OS X's "About this Mac" 
-# Retrieve's system info on: marketing name, operating system version, hardware model, processor, memory, startupdisk, graphics, & serial number. 
+# Retrieve's system info on: OS X name, OS Version, Hardware Model, Processor, memory, startupdisk, graphics, & serial number. 
 
 ### Display header message ###
 
@@ -52,15 +52,12 @@ function hardware_model(){
 ### ###
 
 function processor(){ 
-	local cpu=$()
+	local cpu=$(system_profiler SPHardwareDataType |awk '/Processor Speed|Processor Name/ {print $3,$4,$5}')
 
 	write_header "Processor"
 	echo "${cpu}"
 	echo "" 
 } 
-
-
-
 
 ### Retrieve memory information ### 
 
@@ -90,6 +87,7 @@ main(){
 	OS_X_name
 	operating_system 
 	hardware_model
+	processor
 	serial_number 
 }
 
