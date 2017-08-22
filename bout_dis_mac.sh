@@ -1,5 +1,5 @@
 #!/bin/bash 
-# mjk 2017.02.04 
+# mjk 2017.08.04 
 # Text-based alternative to OS X's "About this Mac" 
 # Retrieve's system info on: marketing name, operating system version, hardware model, processor, memory, startupdisk, graphics, & serial number. 
 
@@ -13,34 +13,35 @@ function write_header(){
 } 
 
 ### Retrieve Apple's marketing name for operating system ### 
+### grep OSXSoftwareLicense.rtf to find pattern match, then awk to find match starting with, & print last column ###    
 
 function marketing_name(){
         local marketing=$(grep --only-matching --extended-regexp 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\
         '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf'\
         | awk -F 'OS X ' '{print $NF}')
-
+	
         write_header "Marketing Name"
         echo "${marketing}"
         echo ""
 }
 
-
 ### Retrieve operating system version ###
+### Use system_profiler to poll info, then print 3rd-6th columns of System Version from SPSoftwareDataType ###
 
 function operating_system(){
 	local os=$(system_profiler SPSoftwareDataType |awk '/System Version/ {print $3,$4,$5,$6}')
-	# Use system_profiler to poll info, then print 3rd-6th columns of System Version from SPSoftwareDataType
-
+	
 	write_header "OS Version" 
 	echo "${os}"
 	echo ""
 } 
 
 ### Retrieve hardware model ###
+### Use system_profiler to poll info, then print 3rd column of Model Identifier from SPHardwareDataType ### 
 
 function hardware_model(){
 	local hardwaremod=$(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print $3}')
-	# Use system_profiler to poll info, then print 3rd column of Model Identifier from SPHardwareDataType 	
+		
 
 	write_header "Hardware Model"
 	echo "${hardwaremod}"
@@ -55,12 +56,12 @@ function hardware_model(){
 
 ### Retrieve graphics information ### 
 
-
 ### Retrieve serial number ### 
+### Use system_profiler to poll info, then print 4th column of Serial from SPHardwareDataType ###  
 
 function serial_number(){
 	local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}') 
-	# Use system_profiler to poll info, then print 4th column of Serial from SPHardwareDataType  
+	
 	
 	write_header "Serial Number" 
 	echo "${serialnum}"
@@ -68,8 +69,10 @@ function serial_number(){
 } 
 
 ### Retrieve RAM profile ###
+### Placeholder, may not make it to final draft 
 
 ### Main logic ### 
+### The guts of el programa ### 
 
 main(){
 	marketing_name
