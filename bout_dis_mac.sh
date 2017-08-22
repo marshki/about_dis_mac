@@ -15,15 +15,15 @@ function write_header(){
 ### Retrieve Apple's marketing name for operating system ### 
 
 function marketing_name(){
-        local marketing=$(grep --only-matching --extended-regexp 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\		# grep -oE
+        local marketing=$(grep --only-matching --extended-regexp 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\
         '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf'\
         | awk -F 'OS X ' '{print $NF}')
-	# Look in OSXSoftwareLicense.rtf using grep to pattern match, then have awk print only the last column of the result 
-	
+
         write_header "Marketing Name"
         echo "${marketing}"
         echo ""
 }
+
 
 ### Retrieve operating system version ###
 
