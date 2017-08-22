@@ -18,7 +18,7 @@ function marketing_name(){
         local marketing=$(grep --only-matching --extended-regexp 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\		# grep -oE
         '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf'\
         | awk -F 'OS X ' '{print $NF}')
-	# Use grep to pattern match, then have awk print only the last column in the result 
+	# Look in OSXSoftwareLicense.rtf using grep to pattern match, then have awk print only the last column of the result 
 	
         write_header "Marketing Name"
         echo "${marketing}"
