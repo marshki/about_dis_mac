@@ -78,7 +78,9 @@ function memory (){
 function graphics(){
 	local gpu=$(system_profiler SPDisplaysDataType |awk '/Graphics/')
 
-	
+	write_header "Graphic"
+	echo "${gpu}"
+	echo ""	
 }
 
 ### Retrieve serial number ### 
