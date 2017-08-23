@@ -60,6 +60,14 @@ function processor(){
 } 
 
 ### Retrieve memory information ### 
+### ### 
+
+function memory (){
+} 
+
+
+
+
 
 ### Retrieve startup disk information ### 
 
@@ -77,8 +85,8 @@ function serial_number(){
 	echo ""	
 } 
 
-### Retrieve RAM profile ###
-### Placeholder; may not make it to final draft 
+
+
 
 ### Main logic ### 
 ### The guts of el programa ### 
