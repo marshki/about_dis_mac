@@ -60,6 +60,7 @@ function processor(){
 
 ### Retrieve memory information ### 
 ### Use system_profiler to poll info, then print 2nd-3rd column of Memory from SPHardwareDataType ### 
+#TODO: Get bus speed and type 
 
 function memory (){
 	local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
@@ -70,8 +71,12 @@ function memory (){
 } 
 
 ### Retrieve startup disk information ### 
+function startup_disk(){
+}
 
 ### Retrieve graphics information ### 
+function graphics(){
+}
 
 ### Retrieve serial number ### 
 ### Use system_profiler to poll info, then print 4th column of Serial from SPHardwareDataType ###  
