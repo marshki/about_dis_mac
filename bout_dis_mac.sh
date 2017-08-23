@@ -71,12 +71,14 @@ function memory (){
 } 
 
 ### Retrieve startup disk information ### 
-function startup_disk(){
-}
+#function startup_disk(){
+#}
 
 ### Retrieve graphics information ### 
 function graphics(){
-	system_profiler |grep -A35 Graphics/Displays
+	local gpu=$(system_profiler SPDisplaysDataType |awk '/Graphics/')
+
+	
 }
 
 ### Retrieve serial number ### 
@@ -99,6 +101,7 @@ main(){
 	hardware_model
 	processor
 	memory
+	graphics
 	serial_number 
 }
 
