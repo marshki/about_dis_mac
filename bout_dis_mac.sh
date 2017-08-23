@@ -1,7 +1,7 @@
 #!/bin/bash 
-# mjk 2017.08.04 
-# Text-based alternative to OS X's "About this Mac" 
-# Retrieve's system info on: OS X name, OS Version, Hardware Model, Processor, memory, startupdisk, graphics, & serial number. 
+#mjk 2017.08.04 
+#Text-based alternative to OS X's "About this Mac" 
+#Retrieve's system info on: OS X name, OS Version, Hardware Model, Processor, memory, startupdisk, graphics, & serial number. 
 
 ### Display header message ###
 
@@ -59,7 +59,7 @@ function processor(){
 } 
 
 ### Retrieve memory information ### 
-### ### 
+### Use system_profiler to poll info, then print 2nd-3rd column of Memory ### 
 
 function memory (){
 	local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
