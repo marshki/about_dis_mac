@@ -63,11 +63,12 @@ function processor(){
 ### ### 
 
 function memory (){
+	local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
+
+	write_header "Memory" 
+	echo "${ram}"
+	echo ""
 } 
-
-
-
-
 
 ### Retrieve startup disk information ### 
 
@@ -96,6 +97,7 @@ main(){
 	operating_system 
 	hardware_model
 	processor
+	memory
 	serial_number 
 }
 
