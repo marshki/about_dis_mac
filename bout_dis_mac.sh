@@ -41,7 +41,6 @@ function operating_system(){
 
 function hardware_model(){
 	local hardwaremod=$(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print $3}')
-		
 
 	write_header "Hardware Model"
 	echo "${hardwaremod}"
@@ -80,14 +79,10 @@ function memory (){
 function serial_number(){
 	local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}') 
 	
-	
 	write_header "Serial Number" 
 	echo "${serialnum}"
 	echo ""	
 } 
-
-
-
 
 ### Main logic ### 
 ### The guts of el programa ### 
