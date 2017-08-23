@@ -76,6 +76,7 @@ function startup_disk(){
 
 ### Retrieve graphics information ### 
 function graphics(){
+	system_profiler |grep -A35 Graphics/Displays
 }
 
 ### Retrieve serial number ### 
