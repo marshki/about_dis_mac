@@ -48,7 +48,7 @@ function hardware_model(){
 } 
 
 ### Retrieve processor information ###
-### Use system_profiler to poll info, then print 3rd-5th columns of Processor Name, Processor Speed ###
+### Use system_profiler to poll info, then print 3rd-5th columns of Processor Name, Processor Speed from SPHardwareDataType ###
 
 function processor(){ 
 	local cpu=$(system_profiler SPHardwareDataType |awk '/Processor Name|Processor Speed/ {print $3,$4,$5}')
@@ -59,7 +59,7 @@ function processor(){
 } 
 
 ### Retrieve memory information ### 
-### Use system_profiler to poll info, then print 2nd-3rd column of Memory ### 
+### Use system_profiler to poll info, then print 2nd-3rd column of Memory from SPHardwareDataType ### 
 
 function memory (){
 	local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
