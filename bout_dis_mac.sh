@@ -60,7 +60,7 @@ function processor(){
 
 ### Retrieve memory information ### 
 ### Use system_profiler to poll info, then print 2nd-3rd column of Memory from SPHardwareDataType ### 
-#TODO: Get bus speed and type 
+#TODO: Get bus speed and RAM type 
 
 function memory (){
 	local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
@@ -76,9 +76,9 @@ function memory (){
 
 ### Retrieve graphics information ### 
 function graphics(){
-	local gpu=$(system_profiler SPDisplaysDataType |awk '/Graphics/')
-
-	write_header "Graphic"
+	local gpu=$(system_profiler SPDisplaysDataType |awk '/Chipset|VRAM/ {print$3,$4,$5,$6}')
+	
+	write_header "Graphics"
 	echo "${gpu}"
 	echo ""	
 }
