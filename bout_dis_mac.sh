@@ -40,10 +40,10 @@ function operating_system(){
 ### Use system_profiler to poll info, then print 3rd column of Model Identifier from SPHardwareDataType ### 
 
 function hardware_model(){
-	local hardwaremod=$(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print $3}')
+	local hardware_mod=$(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print $3}')
 
 	write_header "Hardware Model"
-	echo "${hardwaremod}"
+	echo "${hardware_mod}"
 	echo ""
 } 
 
@@ -72,18 +72,19 @@ function memory (){
 
 ### Retrieve startup disk information ### 
 function startup_disk(){
-
-	local disk=$()
+	#local disk=$()
 
 	write_header "Startup Disk" 
 	echo "${disk}"
 	echo ""
-
 }
 
-### Retrieve graphics information ### 
+### Retrieve graphics information ###
+### Use system_profiler to poll info, then print 3rd-5th columns of Chipset, VRAM from SPDisplaysDataType ### 
+
 function graphics(){
 	local gpu=$(system_profiler SPDisplaysDataType |awk '/Chipset|VRAM/ {print $3,$4,$5}')	
+	
 	write_header "Graphics"
 	echo "${gpu}"
 	echo ""	
@@ -109,6 +110,7 @@ main(){
 	hardware_model
 	processor
 	memory
+	startup_disk
 	graphics
 	serial_number 
 }
