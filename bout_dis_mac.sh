@@ -1,7 +1,7 @@
 #!/bin/bash 
 #mjk 2017.08.04 
 #Text-based alternative to OS X's "About this Mac" 
-#Retrieve's system info on: OS X name, OS Version, Hardware Model, Processor, memory, startupdisk, graphics, & serial number. 
+#Retrieve's system info on: OS X "marketing" name, OS version, hardware model, processor, memory, startup disk, graphics, & serial number. 
 
 ### Display header message ###
 
@@ -40,7 +40,7 @@ function operating_system(){
 ### Use system_profiler to poll info, then print 3rd column of Model Identifier from SPHardwareDataType ### 
 
 function hardware_model(){
-	local hardware_mod=$(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print $3}')
+	local hardware_mod=$(system_profiler SPHardwareDataType |awk '/Model Identifier/ {print $3}')
 
 	write_header "Hardware Model"
 	echo "${hardware_mod}"
@@ -61,6 +61,8 @@ function processor(){
 ### Retrieve memory information ### 
 ### Use system_profiler to poll info, then print 2nd-3rd column of Memory from SPHardwareDataType ### 
 #TODO: Get bus speed and RAM type 
+# Something like this: 
+# system_profiler SPMemoryDataType |awk '/Type|Speed/ {print $2}'
 
 function memory (){
 	local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
@@ -71,8 +73,13 @@ function memory (){
 } 
 
 ### Retrieve startup disk information ### 
+### ### 
+
 function startup_disk(){
 	#local disk=$()
+	
+	# Here's where disk info is coming from: 
+	# system_profiler SPStorageDataType 
 
 	write_header "Startup Disk" 
 	echo "${disk}"
@@ -83,7 +90,7 @@ function startup_disk(){
 ### Use system_profiler to poll info, then print 3rd-5th columns of Chipset, VRAM from SPDisplaysDataType ### 
 
 function graphics(){
-	local gpu=$(system_profiler SPDisplaysDataType |awk '/Chipset|VRAM/ {print $3,$4,$5}')	
+	local gpu=$(system_profiler SPDisplaysDataType |awk '/Chipset|VRAM/ {print $3,$4,$5,$6}')	
 	
 	write_header "Graphics"
 	echo "${gpu}"
@@ -94,7 +101,7 @@ function graphics(){
 ### Use system_profiler to poll info, then print 4th column of Serial from SPHardwareDataType ###  
 
 function serial_number(){
-	local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}') 
+	local serialnum=$(system_profiler SPHardwareDataType |awk '/Serial/ {print $4}') 
 	
 	write_header "Serial Number" 
 	echo "${serialnum}"
