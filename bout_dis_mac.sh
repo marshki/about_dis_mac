@@ -71,8 +71,15 @@ function memory (){
 } 
 
 ### Retrieve startup disk information ### 
-#function startup_disk(){
-#}
+function startup_disk(){
+
+	local disk=$()
+
+	write_header "Startup Disk" 
+	echo "${disk}"
+	echo ""
+
+}
 
 ### Retrieve graphics information ### 
 function graphics(){
