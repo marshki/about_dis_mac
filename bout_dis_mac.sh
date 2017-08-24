@@ -66,9 +66,12 @@ function processor(){
 
 function memory (){
 	local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
-
+	local type=$(system_profiler SPMemoryDataType |awk '/Type/ {print $2}')
+	local type=$(system_profiler SPMemoryDataType |awk '/Speed/ {print $2,$3}')
+	
 	write_header "Memory" 
 	echo "${ram}"
+	echo "${type}"
 	echo ""
 } 
 
