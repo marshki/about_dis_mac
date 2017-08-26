@@ -8,6 +8,13 @@ with additional enhancements for sysadmins.
 
 Still a WIP!
 
+Tested on OS X: 
+
+* 10.12
+* 10.11
+* 10.10
+
+
 # TODO: 
 
 -[ ] Fix regular expressions to be more forgiving.  
