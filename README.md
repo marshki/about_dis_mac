@@ -8,4 +8,6 @@ with additional enhancements for sysadmins.
 
 Still a WIP!
 
- 
+# TODO: 
+
+-[ ] Fix regular expressions to be more forgiving.  
