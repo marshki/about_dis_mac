@@ -29,7 +29,8 @@ function OS_X_name(){
 ### Use system_profiler to poll info, then print 3rd-6th columns of System Version from SPSoftwareDataType ###
 
 function operating_system(){
-	local os=$(system_profiler SPSoftwareDataType |awk '/System Version/ {print $3,$4,$5,$6}')
+	#local os=$(system_profiler SPSoftwareDataType |awk '/System Version/ {print $3,$4,$5,$6}')
+	local os=$(system_profiler SPSoftwareDataType |sed -n 's/System Version: //p')
 	
 	write_header "OS Version" 
 	echo "${os}"
