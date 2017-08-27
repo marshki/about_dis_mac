@@ -41,8 +41,9 @@ function operating_system(){
 ### Use system_profiler to poll info, then print 3rd column of Model Identifier from SPHardwareDataType ### 
 
 function hardware_model(){
-	local hardware_mod=$(system_profiler SPHardwareDataType |awk '/Model Identifier/ {print $3}')
-
+	#local hardware_mod=$(system_profiler SPHardwareDataType |awk '/Model Identifier/ {print $3}')
+	local hardware_mod=$(system_profiler SPHardwareDataType |sed -n 's/Model Identifier: //p')
+	
 	write_header "Hardware Model"
 	echo "${hardware_mod}"
 	echo ""
@@ -52,7 +53,8 @@ function hardware_model(){
 ### Use system_profiler to poll info, then print 3rd-5th columns of Processor Name, Processor Speed from SPHardwareDataType ###
 
 function processor(){ 
-	local cpu=$(system_profiler SPHardwareDataType |awk '/Processor Name|Processor Speed/ {print $3,$4,$5}')
+	#local cpu=$(system_profiler SPHardwareDataType |awk '/Processor Name|Processor Speed/ {print $3,$4,$5}')
+	# Have to combine two regexp pattern matches in sed --> local cpu=$(system_profiler SPHardwareDataType |sed -e 's/Processor Name: /;'s/Processor Speed: /" /p')
 
 	write_header "Processor"
 	echo "${cpu}"
