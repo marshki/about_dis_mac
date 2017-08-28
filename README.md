@@ -10,11 +10,12 @@ Still a WIP!
 
 Tested on OS X: 
 
-* 10.12
-* 10.11
-* 10.10
-
+* 10.12 Sierra
+* 10.11 El Capitan 
+* 10.10 Yosemite 
+* 10.9 Mavericks 
 
 # TODO: 
 
 -[ ] Fix regular expressions to be more forgiving.  
+-[ ] Boot disk function 
