@@ -30,7 +30,7 @@ function OS_X_name(){
 
 function operating_system(){
 	#local os=$(system_profiler SPSoftwareDataType |awk '/System Version/ {print $3,$4,$5,$6}')
-	local os=$(system_profiler SPSoftwareDataType |sed -n 's/System Version: //p')
+	local os=$(system_profiler SPSoftwareDataType |sed -n '/System Version: /p')
 	
 	write_header "OS Version" 
 	echo "${os}"
@@ -42,7 +42,7 @@ function operating_system(){
 
 function hardware_model(){
 	#local hardware_mod=$(system_profiler SPHardwareDataType |awk '/Model Identifier/ {print $3}')
-	local hardware_mod=$(system_profiler SPHardwareDataType |sed -n 's/Model Identifier: //p')
+	local hardware_mod=$(system_profiler SPHardwareDataType |sed -n '/Model Identifier: /p')
 	
 	write_header "Hardware Model"
 	echo "${hardware_mod}"
