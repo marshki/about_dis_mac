@@ -55,7 +55,7 @@ function hardware_model(){
 function processor(){ 
 	#local cpu=$(system_profiler SPHardwareDataType |awk '/Processor Name|Processor Speed/ {print $3,$4,$5}')
 	# Have to combine two regexp pattern matches in sed --> local cpu=$(system_profiler SPHardwareDataType |sed -e 's/Processor Name: /;'s/Processor Speed: /" /p')
-
+	# Or usee grep, but print text after match --> system_profiler SPHardwareDataType |grep -E 'Processor Name: '\|'Processor Speed: '
 	write_header "Processor"
 	echo "${cpu}"
 	echo "" 
