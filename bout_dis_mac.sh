@@ -93,7 +93,8 @@ function startup_disk(){
 #TODO --> Fix this function
 function graphics(){
 	#local gpu=$(system_profiler SPDisplaysDataType |awk '/Chipset|VRAM/ {print $3,$4,$5,$6}')	
-	local gpu=$(system_profiler SPDisplaysDataType |grep --extended-regexp 'Chipset Model: '\|'VRAM (Dyanmic, Max: )'\) 
+	local gpu=$(system_profiler SPDisplaysDataType |grep --extended-regexp 'Chipset Model: '\)
+	###|'VRAM (Dyanmic, Max: )'\) 
 	###|sed 's/^.*: //')
 	write_header "Graphics"
 	echo "${gpu}"
@@ -105,6 +106,7 @@ function graphics(){
 
 function serial_number(){
 	local serialnum=$(system_profiler SPHardwareDataType |awk '/Serial/ {print $4}') 
+	local serialnum=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Serial Number \(system\): '|sed 's/^.*: //') 
 	
 	write_header "Serial Number" 
 	echo "${serialnum}"
