@@ -51,7 +51,7 @@ function hardware_model(){
 ### Use system_profiler to poll info, then print string following 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType ###
 
 function processor(){ 
-	local cpu=$(system_profiler SPHardwareDataType |grep -E 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
+	local cpu=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
 	
 	write_header "Processor"
 	echo "${cpu}"
@@ -59,13 +59,12 @@ function processor(){
 } 
 
 ### Retrieve memory information ### 
-### Use system_profiler to poll info, then print 2nd-3rd column of Memory from SPHardwareDataType ### 
+### Use system_profiler to poll info, then print string following 'Memory: ' from SPHardwareDataType ### 
+### Use system_profiler to poll info, then print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType 
 
 function memory (){
-	#local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
-	#local type=$(system_profiler SPMemoryDataType |awk '/Type/ {print $2}')
-	local ram=$(system_profiler SPHardwareDataType |grep -E 'Memory: '|sed 's/^.*: //')
-	local type=$(system_profiler SPMemoryDataType |grep -E 'Type: '\|'Speed: '|sed 's/^.*: //'|head -2) 	
+	local ram=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Memory: ' |sed 's/^.*: //')
+	local type=$(system_profiler SPMemoryDataType |grep --extended-regexp 'Type: '\|'Speed: '|sed 's/^.*: //'|head -2) 	
 	
 	write_header "Memory" 
 	echo "${ram}"
@@ -90,9 +89,12 @@ function startup_disk(){
 ### Retrieve graphics information ###
 ### Use system_profiler to poll info, then print 3rd-5th columns of Chipset, VRAM from SPDisplaysDataType ### 
 
+
+#TODO --> Fix this function
 function graphics(){
 	#local gpu=$(system_profiler SPDisplaysDataType |awk '/Chipset|VRAM/ {print $3,$4,$5,$6}')	
-	local gpu=$(system_profiler SPDisplaysDataType |grep -E 'Chipset Model: '\|'VRAM (Dyanmic, Max: )')
+	local gpu=$(system_profiler SPDisplaysDataType |grep --extended-regexp 'Chipset Model: '\|'VRAM (Dyanmic, Max: )'\) 
+	###|sed 's/^.*: //')
 	write_header "Graphics"
 	echo "${gpu}"
 	echo ""	
