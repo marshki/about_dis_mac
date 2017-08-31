@@ -54,8 +54,7 @@ function hardware_model(){
 
 function processor(){ 
 	#local cpu=$(system_profiler SPHardwareDataType |awk '/Processor Name|Processor Speed/ {print $3,$4,$5}')
-	# Have to combine two regexp pattern matches in sed --> local cpu=$(system_profiler SPHardwareDataType |sed -e 's/Processor Name: /;'s/Processor Speed: /" /p')
-	# Or usee grep, but print text after match --> system_profiler SPHardwareDataType |grep -E 'Processor Name: '\|'Processor Speed: '
+	local cpu=$(system_profiler SPHardwareDataType |grep -E 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
 	write_header "Processor"
 	echo "${cpu}"
 	echo "" 
@@ -63,15 +62,12 @@ function processor(){
 
 ### Retrieve memory information ### 
 ### Use system_profiler to poll info, then print 2nd-3rd column of Memory from SPHardwareDataType ### 
-#TODO: Get bus speed and RAM type 
-# Something like this: 
-# system_profiler SPMemoryDataType |awk '/Type|Speed/ {print $2}'
 
 function memory (){
-	local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
-	local type=$(system_profiler SPMemoryDataType |awk '/Type/ {print $2}')
-#This needs to be fixed -->	local type=$(awk -F: '$1=="Speed"{print $2;exit;}' system_profiler SPMemoryDataType) 
-	
+	#local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
+	#local type=$(system_profiler SPMemoryDataType |awk '/Type/ {print $2}')
+	#This needs to be fixed -->	local type=$(awk -F: '$1=="Speed"{print $2;exit;}' system_profiler SPMemoryDataType) 
+	local ram=$(system_profiler SPMemoryDataType |grep -E 'Memory: '\|'Type: '|sed 's/^.*: //')	
 	
 	
 	write_header "Memory" 
