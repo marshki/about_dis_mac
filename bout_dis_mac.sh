@@ -66,9 +66,8 @@ function processor(){
 function memory (){
 	#local ram=$(system_profiler SPHardwareDataType |awk '/Memory/ {print $2,$3}')
 	#local type=$(system_profiler SPMemoryDataType |awk '/Type/ {print $2}')
-	#This needs to be fixed -->	local type=$(awk -F: '$1=="Speed"{print $2;exit;}' system_profiler SPMemoryDataType) 
-	local ram=$(system_profiler SPMemoryDataType |grep -E 'Memory: '\|'Type: '|sed 's/^.*: //')	
-	
+	local ram=$(system_profiler SPHardwareDataType |grep -E 'Memory: '|sed 's/^.*: //')
+	local type=$(system_profiler SPMemoryDataType |grep -E 'Type: '\|'Speed: '|sed 's/^.*: //'|head -2) 	
 	
 	write_header "Memory" 
 	echo "${ram}"
@@ -94,8 +93,8 @@ function startup_disk(){
 ### Use system_profiler to poll info, then print 3rd-5th columns of Chipset, VRAM from SPDisplaysDataType ### 
 
 function graphics(){
-	local gpu=$(system_profiler SPDisplaysDataType |awk '/Chipset|VRAM/ {print $3,$4,$5,$6}')	
-	
+	#local gpu=$(system_profiler SPDisplaysDataType |awk '/Chipset|VRAM/ {print $3,$4,$5,$6}')	
+	local gpu=$(system_profiler SPDisplaysDataType |grep -E 'Chipset Model: '\|'VRAM (Dyanmic, Max: )')
 	write_header "Graphics"
 	echo "${gpu}"
 	echo ""	
