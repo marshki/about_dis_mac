@@ -26,7 +26,7 @@ function OS_X_name(){
 }
 
 ### Retrieve operating system version ###
-### Use system_profiler to poll info, then print string following 'System Version:  ' from SPSoftwareDataType ###
+### Use system_profiler to poll info, then regexp to print string following 'System Version:  ' from SPSoftwareDataType ###
 
 function operating_system(){
 	local os=$(system_profiler SPSoftwareDataType |grep --extended-regexp 'System Version: '|sed 's/^.*: //')	
@@ -37,7 +37,7 @@ function operating_system(){
 } 
 
 ### Retrieve hardware model ###
-### Use system_profiler to poll info, then print string following 'Model Identifier: ' from SPHardwareDataType ### 
+### Use system_profiler to poll info, then regexp to print string following 'Model Identifier: ' from SPHardwareDataType ### 
 
 function hardware_model(){
 	local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //')
@@ -48,7 +48,7 @@ function hardware_model(){
 } 
 
 ### Retrieve processor information ###
-### Use system_profiler to poll info, then print string following 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType ###
+### Use system_profiler to poll info, then regexp to print string following 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType ###
 
 function processor(){ 
 	local cpu=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
@@ -59,8 +59,8 @@ function processor(){
 } 
 
 ### Retrieve memory information ### 
-### Use system_profiler to poll info, then print string following 'Memory: ' from SPHardwareDataType ### 
-### Use system_profiler to poll info, then print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType 
+### Use system_profiler to poll info, then regexp to print string following 'Memory: ' from SPHardwareDataType ### 
+### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType ### 
 
 function memory (){
 	local ram=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Memory: ' |sed 's/^.*: //')
@@ -87,10 +87,8 @@ function startup_disk(){
 }
 
 ### Retrieve graphics information ###
-### Use system_profiler to poll info, then print 3rd-5th columns of Chipset, VRAM from SPDisplaysDataType ### 
+### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Chipset Model: ' & 'VRAM (Dynamic, Max): ' from SPDisplaysDataType ### 
 
-
-#TODO --> Fix this function
 function graphics(){
 	local gpu=$(system_profiler SPDisplaysDataType |grep --extended-regexp 'Chipset Model: '\|'VRAM \(Dynamic, Max\): '|sed 's/^.*: //'|head -2)
 	
@@ -100,7 +98,7 @@ function graphics(){
 }
 
 ### Retrieve serial number ### 
-### Use system_profiler to poll info, then print 4th column of Serial from SPHardwareDataType ###  
+### Use system_profiler to poll info, then regexp to print string following 'Serial Number (system): ' from SPHardwareDataType ###  
 
 function serial_number(){
 	local serialnum=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Serial Number \(system\): '|sed 's/^.*: //') 
