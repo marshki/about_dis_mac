@@ -26,7 +26,7 @@ function OS_X_name(){
 }
 
 ### Retrieve operating system version ###
-### Use system_profiler to poll info, then print 3rd-6th columns of System Version from SPSoftwareDataType ###
+### Use system_profiler to poll info, then print string following 'System Version:  ' from SPSoftwareDataType ###
 
 function operating_system(){
 	local os=$(system_profiler SPSoftwareDataType |grep --extended-regexp 'System Version: '|sed 's/^.*: //')	
@@ -37,11 +37,10 @@ function operating_system(){
 } 
 
 ### Retrieve hardware model ###
-### Use system_profiler to poll info, then print 3rd column of Model Identifier from SPHardwareDataType ### 
+### Use system_profiler to poll info, then print string following 'Model Identifier: ' from SPHardwareDataType ### 
 
 function hardware_model(){
-	#local hardware_mod=$(system_profiler SPHardwareDataType |awk '/Model Identifier/ {print $3}')
-	local hardware_mod=$(system_profiler SPHardwareDataType |grep -E 'Model Identifier: '|sed 's/^.*: //')
+	local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //')
 		
 	write_header "Hardware Model"
 	echo "${hardware_mod}"
@@ -49,11 +48,11 @@ function hardware_model(){
 } 
 
 ### Retrieve processor information ###
-### Use system_profiler to poll info, then print 3rd-5th columns of Processor Name, Processor Speed from SPHardwareDataType ###
+### Use system_profiler to poll info, then print string following 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType ###
 
 function processor(){ 
-	#local cpu=$(system_profiler SPHardwareDataType |awk '/Processor Name|Processor Speed/ {print $3,$4,$5}')
 	local cpu=$(system_profiler SPHardwareDataType |grep -E 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
+	
 	write_header "Processor"
 	echo "${cpu}"
 	echo "" 
