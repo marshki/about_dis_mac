@@ -76,10 +76,7 @@ function memory (){
 ### ### 
 
 function startup_disk(){
-	#local disk=$()
-	
-	# Here's where disk info is coming from: 
-	# system_profiler SPStorageDataType 
+	local disk=$(system_profiler SPStorageDataType |grep -A 2 Storage)
 
 	write_header "Startup Disk" 
 	echo "${disk}"
