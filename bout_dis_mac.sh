@@ -76,12 +76,15 @@ function memory (){
 ### ### 
 
 function startup_disk(){
-	local disk=$(system_profiler SPStorageDataType |grep --extended-regexp 'Storage:')
+	#local disk=$(system_profiler SPStorageDataType |grep --extended-regexp 'Storage:')
+	
+	local disk=$(system_profiler SPStorageDataType|awk 'c&&c!--c;/Storage:/{c=2}'|sed 's/^.*: //')
 	local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //')
-
+	
 	write_header "Startup Disk" 
 	echo "${disk}"
 	echo "${mount}"
+	echo ""
 }
 
 ### Retrieve graphics information ###
