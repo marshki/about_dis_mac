@@ -76,8 +76,9 @@ function memory (){
 ### ### 
 
 function startup_disk(){
-	local disk=$(system_profiler SPStorageDataType |grep -A 2 Storage)
-
+	local disk=$()
+	# system_profiler SPStorageDataType |grep --extended-regexp 'Storage:'
+	# system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //'
 	write_header "Startup Disk" 
 	echo "${disk}"
 	echo ""
