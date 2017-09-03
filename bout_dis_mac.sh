@@ -1,7 +1,7 @@
 #!/bin/bash 
 #mjk 2017.08.04 
 #Text-based alternative to OS X's "About this Mac" 
-#Retrieve's system info on: OS X "marketing" name, OS version, hardware model, processor, memory, startup disk, graphics, & serial number. 
+#Retrieve system info on: OS X "marketing" name, OS version, hardware model, processor, memory, startup disk, graphics, & serial number. 
 
 ### Display header message ###
 
@@ -12,8 +12,8 @@ function write_header(){
 	echo "--------------------"
 } 
 
-### Retrieve Apple's marketing name for operating system ### 
-### grep OSXSoftwareLicense.rtf to find pattern match, then awk to find match starting with, & print last column ###    
+### Retrieve Apple's marketing name for installed operating system ### 
+### grep OSXSoftwareLicense.rtf for 'SOFTWARE...', then awk to find match starting with 'OS X', & print last column ###    
 
 function OS_X_name(){
         local marketing=$(grep --only-matching --extended-regexp 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\
@@ -78,7 +78,7 @@ function memory (){
 function startup_disk(){
 	#local disk=$(system_profiler SPStorageDataType |grep --extended-regexp 'Storage:')
 	
-	local disk=$(system_profiler SPStorageDataType|awk 'c&&c!--c;/Storage:/{c=2}'|sed 's/^.*: //')
+	local disk=$(system_profiler SPStorageDataType|awk 'c&&c!--c;/Storage:/{c=2}'|sed 's/^.*: //')			#<-- needs more parsing
 	local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //')
 	
 	write_header "Startup Disk" 
