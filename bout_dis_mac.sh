@@ -85,6 +85,8 @@ function startup_disk(){
 	local disk=$(system_profiler SPStorageDataType|awk 'c&&c!--c;/Storage:/{c=2}'|sed 's/[[:blank:]:]*//g'|tail -1) 
 	local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //')
 	
+	# mount function needs to be limited to first occurrence of mount	
+	
 	write_header "Startup Disk" 
 	echo "${disk}"
 	echo "${mount}"
