@@ -16,6 +16,7 @@ function write_header(){
 ### grep OSXSoftwareLicense.rtf for 'SOFTWARE...', then awk to find match starting with 'OS X', & print last column ###    
 
 function OS_X_name(){
+
         local marketing=$(grep --only-matching --extended-regexp 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\
         '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf'\
         | awk -F 'OS X ' '{print $NF}')
@@ -29,6 +30,7 @@ function OS_X_name(){
 ### Use system_profiler to poll info, then regexp to print string following 'System Version:  ' from SPSoftwareDataType ###
 
 function operating_system(){
+
 	local os=$(system_profiler SPSoftwareDataType |grep --extended-regexp 'System Version: '|sed 's/^.*: //')	
 	
 	write_header "OS Version" 
@@ -40,6 +42,7 @@ function operating_system(){
 ### Use system_profiler to poll info, then regexp to print string following 'Model Identifier: ' from SPHardwareDataType ### 
 
 function hardware_model(){
+
 	local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //')
 		
 	write_header "Hardware Model"
@@ -50,7 +53,8 @@ function hardware_model(){
 ### Retrieve processor information ###
 ### Use system_profiler to poll info, then regexp to print string following 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType ###
 
-function processor(){ 
+function processor(){
+
 	local cpu=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
 	
 	write_header "Processor"
@@ -63,6 +67,7 @@ function processor(){
 ### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType ### 
 
 function memory (){
+
 	local ram=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Memory: ' |sed 's/^.*: //')
 	local type=$(system_profiler SPMemoryDataType |grep --extended-regexp 'Type: '\|'Speed: '|sed 's/^.*: //'|head -2) 	
 	
@@ -90,6 +95,7 @@ function startup_disk(){
 ### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Chipset Model: ' & 'VRAM (Dynamic, Max): ' from SPDisplaysDataType ### 
 
 function graphics(){
+
 	local gpu=$(system_profiler SPDisplaysDataType |grep --extended-regexp 'Chipset Model: '\|'VRAM \(Dynamic, Max\): '|sed 's/^.*: //'|head -2)
 	
 	write_header "Graphics"
@@ -101,6 +107,7 @@ function graphics(){
 ### Use system_profiler to poll info, then regexp to print string following 'Serial Number (system): ' from SPHardwareDataType ###  
 
 function serial_number(){
+
 	local serialnum=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Serial Number \(system\): '|sed 's/^.*: //') 
 	
 	write_header "Serial Number" 
@@ -109,7 +116,7 @@ function serial_number(){
 } 
 
 ### Main logic ### 
-### The guts of el programa ### 
+### Las entranas del programa ### 
 
 main(){
 	OS_X_name
