@@ -78,12 +78,14 @@ function memory (){
 } 
 
 ### Retrieve startup disk information ### 
-### ### 
+### Use system_profiler to poll info, then regexp to ### 
+### Use system_profiler to poll info, then regexp to ### 
 
 function startup_disk(){
 
 	local disk=$(system_profiler SPStorageDataType|awk 'c&&c!--c;/Storage:/{c=2}'|sed 's/[[:blank:]:]*//g'|tail -1) 
-	local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //'|head -1)
+	#local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //'|head -1)
+	local mount=$(system_profiler SPStorageDataType |awk 'c&&c!--c;/Mount Point:/'|sed 's/^.*: //'|head -1)
 	
 	write_header "Startup Disk" 
 	echo "${disk}"
