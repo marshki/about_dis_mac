@@ -78,8 +78,8 @@ function memory (){
 } 
 
 ### Retrieve startup disk information ### 
-### Use system_profiler to poll info, then regexp to ### 
-### Use system_profiler to poll info, then regexp to ### 
+### Use system_profiler to poll info, then regexp to print name of primary storage disk, removing leading and trailing whitespace ### 
+### Use system_profiler to poll info, then regexp to print mount point of primary storage disk, should be: `/` ### 
 
 function startup_disk(){
 
