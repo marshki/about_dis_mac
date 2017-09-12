@@ -2,7 +2,7 @@
 
 A bash script to provide a text-based version of this: 
 
-![Alt text](https://github.com/marshki/bout_dis_mac/blob/master/bout_dis_mac.png "bout_dis_mac")
+![Alt text](https://github.com/marshki/bout_dis_mac/blob/master/about_this.png "bout_dis_mac")
 ![Alt text](https://github.com/marshki/bout_dis_mac/blob/master/bout_dis_cli.png "bout_dis_cli")
 
 with additional enhancements for sysadmins.
