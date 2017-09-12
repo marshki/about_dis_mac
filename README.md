@@ -1,6 +1,6 @@
 ## bout_dis_mac
 
-A bash script to provide a text-based version of this: 
+A bash script to provide a cli-based version of OS X's About this Mac feature: 
 
 GUI Output   | CLI Output 
 ----------   | ----------
@@ -8,7 +8,7 @@ GUI Output   | CLI Output
 
 with additional enhancements for sysadmins.
 
-Still a WIP!
+A WIP. Works as is, but want to clean up order of output in some functions
 
 Tested on OS X: 
 
