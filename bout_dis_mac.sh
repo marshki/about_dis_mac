@@ -1,6 +1,5 @@
 #!/bin/bash 
-#mjk 2017.08.04 
-#Text-based alternative to OS X's "About this Mac" 
+#CLI-based alternative to OS X's "About this Mac" feature  
 #Retrieve system info on: OS X "marketing" name, OS version, hardware model, processor, memory, startup disk, graphics, & serial number. 
 
 ### Display header message ###
@@ -31,9 +30,9 @@ function OS_X_name(){
 
 function operating_system(){
 
-	local os=$(system_profiler SPSoftwareDataType |grep --extended-regexp 'System Version: '|sed 's/^.*: //')	
-	
-	write_header "OS Version" 
+	local os=$(system_profiler SPSoftwareDataType |grep --extended-regexp 'System Version: '|sed 's/^.*: //')	# sed regexp recycled throughout this 	
+															# remove everything to the left of ":", print till end  
+	write_header "OS Version" 											
 	echo "${os}"
 	echo ""
 } 
