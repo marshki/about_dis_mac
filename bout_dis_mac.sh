@@ -26,13 +26,16 @@ function OS_X_name(){
 }
 
 ### Retrieve operating system version ###
-### Use system_profiler to poll info, then regexp to print string following 'System Version:  ' from SPSoftwareDataType ###
+### Use system_vers to retrieve product version ###
 
 function operating_system(){
 
-	local os=$(system_profiler SPSoftwareDataType |grep --extended-regexp 'System Version: '|sed 's/^.*: //')	# sed regexp recycled throughout this 	
-															# remove everything to the left of ":", print till end  
-	write_header "OS Version" 											
+	# sed regexp recycled throughout this 	
+	# remove everything to the left of ":", print till end 	
+	
+	local os=$(sw_vers -productVersion)
+														 
+	write_header "OS Version" 										
 	echo "${os}"
 	echo ""
 } 
