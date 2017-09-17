@@ -29,9 +29,6 @@ function OS_X_name(){
 ### Use system_vers to retrieve product version ###
 
 function operating_system(){
-
-	# sed regexp recycled throughout this 	
-	# remove everything to the left of ":", print till end 	
 	
 	local os=$(sw_vers -productVersion)
 														 
@@ -45,7 +42,8 @@ function operating_system(){
 
 function hardware_model(){
 
-	local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //')
+	local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //') ### sed removes text to the left of ":";  prints remaining ###
+}		
 	
 	# let's add: 
 	# defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist
