@@ -39,11 +39,11 @@ function operating_system(){
 
 ### Retrieve hardware model ###
 ### Use system_profiler to poll info, then regexp to print string following 'Model Identifier: ' from SPHardwareDataType ### 
+### CODE REUSE: sed removes text to the left of ":" then prints remaining ###
 
 function hardware_model(){
 
-	local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //') ### sed removes text to the left of ":";  prints remaining ###
-}		
+	local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //') 
 	
 	# let's add: 
 	# defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist
@@ -92,9 +92,8 @@ function memory (){
 function startup_disk(){
 
 	local disk=$(system_profiler SPStorageDataType|awk 'c&&c!--c;/Storage:/{c=2}'|sed 's/[[:blank:]:]*//g'|tail -1) 
-	#local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //'|head -1)
-	local mount=$(system_profiler SPStorageDataType |awk 'c&&c!--c;/Mount Point:/'|sed 's/^.*: //'|head -1)
-	
+	local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //'|head -1)
+		
 	write_header "Startup Disk" 
 	echo "${disk}"
 	echo "${mount}"
