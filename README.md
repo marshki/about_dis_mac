@@ -21,5 +21,5 @@ Tested on OS X:
 
 -[x] Fix regular expressions to be more forgiving.  
 -[x] Boot disk function.
--[ ] Alter the order of the certain statements so that they correspond to the About This Mac GUI.
--[ ] Extract hardware model from plist.
+-[] Alter the order of the certain statements so that they correspond to the About This Mac GUI.
+-[] Extract hardware model from plist.
