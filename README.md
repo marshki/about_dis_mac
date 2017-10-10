@@ -1,4 +1,4 @@
-## bout_dis_mac
+# bout_dis_mac
 
 A bash script to provide a cli-based version of OS X's About this Mac feature:
 
@@ -22,4 +22,4 @@ Tested on OS X:
 - [x] Fix regular expressions to be more forgiving  
 - [x] Boot disk function
 - [ ] Alter the order of the certain statements so that they correspond to the About This Mac GUI
-- [ ] Extract hardware model from plist. 
+- [x] Extract hardware model from plist. 
