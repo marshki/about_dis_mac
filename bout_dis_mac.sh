@@ -43,15 +43,8 @@ function operating_system(){
 
 function hardware_model(){
 
-	local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //') 
-	# defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist |grep --extended-regexp 'en_US" = '|head -1	
-	# let's add: 
-	# defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist
-	# then some regexp to parse out the name from: 
-	# {
-    	#	"CPU Names" =     {
-        #	"DV35-en_US" = "MacBook Pro (15-inch, Mid 2012)";
-    	#};
+	# local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //') 
+	local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' |sed -E '/=/!d; s/^.*= "//; s/".*//;')
 	
 	write_header "Hardware Model"
 	echo "${hardware_mod}"
