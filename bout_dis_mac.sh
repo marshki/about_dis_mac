@@ -38,13 +38,11 @@ function operating_system(){
 } 
 
 ### Retrieve hardware model ###
-### Use system_profiler to poll info, then regexp to print string following 'Model Identifier: ' from SPHardwareDataType ### 
-### CODE REUSE: sed removes text to the left of ":" then prints remaining ###
+### extract 'CPU Names' from com.apple.SystemProfiler.plist, then parse content, leaving only string inside of "" ###
 
 function hardware_model(){
 
-	# local hardware_mod=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //') 
-	local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' |sed -E '/=/!d; s/^.*= "//; s/".*//;')
+	local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' |cut -sd '"' -f 4 |uniq) 
 	
 	write_header "Hardware Model"
 	echo "${hardware_mod}"
