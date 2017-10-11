@@ -14,7 +14,7 @@ function write_header(){
 ### Retrieve Apple's marketing name for installed operating system ### 
 ### grep OSXSoftwareLicense.rtf for 'SOFTWARE...', then awk to find match starting with 'OS X', & print last column ###    
 
-function OS_X_name(){
+function osx_name(){
 
         local marketing=$(grep --only-matching --extended-regexp 'SOFTWARE LICENSE AGREEMENT FOR OS X.*[A-Z]'\
         '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf'\
@@ -119,7 +119,7 @@ function serial_number(){
 ### Las entranas del programa ### 
 
 main(){
-	OS_X_name
+	osx_name
 	operating_system 
 	hardware_model
 	processor
