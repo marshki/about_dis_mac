@@ -42,7 +42,10 @@ function operating_system(){
 
 function hardware_model(){
 
-	local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' |cut -sd '"' -f 4 |uniq) 
+	local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' |cut -sd '"' -f 4 |uniq)
+	
+	# This info is also useful, even if it isn't provided in the GUI "About this Mac feature"  
+	# system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //' 	
 	
 	write_header "Hardware Model"
 	echo "${hardware_mod}"
