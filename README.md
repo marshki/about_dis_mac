@@ -21,5 +21,5 @@ Tested on OS X:
 
 - [x] Fix regular expressions to be more forgiving  
 - [x] Boot disk function
-- [ ] Alter the order of the certain statements so that they correspond to the About This Mac GUI
+- [ ] Alter the output of certain regular expressions--CPU, GPU--so that they correspond to the About This Mac GUI and appear on the same line 
 - [x] Extract hardware model from plist. 
