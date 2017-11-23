@@ -1,4 +1,5 @@
 #!/bin/bash 
+# mjk 2017.08.15
 #CLI-based alternative to OS X's "About this Mac" feature  
 #Retrieve system info on: OS X "marketing" name, OS version, hardware model, processor, memory, startup disk, graphics, & serial number. 
 
