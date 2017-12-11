@@ -6,10 +6,6 @@ GUI Output   | CLI Output
 ----------   | ----------
 ![Alt text](https://github.com/marshki/bout_dis_mac/blob/master/about_this.png "bout_dis_mac")   | ![Alt text](https://github.com/marshki/bout_dis_mac/blob/master/bout_dis_cli.png "bout_dis_cli")
 
-with additional enhancements for sysadmins.
-
-A WIP. Works as is, but want to clean up order of output in some functions
-
 Tested on OS X:
 
 * 10.12 Sierra
@@ -19,7 +15,4 @@ Tested on OS X:
 
 # TODO:
 
-- [x] Fix regular expressions to be more forgiving  
-- [x] Boot disk function
 - [ ] Alter the output of certain regular expressions--CPU, GPU--so that they correspond to the About This Mac GUI and appear on the same line 
-- [x] Extract hardware model from plist. 
