@@ -15,10 +15,5 @@ Tested on OS X:
 
 # TODO:
 
-<<<<<<< HEAD
-=======
 - [ ] Change directory structure of repo
-- [x] Fix regular expressions to be more forgiving  
-- [x] Boot disk function
->>>>>>> 5e9c27c69a69ac138bab69e4163d591548d4969a
 - [ ] Alter the output of certain regular expressions--CPU, GPU--so that they correspond to the About This Mac GUI and appear on the same line 
