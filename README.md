@@ -12,7 +12,7 @@ A WIP. Works as is, but want to clean up order of output in some functions
 
 Tested on OS X:
 
-* 10.12 Sierra
+~~* 10.12 Sierra~~
 * 10.11 El Capitan
 * 10.10 Yosemite
 * 10.9 Mavericks
