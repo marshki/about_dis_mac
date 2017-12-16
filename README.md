@@ -4,7 +4,7 @@ A bash script to provide a cli-based version of OS X's About this Mac feature:
 
 GUI Output   | CLI Output
 ----------   | ----------
-![Alt text](https://github.com/marshki/bout_dis_mac/blob/master/about_this.png "bout_dis_mac")   | ![Alt text](https://github.com/marshki/bout_dis_mac/blob/master/bout_dis_cli.png "bout_dis_cli")
+![Alt text](https://github.com/marshki/About-Dis-Mac/blob/master/docs/about_this.png "about_this_mac")   | ![Alt text](https://github.com/marshki/About-Dis-Mac/blob/master/docs/about_dis.png "about_dis_cli")
 
 Tested on OS X:
 
