@@ -8,6 +8,7 @@ GUI Output   | CLI Output
 
 Tested on OS X:
 
+* 10.12 Sierra
 * 10.11 El Capitan
 * 10.10 Yosemite
 * 10.9 Mavericks
