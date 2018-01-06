@@ -13,7 +13,7 @@ function write_header(){
 }
 
 ### Retrieve Apple's marketing name for installed operating system ###
-### grep OSXSoftwareLicense.rtf for 'SOFTWARE...', then awk to find match starting with 'OS X', & print last column ###
+### Extract tail end of regular expression line followign either OS X or macOS from OSXSoftwareLicense.rtf ###
 
 function osx_name(){
 
