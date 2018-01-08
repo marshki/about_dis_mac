@@ -1,7 +1,8 @@
 #!/bin/bash
 # mjk 2017.08.15
-#CLI-based alternative to OS X's "About this Mac" feature
-#Retrieve system info on: OS X "marketing" name, OS version, hardware model, processor, memory, startup disk, graphics, & serial number.
+# CLI-based alternative to OS X's "About this Mac" feature
+# Retrieve system info on: OS X "marketing" name, OS version,
+# hardware model, processor, memory, startup disk, graphics, & serial number.
 
 ### Display header message ###
 
@@ -13,7 +14,8 @@ function write_header(){
 }
 
 ### Retrieve Apple's marketing name for installed operating system ###
-### Extract tail end of regular expression line followign either OS X or macOS from OSXSoftwareLicense.rtf ###
+### Extract end of regex following match with either OS X or macOS ###
+### from OSXSoftwareLicense.rtf 																	 ###
 
 function osx_name(){
 
@@ -25,7 +27,7 @@ function osx_name(){
         printf "%s\n" ""
 }
 
-### Retrieve operating system version ###
+### Retrieve operating system version 					###
 ### Use system_vers to retrieve product version ###
 
 function operating_system(){
@@ -37,8 +39,9 @@ function operating_system(){
 	printf "%s\n" ""
 }
 
-### Retrieve hardware model ###
-### extract 'CPU Names' from com.apple.SystemProfiler.plist, then parse content, leaving only string inside of "" ###
+### Retrieve hardware model 																 ###
+### Extract 'CPU Names' from com.apple.SystemProfiler.plist, ###
+### then parse content, leaving only string inside of "" 		 ###
 
 function hardware_model(){
 
@@ -52,8 +55,9 @@ function hardware_model(){
 	printf "%s\n" ""
 }
 
-### Retrieve processor information ###
-### Use system_profiler to poll info, then regexp to print string following 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType ###
+### Retrieve processor information 																					 ###
+### Use system_profiler to poll info, then regexp to print string following  ###
+### 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType 				 ###
 
 function processor(){
 
