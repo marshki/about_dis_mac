@@ -1,3 +1,5 @@
 #!/bin/bash
+# Email output of script 
+
 
 bash bout_dis_mac.sh |tee output.txt |mail -s "About THIS Mac..." me@myemail.com
