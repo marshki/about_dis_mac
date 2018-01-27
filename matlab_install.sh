@@ -5,7 +5,7 @@
 
 MATLAB_INSTALLER="http://localweb.cns.nyu.edu/unixadmin/mat-distro-12-2014/linux/matlab9.3.tgz"
 
-# Root user check
+# Is user root? If not, exit.
 
 function root_check () {
   if [ "$EUID" -ne "0" ] ; then
@@ -14,11 +14,13 @@ function root_check () {
 fi
 }
 
-# Disk space check
+# Is there adequate disk space? If not, exit.
 
-function check_disk_space () {
-  printf "%s\n" "Checking disk space..."
-}
+# function check_disk_space () {
+#  printf "%s\n" "Checking disk space..."
+#}
+
+# Is curl installed? If not, install it.
 
 function curl_check () {
   if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
@@ -27,10 +29,14 @@ function curl_check () {
 fi
 }
 
+# Download tarball
+
 function get_matlab(){
   printf "%s\n" "Retrieving Matlab insaller..."
   curl --progress-bar --retry 3 --retry-delay 5 "$MATLAB_INSTALLER" --output matlab.tgz
 }
+
+# Unpack tarball to /usr/local
 
 function untar_matlab(){
   printf "%s\n" "Untarring package to /usr/local..."
@@ -38,6 +44,8 @@ function untar_matlab(){
 }
 
 # remove downloaded file
+
+# Create symlink for Matlab
 
 function symlink_matlab(){}
   printf "%s\n" "Creating symlink..."
