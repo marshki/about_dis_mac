@@ -16,11 +16,11 @@ fi
 
 # Is there adequate disk space? If not, exit.
 
-# function check_disk_space () {
-df -Hl --output=avail /usr/local |tail -n1
-
-#  printf "%s\n" "Checking disk space..."
-#}
+function check_disk_space () {
+  if [ $(df -Hl --output=avail /dev/*da1 |tail --lines=1) -lt 100G ]; then
+    printf "%s\n" "Not enough free disk space."
+fi
+}
 
 # Is curl installed? If not, install it.
 
@@ -58,7 +58,7 @@ function symlink_matlab(){}
 #  printf "%s\n" "------------------------------"
 #}
 
-#function launch_matlab(){
-#  printf "%s\n" "------------------------------"
-#matlab
-#}
+function launch_matlab(){
+  printf "%s\n" "------------------------------"
+  matlab -nodesktop
+}
