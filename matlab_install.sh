@@ -17,13 +17,15 @@ fi
 # Is there adequate disk space? If not, exit.
 
 # function check_disk_space () {
+df -k --output=avail /usr/local |tail -n1
+
 #  printf "%s\n" "Checking disk space..."
 #}
 
 # Is curl installed? If not, install it.
 
 function curl_check () {
-  if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+  if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep --count "ok installed") -eq 0 ]; then
     printf "%s\n" "Installing curl..."
     apt-get install curl
 fi
