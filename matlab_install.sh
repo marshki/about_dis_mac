@@ -17,7 +17,7 @@ fi
 # Is there adequate disk space? If not, exit.
 
 # function check_disk_space () {
-df -k --output=avail /usr/local |tail -n1
+df -Hl --output=avail /usr/local |tail -n1
 
 #  printf "%s\n" "Checking disk space..."
 #}
