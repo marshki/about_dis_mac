@@ -17,7 +17,7 @@ fi
 # Is there adequate disk space? If not, exit.
 
 function check_disk_space () {
-  if [ $(df -Hl --output=avail /dev/*da1 |awk 'FNR == 2 {print $1}' |sed 's/G//') -lt 100 ]; then
+  if [ $(df -Hl --output=avail /dev/*da1 |awk 'FNR == 2 {print $1}' |sed 's/G//') -eq "51" ]; then
     printf "%s\n" "Not enough free disk space. Exiting." >&2
     exit 1
 fi
@@ -26,7 +26,7 @@ fi
 # Is curl installed? If not, install it.
 
 function curl_check () {
-  if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep --count "ok installed") -eq 0 ]; then
+  if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep --count "ok installed") -eq "0" ]; then
     printf "%s\n" "Installing curl..."
     apt-get install curl
 fi
