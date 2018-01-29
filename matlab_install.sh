@@ -1,7 +1,7 @@
 #!/bin/bash
 # Run as root
 
-### Retrieve Matlab, unptar, install, symlink, & execute ###
+### Retrieve Matlab, untar, install, remove tar, symlink, & execute ###
 
 MATLAB_INSTALLER="http://localweb.cns.nyu.edu/unixadmin/mat-distro-12-2014/linux/matlab9.3.tgz"
 
@@ -17,7 +17,7 @@ fi
 # Is there adequate disk space? If not, exit.
 
 function check_disk_space () {
-  if [ $(df -Hl --output=avail /dev/*da1 |awk 'FNR == 2 {print $1}' |sed 's/G//') -eq "51" ]; then
+  if [ $(df -Hl --output=avail /dev/*da1 |awk 'FNR == 2 {print $1}' |sed 's/G//') -le "51" ]; then
     printf "%s\n" "Not enough free disk space. Exiting." >&2
     exit 1
 fi
@@ -26,7 +26,7 @@ fi
 # Is curl installed? If not, install it.
 
 function curl_check () {
-  if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep --count "ok installed") -eq "0" ]; then
+  if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep --count "ok installed") -< "0" ]; then
     printf "%s\n" "Installing curl..."
     apt-get install curl
 fi
@@ -46,7 +46,12 @@ function untar_matlab(){
   tar --extract --gzip --file=matlab.tgz --directory=/usr/local
 }
 
-# remove downloaded file
+# Remove tarball
+
+function remove_matlab_tar(){
+  printf "%s\n" "Removing Matlab Installer..."
+  rm --recursive --force matlab.tgz
+}
 
 # Create symlink for Matlab
 
@@ -55,9 +60,7 @@ function symlink_matlab(){}
   ln --symbolic /usr/local/matlab9.3/bin/matlab /usr/local/bin/matlab
 }
 
-#function confirm_matlab(){
-#  printf "%s\n" "------------------------------"
-#}
+# Launch Matlab from terminal
 
 function launch_matlab(){
   printf "%s\n" "------------------------------"
