@@ -33,42 +33,42 @@ fi
 
 # Download tarball
 
-function get_matlab(){
+function get_matlab () {
   printf "%s\n" "Retrieving Matlab insaller..."
   curl --progress-bar --retry 3 --retry-delay 5 "$MATLAB_INSTALLER" --output matlab.tgz
 }
 
 # Unpack tarball to /usr/local
 
-function untar_matlab(){
+function untar_matlab () {
   printf "%s\n" "Untarring package to /usr/local..."
   tar --extract --gzip --file=matlab.tgz --directory=/usr/local
 }
 
 # Remove tarball
 
-function remove_matlab_tar(){
+function remove_matlab_tar () {
   printf "%s\n" "Removing Matlab Installer..."
   rm --recursive --force matlab.tgz
 }
 
 # Create symlink for Matlab
 
-function symlink_matlab(){
+function symlink_matlab () {
   printf "%s\n" "Creating symlink..."
   ln --symbolic /usr/local/matlab9.3/bin/matlab /usr/local/bin/matlab
 }
 
 # Launch Matlab from terminal
 
-function launch_matlab(){
-  printf "%s\n" "------------------------------"
+function launch_matlab () {
+  printf "%s\n" "Launching Matlab..."
   matlab -nodesktop
 }
 
 # Main function
 
-main(){
+main () {
 	root_check
 	check_disk_space
 	curl_check
