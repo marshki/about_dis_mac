@@ -25,7 +25,7 @@ fi
 # Is curl installed? If not, install it.
 
 function curl_check () {
-  if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep --count "ok installed") -< "0" ]; then
+  if [ $(dpkg-query --show --showformat='${Status}' curl 2>/dev/null | grep --count "ok installed") -eq "0" ]; then
     printf "%s\n" "Installing curl..."
     apt-get install curl
 fi
@@ -54,7 +54,7 @@ function remove_matlab_tar(){
 
 # Create symlink for Matlab
 
-function symlink_matlab(){}
+function symlink_matlab(){
   printf "%s\n" "Creating symlink..."
   ln --symbolic /usr/local/matlab9.3/bin/matlab /usr/local/bin/matlab
 }
