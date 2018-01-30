@@ -1,7 +1,6 @@
 #!/bin/bash
-# Run as root
 
-### Retrieve Matlab, untar, install, remove tar, symlink, & execute ###
+### Matlab installer V.1.0 ###
 
 MATLAB_INSTALLER="http://localweb.cns.nyu.edu/unixadmin/mat-distro-12-2014/linux/matlab9.3.tgz"
 
@@ -17,7 +16,7 @@ fi
 # Is there adequate disk space? If not, exit.
 
 function check_disk_space () {
-  if [ $(df -Hl --output=avail /dev/*da1 |awk 'FNR == 2 {print $1}' |sed 's/G//') -le "51" ]; then
+  if [ $(df -Hl --output=avail /dev/*da1 |awk 'FNR == 2 {print $1}' |sed 's/G//') -le "20" ]; then
     printf "%s\n" "Not enough free disk space. Exiting." >&2
     exit 1
 fi
@@ -66,3 +65,18 @@ function launch_matlab(){
   printf "%s\n" "------------------------------"
   matlab -nodesktop
 }
+
+# Main function
+
+main(){
+	root_check
+	check_disk_space
+	curl_check
+	get_matlab
+	untar_matlab
+	remove_matlab_tar
+	symlink_matlab
+	launch_matlab
+}
+
+main "$@"
