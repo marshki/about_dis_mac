@@ -19,12 +19,12 @@ function write_header () {
 
 function osx_name () {
 
-				local marketing=$(sed -nE 's/SOFTWARE LICENSE AGREEMENT FOR (OS X|macOS) ([A-Za-z ]+).*/\2/p'\
-				'/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf')
+	local marketing=$(sed -nE 's/SOFTWARE LICENSE AGREEMENT FOR (OS X|macOS) ([A-Za-z ]+).*/\2/p'\
+	'/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf')
 
-        write_header "OS X Name"
-        printf "%s\n" "${marketing}"
-        printf "%s\n" ""
+  write_header "OS X Name"
+  printf "%s\n" "${marketing}"
+  printf "%s\n" ""
 }
 
 ### Retrieve operating system version 					###
