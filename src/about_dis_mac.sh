@@ -68,6 +68,8 @@ function processor () {
 	printf "%s\n" ""
 }
 
+ # system_profiler SPHardwareDataType   | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'
+
 ### Retrieve memory information ###
 ### Use system_profiler to poll info, then regexp to print string following 'Memory: ' from SPHardwareDataType ###
 ### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType ###
