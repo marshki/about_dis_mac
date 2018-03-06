@@ -7,9 +7,9 @@ function processor () {
 	sed -n -e '/Processor Name/{;s/.*: //;h;}'\
 	-e '/Processor Speed/{;s/.*: //;G;s/\n/ /;p;q;}')
 	
-	write_header "Processor" 
+	#write_header "Processor" 
 	printf "%s\n" "${cpu}"
-	printf "%s\n" ""
+	#printf "%s\n" ""
 }
 
 processor
