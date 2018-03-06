@@ -59,16 +59,25 @@ function hardware_model () {
 ### Use system_profiler to poll info, then regexp to print string following  ###
 ### 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType 				 ###
 
+#function processor () {
+
+#	local cpu=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
+
+#	write_header "Processor"
+#	printf "%s\n" "${cpu}"
+#	printf "%s\n" ""
+#}
+
 function processor () {
 
-	local cpu=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
+	local cpu=$(system_profiler SPHardwareDataType|\
+        sed -n -e '/Processor Name/{;s/.*: //;h;}'\
+        -e '/Processor Speed/{;s/.*: //;G;s/\n/ /;p;q;}')
 
-	write_header "Processor"
-	printf "%s\n" "${cpu}"
+  write_header "Processor"
+  printf "%s\n" "${cpu}"
 	printf "%s\n" ""
 }
-
- # system_profiler SPHardwareDataType   | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'
 
 ### Retrieve memory information ###
 ### Use system_profiler to poll info, then regexp to print string following 'Memory: ' from SPHardwareDataType ###
