@@ -1,21 +1,25 @@
 #!/bin/bash
 # mjk 2017.08.15
-# CLI-based alternative to OS X's "About this Mac" feature
-# Retrieve system info on: OS X "marketing" name, OS version,
-# hardware model, processor, memory, startup disk, graphics, & serial number.
+
+######################################################################
+#   Command line alternative to OS X's "About this Mac" feature.  	 #
+#   Retrieve information about: OS X "marketing" name; 							 #
+#		OS version number; hardware model; processor; memory;            #
+#   startup disk; graphics; and serial number . 										 #
+######################################################################
 
 ### Display header message ###
 
 function write_header () {
-	local h="$@"			# make header specific to local variable
+	local h="$@"							# make header specific to local variable
 	printf "%s\n" "--------------------"
 	printf "%s\n" "${h}" 			# insert local variable in to header
 	printf "%s\n" "--------------------"
 }
 
-### Retrieve Apple's marketing name for installed operating system ###
+### Retrieve Apple's marketing name for installed operating system.###
 ### Extract end of regex following match with either OS X or macOS ###
-### from OSXSoftwareLicense.rtf 																	 ###
+### from OSXSoftwareLicense.rtf.  																 ###
 
 function osx_name () {
 
@@ -46,9 +50,11 @@ function operating_system () {
 
 function hardware_model () {
 
-	local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' |cut -sd '"' -f 4 |uniq)
+	local hardware_mod=$(
+	defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
+	'CPU Names' |cut -sd '"' -f 4 |uniq)
 
-	# This info is also useful, even if it isn't provided in the GUI "About this Mac feature"
+	# Also useful, even if it isn't provided by the "About This Mac" GUI
 	# system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //'
 
 	write_header "Hardware Model"
@@ -56,18 +62,9 @@ function hardware_model () {
 	printf "%s\n" ""
 }
 
-### Retrieve processor information 																					 ###
-### Use system_profiler to poll info, then regexp to print string following  ###
-### 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType 				 ###
-
-#function processor () {
-
-#	local cpu=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Processor Name: '\|'Processor Speed: '|sed 's/^.*: //')
-
-#	write_header "Processor"
-#	printf "%s\n" "${cpu}"
-#	printf "%s\n" ""
-#}
+### Retrieve processor information 																			###
+### Use system_profiler to poll info, then sed to get   								###
+### 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType 		###
 
 function processor () {
 
