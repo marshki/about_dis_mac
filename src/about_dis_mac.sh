@@ -2,16 +2,16 @@
 # mjk 2017.08.15
 
 ######################################################################
-#   Command line alternative to OS X's "About this Mac" feature.  	 #
-#   Retrieve information about: OS X "marketing" name; 							 #
-#		OS version number; hardware model; processor; memory;            #
-#   startup disk; graphics; and serial number . 										 #
+#   Command line alternative to OS X's "About this Mac" feature.     #
+#   Retrieve information about: OS X "marketing" name; 		     #
+#		OS version number; hardware model; processor; memory;#
+#   startup disk; graphics; and serial number .			     #
 ######################################################################
 
 ### Display header message ###
 
 function write_header () {
-	local h="$@"							# make header specific to local variable
+	local h="$@"				# make header specific to local variable
 	printf "%s\n" "--------------------"
 	printf "%s\n" "${h}" 			# insert local variable in to header
 	printf "%s\n" "--------------------"
@@ -32,7 +32,7 @@ function osx_name () {
   printf "%s\n" ""
 }
 
-### Retrieve operating system version 					###
+### Retrieve operating system version 		###
 ### Use system_vers to retrieve product version ###
 
 function operating_system () {
@@ -44,9 +44,9 @@ function operating_system () {
 	printf "%s\n" ""
 }
 
-### Retrieve hardware model 																 ###
+### Retrieve hardware model				     ###
 ### Extract 'CPU Names' from com.apple.SystemProfiler.plist, ###
-### then parse content, leaving only string inside of "" 		 ###
+### then parse content, leaving only string inside of ""     ###
 
 function hardware_model () {
 
@@ -62,8 +62,8 @@ function hardware_model () {
 	printf "%s\n" ""
 }
 
-### Retrieve processor information 																			###
-### Use system_profiler to poll info, then sed to get   								###
+### Retrieve processor information 						###
+### Use system_profiler to poll info, then sed to get   			###
 ### 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType 		###
 
 function processor () {
