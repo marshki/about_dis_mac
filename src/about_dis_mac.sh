@@ -8,6 +8,12 @@
 #   startup disk; graphics; and serial number .			     #
 ######################################################################
 
+# TODO
+# Alter the output of certain regular expressions--RAM, GPU--so
+# that they correspond to the About This Mac GUI and appear on the same line.
+
+
+
 ### Display header message ###
 
 function write_header () {
