@@ -1,11 +1,10 @@
-
 #!/bin/bash
 # mjk 2017.08.15
 
 ######################################################################
 #   Command line alternative to OS X's "About this Mac" feature.     #
 #   Retrieve information about: OS X "marketing" name; 		     #
-#		OS version number; hardware model; processor; memory;#
+#   OS version number; hardware model; processor; memory;	     #
 #   startup disk; graphics; and serial number .			     #
 ######################################################################
 
@@ -17,7 +16,7 @@
 
 ### Display header message ###
 
-function write_header () {
+write_header () {
 	local h="$@"				# make header specific to local variable
 	printf "%s\n" "--------------------"
 	printf "%s\n" "${h}" 			# insert local variable in to header
@@ -28,7 +27,7 @@ function write_header () {
 ### Extract end of regex following match with either OS X or macOS ###
 ### from OSXSoftwareLicense.rtf.  																 ###
 
-function osx_name () {
+osx_name () {
 
 	local marketing=$(
 	sed -nE 's/SOFTWARE LICENSE AGREEMENT FOR (OS X|macOS) ([A-Za-z ]+).*/\2/p' \
@@ -42,7 +41,7 @@ function osx_name () {
 ### Retrieve operating system version 		###
 ### Use system_vers to retrieve product version ###
 
-function operating_system () {
+operating_system () {
 
 	local os=$(sw_vers -productVersion)
 
@@ -55,7 +54,7 @@ function operating_system () {
 ### Extract 'CPU Names' from com.apple.SystemProfiler.plist, ###
 ### then parse content, leaving only string inside of ""     ###
 
-function hardware_model () {
+hardware_model () {
 
 	local hardware_mod=$(
 	defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
@@ -73,7 +72,7 @@ function hardware_model () {
 ### Use system_profiler to poll info, then sed to get   			###
 ### 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType 		###
 
-function processor () {
+processor () {
 
 	local cpu=$(system_profiler SPHardwareDataType|\
         sed -n -e '/Processor Name/{;s/.*: //;h;}'\
@@ -88,7 +87,7 @@ function processor () {
 ### Use system_profiler to poll info, then regexp to print string following 'Memory: ' from SPHardwareDataType ###
 ### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType ###
 
-function memory () {
+memory () {
 
 	local ram=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Memory: ' |sed 's/^.*: //')
 	local type=$(system_profiler SPMemoryDataType |grep --extended-regexp 'Type: '\|'Speed: '|sed 's/^.*: //'|head -2)
@@ -103,7 +102,7 @@ function memory () {
 ### Use system_profiler to poll info, then regexp to print name of primary storage disk, removing leading and trailing whitespace ###
 ### Use system_profiler to poll info, then regexp to print mount point of primary storage disk, should be: `/` ###
 
-function startup_disk () {
+startup_disk () {
 
 	local disk=$(system_profiler SPStorageDataType|awk 'c&&c!--c;/Storage:/{c=2}'|sed 's/[[:blank:]:]*//g'|tail -1)
 	local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //'|head -1)
@@ -117,7 +116,7 @@ function startup_disk () {
 ### Retrieve graphics information ###
 ### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Chipset Model: ' & 'VRAM (Dynamic, Max): ' from SPDisplaysDataType ###
 
-function graphics () {
+graphics () {
 
 	local gpu=$(system_profiler SPDisplaysDataType |grep --extended-regexp 'Chipset Model: '\|'VRAM \(Dynamic, Max\): '|sed 's/^.*: //'|head -2)
 
@@ -129,7 +128,7 @@ function graphics () {
 ### Retrieve serial number ###
 ### Use system_profiler to poll info, then regexp to print string following 'Serial Number (system): ' from SPHardwareDataType ###
 
-function serial_number () {
+serial_number () {
 
 	local serialnum=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Serial Number \(system\): '|sed 's/^.*: //')
 
@@ -142,6 +141,7 @@ function serial_number () {
 ### Las entranas del programa ###
 
 main () {
+
 	osx_name
 	operating_system
 	hardware_model
@@ -150,6 +150,7 @@ main () {
 	startup_disk
 	graphics
 	serial_number
+
 }
 
 main "$@"
