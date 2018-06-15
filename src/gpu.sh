@@ -1,3 +1,5 @@
+#!/bin/bash 
+
 #system_profiler SPDisplaysDataType 
 
 system_profiler SPDisplayDataType \
