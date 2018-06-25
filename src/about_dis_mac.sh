@@ -18,9 +18,9 @@
 
 write_header () {
 	local h="$@"				# make header specific to local variable
-	printf "%s\n" "--------------------"
-	printf "%s\n" "${h}" 			# insert local variable in to header
-	printf "%s\n" "--------------------"
+	printf "%s\\n" "--------------------"
+	printf "%s\\n" "${h}" 			# insert local variable in to header
+	printf "%s\\n" "--------------------"
 }
 
 ### Retrieve Apple's marketing name for installed operating system.###
@@ -34,8 +34,8 @@ osx_name () {
 	'/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf')
 
   write_header "OS X Name"
-  printf "%s\n" "${marketing}"
-  printf "%s\n" ""
+  printf "%s\\n" "${marketing}"
+  printf "%s\\n" ""
 }
 
 ### Retrieve operating system version 		###
@@ -46,8 +46,8 @@ operating_system () {
 	local os=$(sw_vers -productVersion)
 
 	write_header "OS Version"
-	printf "%s\n" "${os}"
-	printf "%s\n" ""
+	printf "%s\\n" "${os}"
+	printf "%s\\n" ""
 }
 
 ### Retrieve hardware model				     ###
@@ -64,8 +64,8 @@ hardware_model () {
 	# system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //'
 
 	write_header "Hardware Model"
-	printf "%s\n" "${hardware_mod}"
-	printf "%s\n" ""
+	printf "%s\\n" "${hardware_mod}"
+	printf "%s\\n" ""
 }
 
 ### Retrieve processor information 						###
@@ -79,8 +79,8 @@ processor () {
         -e '/Processor Speed/{;s/.*: //;G;s/\n/ /;p;q;}')
 
   write_header "Processor"
-  printf "%s\n" "${cpu}"
-	printf "%s\n" ""
+  printf "%s\\n" "${cpu}"
+	printf "%s\\n" ""
 }
 
 ### Retrieve memory information ###
@@ -93,9 +93,9 @@ memory () {
 	local type=$(system_profiler SPMemoryDataType |grep --extended-regexp 'Type: '\|'Speed: '|sed 's/^.*: //'|head -2)
 
 	write_header "Memory"
-	printf "%s\n" "${ram}"
-	printf "%s\n" "${type}"
-	printf "%s\n" ""
+	printf "%s\\n" "${ram}"
+	printf "%s\\n" "${type}"
+	printf "%s\\n" ""
 }
 
 ### Retrieve startup disk information ###
@@ -108,9 +108,9 @@ startup_disk () {
 	local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //'|head -1)
 
 	write_header "Startup Disk"
-	printf "%s\n" "${disk}"
-	printf "%s\n" "${mount}"
-	printf "%s\n" ""
+	printf "%s\\n" "${disk}"
+	printf "%s\\n" "${mount}"
+	printf "%s\\n" ""
 }
 
 ### Retrieve graphics information ###
@@ -121,8 +121,8 @@ graphics () {
 	local gpu=$(system_profiler SPDisplaysDataType |grep --extended-regexp 'Chipset Model: '\|'VRAM \(Dynamic, Max\): '|sed 's/^.*: //'|head -2)
 
 	write_header "Graphics"
-	printf "%s\n" "${gpu}"
-	printf "%s\n" ""
+	printf "%s\\n" "${gpu}"
+	printf "%s\\n" ""
 }
 
 ### Retrieve serial number ###
@@ -133,8 +133,8 @@ serial_number () {
 	local serialnum=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Serial Number \(system\): '|sed 's/^.*: //')
 
 	write_header "Serial Number"
-	printf "%s\n" "${serialnum}"
-	printf "%s\n" ""
+	printf "%s\\n" "${serialnum}"
+	printf "%s\\n" ""
 }
 
 ### Main logic ###
