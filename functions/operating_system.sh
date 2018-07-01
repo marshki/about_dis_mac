@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 # OS version 
 
 operating_system () {
