@@ -8,7 +8,7 @@ serial_number () {
 
   #write_header "Serial Number"
   printf "%s\\n" "${serialnum01}"
-  printf "%s\\n" "${serialnum01}"
+  printf "%s\\n" "${serialnum02}"
   #printf "%s\\n" ""
 }
 
