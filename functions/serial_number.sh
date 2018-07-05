@@ -3,11 +3,12 @@
 
 serial_number () {
 
-  #local serialnum=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Serial Number \(system\): '|sed 's/^.*: //')
-  local serialnum=$(system_profiler SPHardwareDataType| awk '/Serial/ {print $4}')
+  local serialnum01=$(system_profiler SPHardwareDataType |awk '/Serial/'|sed 's/^.*: //')
+  local serialnum02=$(system_profiler SPHardwareDataType| awk '/Serial/ {print $4}')
 
   #write_header "Serial Number"
-  printf "%s\\n" "${serialnum}"
+  printf "%s\\n" "${serialnum01}"
+  printf "%s\\n" "${serialnum01}"
   #printf "%s\\n" ""
 }
 
