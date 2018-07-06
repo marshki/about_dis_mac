@@ -25,7 +25,8 @@ write_header () {
 
 ### Retrieve Apple's marketing name for installed operating system.###
 ### Extract end of regex following match with either OS X or macOS ###
-### from OSXSoftwareLicense.rtf.  																 ###
+### from OSXSoftwareLicense.rtf.:wq
+###
 
 osx_name () {
 
@@ -59,9 +60,6 @@ hardware_model () {
 	local hardware_mod=$(
 	defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
 	'CPU Names' |cut -sd '"' -f 4 |uniq)
-
-	# Also useful, even if it isn't provided by the "About This Mac" GUI
-	# system_profiler SPHardwareDataType |grep --extended-regexp 'Model Identifier: '|sed 's/^.*: //'
 
 	write_header "Hardware Model"
 	printf "%s\\n" "${hardware_mod}"
