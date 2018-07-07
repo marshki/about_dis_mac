@@ -3,7 +3,7 @@
 
 processor () {
 
-  local cpu=$(system_profiler SPHardwareDataType   | awk '/Processor (Speed|Name):/ { sub(/^.*: /, ""); print; }'| sort)
+  local cpu=$(system_profiler SPHardwareDataType   |awk '/Processor (Speed|Name):/ { sub(/^.*: /, ""); print; }'|sort |xargs)
 
   #write_header "Processor"
   printf "%s\\n" "${cpu}"
