@@ -1,5 +1,7 @@
 #!/bin/bash
 # Hardware model
+# On some test installs, OS X didn't have "com.apple.SystemProfiler.plist"
+# What generates this preference list? 
 
 hardware_model () {
 
