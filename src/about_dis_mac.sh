@@ -78,19 +78,22 @@ local cpu=$(system_profiler SPHardwareDataType | awk '/Processor (Name|Speed):/ 
   printf "%s\\n" ""
 }
 
-#### Retrieve memory information ####
-#### Use system_profiler to poll info, then regexp to print string following 'Memory: ' from SPHardwareDataType ###
-#### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType ###
+#### Retrieve memory information 						       ####
+#### Use system_profiler to poll info; awk to extract 'Memory' from SPHardwareDataType ####
+#### --> and print characters to the right of `:`				       #### 
+#### Use system_profiler to poll info; awk to extract                                  ####
+#### 'Type' & 'Speed' from SPMemoryDataType 					       ####
+#### --> and print characters to the right of `:`                                      ####
 
 memory () {
 
-	local ram=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Memory: ' |sed 's/^.*: //')
-	local type=$(system_profiler SPMemoryDataType |grep --extended-regexp 'Type: '\|'Speed: '|sed 's/^.*: //'|head -2)
+  local ram=$(system_profiler SPHardwareDataType | awk '/Memory/{ sub(/^.*: /, ""); print; }')
+  local type=$(system_profiler SPMemoryDataType | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }'|head -2|xargs)
 
-	write_header "Memory"
-	printf "%s\\n" "${ram}"
-	printf "%s\\n" "${type}"
-	printf "%s\\n" ""
+  write_header "Memory"
+  printf "%s\\n" "${ram}"
+  printf "%s\\n" "${type}"
+  printf "%s\\n" ""
 }
 
 ### Retrieve startup disk information ###
