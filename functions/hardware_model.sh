@@ -5,8 +5,7 @@
 
 hardware_model () {
 
-  local hardware_mod=$(
-  defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
+  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
   'CPU Names' | cut -sd '"' -f 4 | uniq)
 
   printf "%s\\n" "${hardware_mod}"
