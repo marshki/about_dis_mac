@@ -8,13 +8,12 @@
 #   startup disk; graphics; and serial number .			     #
 ######################################################################
 
-# TODO
-# Alter the output of certain regular expressions--RAM, GPU--so
-# that they correspond to the About This Mac GUI and appear on the same line.
+# TODO: 
+# Re-work `osx_name` using, possibly, an array.
+# Refactoring where appropriate. 
 
 
-
-### Display header message ###
+#### Display header message ####
 
 write_header () {
 	local h="$@"				# make header specific to local variable
@@ -23,10 +22,9 @@ write_header () {
 	printf "%s\\n" "--------------------"
 }
 
-### Retrieve Apple's marketing name for installed operating system.###
-### Extract end of regex following match with either OS X or macOS ###
-### from OSXSoftwareLicense.rtf.:wq
-###
+#### Retrieve Apple's marketing name for installed operating system.####
+#### Extract end of regex following match with either OS X or macOS ####
+#### from OSXSoftwareLicense.rtf.:wq                                ####
 
 osx_name () {
 
@@ -39,8 +37,8 @@ osx_name () {
   printf "%s\\n" ""
 }
 
-### Retrieve operating system version 		###
-### Use system_vers to retrieve product version ###
+#### Retrieve operating system version ####		
+#### system_vers -productVersion       ####
 
 operating_system () {
 
@@ -51,14 +49,13 @@ operating_system () {
 	printf "%s\\n" ""
 }
 
-### Retrieve hardware model				     ###
-### Extract 'CPU Names' from com.apple.SystemProfiler.plist, ###
-### then parse content, leaving only string inside of ""     ###
+##### Retrieve hardware model				       ####
+##### Extract 'CPU Names' from com.apple.SystemProfiler.plist; ####
+##### extract string inside quotes ("); print 4th field        ####
 
 hardware_model () {
 
-	local hardware_mod=$(
-	defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
+	local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
 	'CPU Names' |cut -sd '"' -f 4 |uniq)
 
 	write_header "Hardware Model"
