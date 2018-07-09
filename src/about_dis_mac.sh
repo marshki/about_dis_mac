@@ -84,6 +84,8 @@ local cpu=$(system_profiler SPHardwareDataType | awk '/Processor (Name|Speed):/ 
 #### Use system_profiler to poll info; awk to extract                                  ####
 #### 'Type' & 'Speed' from SPMemoryDataType 					       ####
 #### --> and print characters to the right of `:`                                      ####
+#### --> take top 2 lines; print to one line					       ####
+
 
 memory () {
 
@@ -102,13 +104,13 @@ memory () {
 
 startup_disk () {
 
-	local disk=$(system_profiler SPStorageDataType|awk 'c&&c!--c;/Storage:/{c=2}'|sed 's/[[:blank:]:]*//g'|tail -1)
-	local mount=$(system_profiler SPStorageDataType |grep --extended-regexp 'Mount Point: '|sed 's/^.*: //'|head -1)
+  local disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
+  local mount=$(system_profiler SPStorageDataType | awk '/Mount Point/ { sub(/^.*: /, ""); print; }')
 
-	write_header "Startup Disk"
-	printf "%s\\n" "${disk}"
-	printf "%s\\n" "${mount}"
-	printf "%s\\n" ""
+  write_header "Startup Disk"
+  printf "%s\\n" "${disk}"
+  printf "%s\\n" "${mount}"
+  printf "%s\\n" ""
 }
 
 ### Retrieve graphics information ###
