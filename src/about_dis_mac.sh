@@ -98,9 +98,12 @@ memory () {
   printf "%s\\n" ""
 }
 
-### Retrieve startup disk information ###
-### Use system_profiler to poll info, then regexp to print name of primary storage disk, removing leading and trailing whitespace ###
-### Use system_profiler to poll info, then regexp to print mount point of primary storage disk, should be: `/` ###
+#### Retrieve startup disk information 				    ####
+#### Use system_profiler to poll info; awk to extract third field;  ####
+#### --> sed to print string to the right of ':'		    ####
+#### Use system_profiler to poll info;				    #### 
+#### --> awk to extract 'Mount Point; 				    ####
+#### --> print characters to the right of ':'  			    ####
 
 startup_disk () {
 
