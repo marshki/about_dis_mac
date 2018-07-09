@@ -1,5 +1,5 @@
 #!/bin/bash
-# mjk 2017.08.15
+# mjk 2018.07.09
 
 ######################################################################
 #   Command line alternative to OS X's "About this Mac" feature.     #
@@ -16,21 +16,21 @@
 #### Display header message ####
 
 write_header () {
-	local h="$@"				# make header specific to local variable
-	printf "%s\\n" "--------------------"
-	printf "%s\\n" "${h}" 			# insert local variable in to header
-	printf "%s\\n" "--------------------"
+  local h="$@"			          # make header specific to local variable
+  printf "%s\\n" "--------------------"
+  printf "%s\\n" "${h}" 		  # insert local variable in to header
+  printf "%s\\n" "--------------------"
 }
 
-#### Retrieve Apple's marketing name for installed operating system.####
-#### Extract end of regex following match with either OS X or macOS ####
-#### from OSXSoftwareLicense.rtf.:wq                                ####
+#### Retrieve Apple's marketing name for installed operating system. #####
+#### Extract end of regex following match with either OS X or macOS  ####
+#### from OSXSoftwareLicense.rtf.:wq                                 ####
 
 osx_name () {
 
-	local marketing=$(
-	sed -nE 's/SOFTWARE LICENSE AGREEMENT FOR (OS X|macOS) ([A-Za-z ]+).*/\2/p' \
-	'/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf')
+  local marketing=$(
+    sed -nE 's/SOFTWARE LICENSE AGREEMENT FOR (OS X|macOS) ([A-Za-z ]+).*/\2/p' \
+    '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf')
 
   write_header "OS X Name"
   printf "%s\\n" "${marketing}"
@@ -42,11 +42,11 @@ osx_name () {
 
 operating_system () {
 
-	local os=$(sw_vers -productVersion)
+  local os=$(sw_vers -productVersion)
 
-	write_header "OS Version"
-	printf "%s\\n" "${os}"
-	printf "%s\\n" ""
+  write_header "OS Version"
+  printf "%s\\n" "${os}"
+  printf "%s\\n" ""
 }
 
 ##### Retrieve hardware model				       ####
@@ -55,32 +55,32 @@ operating_system () {
 
 hardware_model () {
 
-	local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
-	'CPU Names' |cut -sd '"' -f 4 |uniq)
+  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
+  'CPU Names' |cut -sd '"' -f 4 |uniq)
 
-	write_header "Hardware Model"
-	printf "%s\\n" "${hardware_mod}"
-	printf "%s\\n" ""
+  write_header "Hardware Model"
+  printf "%s\\n" "${hardware_mod}"
+  printf "%s\\n" ""
 }
 
-### Retrieve processor information 						###
-### Use system_profiler to poll info, then sed to get   			###
-### 'Processor Name: ' & 'Processor Speed: ' from SPHardwareDataType 		###
+#### Retrieve processor information 			####
+#### Use system_profiler to poll info; awk to extract   ####
+#### 'Processor Name/Speed' from SPHardwareDataType	####
+#### and print characters to the right of `:` 		####
 
 processor () {
 
-	local cpu=$(system_profiler SPHardwareDataType|\
-        sed -n -e '/Processor Name/{;s/.*: //;h;}'\
-        -e '/Processor Speed/{;s/.*: //;G;s/\n/ /;p;q;}')
+local cpu=$(system_profiler SPHardwareDataType | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
+  | sort | xargs)
 
   write_header "Processor"
   printf "%s\\n" "${cpu}"
-	printf "%s\\n" ""
+  printf "%s\\n" ""
 }
 
-### Retrieve memory information ###
-### Use system_profiler to poll info, then regexp to print string following 'Memory: ' from SPHardwareDataType ###
-### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType ###
+#### Retrieve memory information ####
+#### Use system_profiler to poll info, then regexp to print string following 'Memory: ' from SPHardwareDataType ###
+#### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Type: ' & 'Speed: ' from SPMemoryDataType ###
 
 memory () {
 
