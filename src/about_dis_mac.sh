@@ -116,16 +116,18 @@ startup_disk () {
   printf "%s\\n" ""
 }
 
-### Retrieve graphics information ###
-### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Chipset Model: ' & 'VRAM (Dynamic, Max): ' from SPDisplaysDataType ###
+#### Retrieve graphics information ####
+#### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Chipset Model: ' & 'VRAM (Dynamic, Max): ' from SPDisplaysDataType ###
 
 graphics () {
 
-	local gpu=$(system_profiler SPDisplaysDataType |grep --extended-regexp 'Chipset Model: '\|'VRAM \(Dynamic, Max\): '|sed 's/^.*: //'|head -2)
+  local gpu=$(system_profiler SPDisplaysDataType \
+  | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
+  | xargs)  
 
-	write_header "Graphics"
-	printf "%s\\n" "${gpu}"
-	printf "%s\\n" ""
+  write_header "Graphics"
+  printf "%s\\n" "${gpu}"
+  printf "%s\\n" ""
 }
 
 ### Retrieve serial number ###
