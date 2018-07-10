@@ -116,8 +116,10 @@ startup_disk () {
   printf "%s\\n" ""
 }
 
-#### Retrieve graphics information ####
-#### Use system_profiler to poll info, then regexp to print first two lines of strings following 'Chipset Model: ' & 'VRAM (Dynamic, Max): ' from SPDisplaysDataType ###
+#### Retrieve graphics information 					 ####
+#### Use system_profiler to poll info; 					 ####
+#### --> awk to extract 'Model', 'Max', 'Total' from SPDisplaysDataType; ####
+#### --> and print characters to the right of `:`
 
 graphics () {
 
