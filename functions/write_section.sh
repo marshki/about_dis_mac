@@ -3,9 +3,10 @@
 
 write_section() {
   local name=$1; shift;
-  printf "-----\n%s\n-----\n" "$name"
-  printf "%s\n" "$@"
-  printf "\n"
+  printf "%s\\n" "$name"
+  #printf "-----\\n%s\\n-----\\n" "$name" # <-- FIX ME! -->
+  printf "%s\\n" "$@"
+  printf "\\n"
 }
 
 operating_system () {
@@ -18,7 +19,7 @@ serial_number () {
   local serialnum=$(system_profiler SPHardwareDataType \
   | awk '/Serial/ { sub(/^.*: /, ""); print; }')
  
-  write_section "Serial Number" "serialnum"  
+  write_section "Serial Number" "$serialnum"  
   }
 
 main () {
