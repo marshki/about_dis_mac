@@ -110,7 +110,7 @@ memory () {
 startup_disk () {
 
   local disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
-  local mount=$(system_profiler SPStorageDataType | awk '/Mount Point/ { sub(/^.*: /, ""); print; }')
+  local mount=$(system_profiler SPStorageDataType | awk '/Mount Point/ { sub(/^.*: /, ""); print; }' | head -1)
 
   write_header "Startup Disk"
   printf "%s\\n" "${disk}"
