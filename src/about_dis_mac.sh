@@ -38,7 +38,6 @@ osx_name () {
 }
 
 #### Retrieve operating system version ####		
-#### system_vers -productVersion       ####
 
 operating_system () {
 
@@ -51,7 +50,8 @@ operating_system () {
 
 ##### Retrieve hardware model				       ####
 ##### Extract 'CPU Names' from com.apple.SystemProfiler.plist; ####
-##### extract string inside quotes ("); print 4th field        ####
+##### extract string inside quotes ("); 		       ####
+##### print 4th field        				       ####
 
 hardware_model () {
 
@@ -63,10 +63,10 @@ hardware_model () {
   printf "%s\\n" ""
 }
 
-#### Retrieve processor information 			####
-#### Use system_profiler to poll info; awk to extract   ####
-#### 'Processor Name/Speed' from SPHardwareDataType	####
-#### and print characters to the right of `:` 		####
+#### Retrieve processor information        ####
+#### Use system_profiler to poll info; 	   ####
+#### awk to extract 'Processor Name/Speed; ####
+#### print characters to the right of `:`  ####
 
 processor () {
 
@@ -78,13 +78,14 @@ local cpu=$(system_profiler SPHardwareDataType | awk '/Processor (Name|Speed):/ 
   printf "%s\\n" ""
 }
 
-#### Retrieve memory information 						       ####
-#### Use system_profiler to poll info; awk to extract 'Memory' from SPHardwareDataType ####
-#### --> and print characters to the right of `:`				       #### 
-#### Use system_profiler to poll info; awk to extract                                  ####
-#### 'Type' & 'Speed' from SPMemoryDataType 					       ####
-#### --> and print characters to the right of `:`                                      ####
-#### --> take top 2 lines; print to one line					       ####
+#### Retrieve memory information 	  ####
+#### Use system_profiler to poll info;    ####
+#### awk to extract 'Memory';  		  ####
+#### print characters to the right of `:` #### 
+#### Use system_profiler to poll info;    ####
+#### awk to extract 'Type' & 'Speed';     ####
+#### print characters to the right of `:` ####
+#### take top 2 lines; output to one line ####
 
 
 memory () {
@@ -98,12 +99,13 @@ memory () {
   printf "%s\\n" ""
 }
 
-#### Retrieve startup disk information 				    ####
-#### Use system_profiler to poll info; awk to extract third field;  ####
-#### --> sed to print string to the right of ':'		    ####
-#### Use system_profiler to poll info;				    #### 
-#### --> awk to extract 'Mount Point; 				    ####
-#### --> print characters to the right of ':'  			    ####
+#### Retrieve startup disk information 	     ####
+#### Use system_profiler to poll info;       ####
+#### awk to extract third field;  	     ####
+#### sed to print string to the right of ':' ####
+#### Use system_profiler to poll info;	     #### 
+#### awk to extract 'Mount Point; 	     ####
+#### print characters to the right of `:`    ####
 
 startup_disk () {
 
@@ -116,10 +118,10 @@ startup_disk () {
   printf "%s\\n" ""
 }
 
-#### Retrieve graphics information 					 ####
-#### Use system_profiler to poll info; 					 ####
-#### --> awk to extract 'Model', 'Max', 'Total' from SPDisplaysDataType; ####
-#### --> and print characters to the right of `:`
+#### Retrieve graphics information 			             ####
+#### Use system_profiler to poll info; 			 	     ####
+#### awk to extract 'Model', 'Max', 'Total' from SPDisplaysDataType; ####
+#### print characters to the right of `:`			     ####
 
 graphics () {
 
@@ -132,20 +134,22 @@ graphics () {
   printf "%s\\n" ""
 }
 
-### Retrieve serial number ###
-### Use system_profiler to poll info, then regexp to print string following 'Serial Number (system): ' from SPHardwareDataType ###
+#### Retrieve serial number 	          ####
+#### Use system_profiler to poll info; 	  ####
+#### awk to extract 'Serial' 	          ####
+#### print characters to the right of `:` ####
 
 serial_number () {
 
-	local serialnum=$(system_profiler SPHardwareDataType |grep --extended-regexp 'Serial Number \(system\): '|sed 's/^.*: //')
+	local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ { sub(/^.*: /, ""); print; }')
 
 	write_header "Serial Number"
 	printf "%s\\n" "${serialnum}"
 	printf "%s\\n" ""
 }
 
-### Main logic ###
-### Las entranas del programa ###
+#### Main logic ####
+#### Las entranas del programa ####
 
 main () {
 
