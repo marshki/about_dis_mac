@@ -12,7 +12,6 @@
 # Re-work `osx_name` using, possibly, an array.
 # Refactoring where appropriate. 
 
-
 #### Display header message ####
 
 write_header () {
@@ -106,6 +105,7 @@ memory () {
 #### Use system_profiler to poll info;	     #### 
 #### awk to extract 'Mount Point; 	     ####
 #### print characters to the right of `:`    ####
+#### head to get first drive		     ####
 
 startup_disk () {
 
