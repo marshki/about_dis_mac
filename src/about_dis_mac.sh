@@ -9,6 +9,7 @@
 ######################################################################
 
 # TODO: 
+# Re-work header function to reduce repetition. 
 # Re-work `osx_name` using, possibly, an array.
 # Refactoring where appropriate. 
 
@@ -24,6 +25,7 @@ write_header () {
 #### Retrieve Apple's marketing name for installed operating system. #####
 #### Extract end of regex following match with either OS X or macOS  ####
 #### from OSXSoftwareLicense.rtf.:wq                                 ####
+#### --> Replace w/ lookup table <---				     ####
 
 osx_name () {
 
@@ -51,6 +53,7 @@ operating_system () {
 ##### Extract 'CPU Names' from com.apple.SystemProfiler.plist; ####
 ##### extract string inside quotes ("); 		       ####
 ##### print 4th field        				       ####
+#### --> awk can probably do this better <--		       ####
 
 hardware_model () {
 
@@ -90,7 +93,9 @@ local cpu=$(system_profiler SPHardwareDataType | awk '/Processor (Name|Speed):/ 
 memory () {
 
   local ram=$(system_profiler SPHardwareDataType | awk '/Memory/{ sub(/^.*: /, ""); print; }')
-  local type=$(system_profiler SPMemoryDataType | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }'|head -2|xargs)
+  
+  local type=$(system_profiler SPMemoryDataType | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }' \
+  | head -2| xargs)
 
   write_header "Memory"
   printf "%s\\n" "${ram}"
@@ -109,7 +114,8 @@ memory () {
 
 startup_disk () {
 
-  local disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
+  local disk=$(system_profiler SPStorageDataType | awk 'FNR == 3 {print}'| sed 's/[[:blank:]:]*//g')
+  
   local mount=$(system_profiler SPStorageDataType | awk '/Mount Point/ { sub(/^.*: /, ""); print; }' | head -1)
 
   write_header "Startup Disk"
