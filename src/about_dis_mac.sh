@@ -22,6 +22,21 @@ write_header () {
   printf "%s\\n" "--------------------"
 }
 
+#### TO REPLACE THE ABOVE ####
+#write_section() {
+#  local name=$1; shift;
+#  printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
+#  printf "%s\\n" "$@"
+#  printf "\\n"
+#}
+#### CALL WITH ####
+#operating_system () {
+#  local os=$(sw_vers -productVersion)
+#  
+#  write_section "OS Version" "$os" 
+#}
+#### TEST ##### 
+
 #### Retrieve Apple's marketing name for installed operating system. ####
 #### Extract end of regex following match with either OS X or macOS  ####
 #### from OSXSoftwareLicense.rtf.:wq                                 ####
