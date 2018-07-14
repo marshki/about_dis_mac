@@ -1,18 +1,27 @@
 #!/bin/bash
 # mjk 2018.07.09
 
-######################################################################
-#   Command line alternative to OS X's "About this Mac" feature.     #
-#   Retrieve information about: OS X "marketing" name; 		     #
-#   OS version number; hardware model; processor; memory;	     #
-#   startup disk; graphics; and serial number.			     #
-######################################################################
+##################################################################
+#  Command line alternative to OS X's "About this Mac" feature. ##
+#  Retrieve information about: OS X "marketing" name; 		      ##
+#  OS version number; hardware model; processor; memory;	      ##
+#  startup disk; graphics; and serial number.			              ##
+##################################################################
 
-# TODO: 
+# TODO:
 # Re-work `osx_name` using, possibly, an array.
-# Refactoring where appropriate. 
-# Comments can be added to side of each function 
-# `awk` function reuse? 
+# Refactoring where appropriate.
+# `awk` function reuse?
+
+###############################################################
+## This script frequently calls 			                       ##
+## OS X's system_profiler to poll a data type, e.g.:         ##
+## system_profiler SP_Some_DataType \			                   ##
+## | awk '/string_to_extract/{ sub(/^.*: /, ""); print; }')  ##
+## where the output of the profiler is piped to `awk`;       ##
+## a search string is extracted;                             ##
+## and characters to the right of `:` are printed            ##
+###############################################################
 
 #### Display header message ####
 
@@ -20,13 +29,13 @@ write_header() {
   local name=$1; shift;
   printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
   printf "%s\\n" "$@"
-  printf "\\n"
+  #printf "\\n"
 }
 
-#### Retrieve Apple's marketing name for installed operating system. ####
-#### Extract end of regex following match with either OS X or macOS  ####
-#### from OSXSoftwareLicense.rtf.:wq                                 ####
-#### --> Replace w/ lookup table <---				     ####
+#### Retrieve Apple's marketing name for installed operating system.  ####
+#### Extract end of regex following match with either OS X or macOS   ####
+#### from OSXSoftwareLicense.rtf.:wq                                  ####
+#### --> Replace w/ lookup table <---				                          ####
 
 osx_name () {
 
@@ -34,11 +43,11 @@ osx_name () {
     sed -nE 's/SOFTWARE LICENSE AGREEMENT FOR (OS X|macOS) ([A-Za-z ]+).*/\2/p' \
     '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf')
 
-  write_header "OS X Name" "$marketing" 
+  write_header "OS X Name" "$marketing"
 
 }
 
-#### Retrieve operating system version ####		
+####  Retrieve operating system version  ####
 
 operating_system () {
 
@@ -47,11 +56,11 @@ operating_system () {
   write_header "OS Version" "$os"
 }
 
-##### Retrieve hardware model				       ####
-##### Extract 'CPU Names' from com.apple.SystemProfiler.plist; ####
-##### extract string inside quotes ("); 		       ####
-##### print 4th field        				       ####
-#### --> awk can probably do this better <--		       ####
+##### Retrieve hardware model				        ####
+#### --> awk can probably do this better <--####
+# read plist & extract 'CPU Names';
+# cut string inside of '"' (4th field)
+# print only unique string (no dupes)
 
 hardware_model () {
 
@@ -62,10 +71,10 @@ hardware_model () {
   write_header "Hardware Model" "$hardware_mod"
 }
 
-#### Retrieve processor information        ####
-#### Use system_profiler to poll info; 	   ####
-#### awk to extract 'Processor Name/Speed; ####
-#### print characters to the right of `:`  ####
+#### Retrieve processor information  ####
+# awk to extract Processor{Name,Speed}
+# sort so numeric comes first
+# xargs to print to single line
 
 processor () {
 
@@ -77,21 +86,18 @@ local cpu=$(system_profiler SPHardwareDataType \
   write_header "Processor" "$cpu"
 }
 
-#### Retrieve memory information 	  ####
-#### Use system_profiler to poll info;    ####
-#### awk to extract 'Memory';  		  ####
-#### print characters to the right of `:` #### 
-#### Use system_profiler to poll info;    ####
-#### awk to extract 'Type' & 'Speed';     ####
-#### print characters to the right of `:` ####
-#### take top 2 lines; output to one line ####
-
+#### Retrieve memory information  ####
+# awk to extract 'Memory'
+# awk to extract 'Type' & 'Speed'
+# take top 2 lines
+# xargs to print to single line
+# --> Type output not precise <--  ####
 
 memory () {
 
   local ram=$(system_profiler SPHardwareDataType \
   | awk '/Memory/{ sub(/^.*: /, ""); print; }')
-  
+
   local type=$(system_profiler SPMemoryDataType \
   | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }' \
   | head -2 \
@@ -100,21 +106,18 @@ memory () {
   write_header "Memory" "$ram" "$type"
 }
 
-#### Retrieve startup disk information 	     ####
-#### Use system_profiler to poll info;       ####
-#### awk to extract third field;  	     ####
-#### sed to print string to the right of ':' ####
-#### Use system_profiler to poll info;	     #### 
-#### awk to extract 'Mount Point; 	     ####
-#### print characters to the right of `:`    ####
-#### head to get first drive		     ####
+#### Retrieve startup disk information  ####
+# awk to extract third field
+# sed to print string to the right of ':'
+# awk to extract 'Mount Point'
+# head to get primary drive
 
 startup_disk () {
 
   local disk=$(system_profiler SPStorageDataType \
   | awk 'FNR == 3 {print}'\
   | sed 's/[[:blank:]:]*//g')
-  
+
   local mount=$(system_profiler SPStorageDataType \
   | awk '/Mount Point/ { sub(/^.*: /, ""); print; }' \
   | head -1)
@@ -122,24 +125,21 @@ startup_disk () {
   write_header "Startup Disk" "$disk" "$mount"
   }
 
-#### Retrieve graphics information 			             ####
-#### Use system_profiler to poll info; 			 	     ####
-#### awk to extract 'Model', 'Max', 'Total' from SPDisplaysDataType; ####
-#### print characters to the right of `:`			     ####
+#### Retrieve graphics information  ####
+# awk to extract 'Model', 'Max', 'Total'
+# xargs to print output to single line
 
 graphics () {
 
   local gpu=$(system_profiler SPDisplaysDataType \
   | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
-  | xargs)  
+  | xargs)
 
   write_header "Graphics" "$gpu"
 }
 
-#### Retrieve serial number 	          ####
-#### Use system_profiler to poll info; 	  ####
-#### awk to extract 'Serial' 	          ####
-#### print characters to the right of `:` ####
+#### Retrieve serial number  ####
+# awk to extract `Serial`
 
 serial_number () {
 
@@ -149,7 +149,6 @@ serial_number () {
   write_header "Serial Number" "$serialnum"
 }
 
-#### Main logic ####
 #### Las entranas del programa ####
 
 main () {
