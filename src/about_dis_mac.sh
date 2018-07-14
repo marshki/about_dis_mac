@@ -9,9 +9,10 @@
 ######################################################################
 
 # TODO: 
-# Re-work header function to reduce repetition. 
 # Re-work `osx_name` using, possibly, an array.
 # Refactoring where appropriate. 
+# Comments can be added to side of each function 
+# `awk` function reuse? 
 
 #### Display header message ####
 
@@ -142,9 +143,10 @@ graphics () {
 
 serial_number () {
 
-	local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ { sub(/^.*: /, ""); print; }')
+  local serialnum=$(system_profiler SPHardwareDataType \
+  | awk '/Serial/ { sub(/^.*: /, ""); print; }')
 
-	write_header "Serial Number" "$serialnum"
+  write_header "Serial Number" "$serialnum"
 }
 
 #### Main logic ####
@@ -160,7 +162,6 @@ main () {
 	startup_disk
 	graphics
 	serial_number
-
 }
 
 main "$@"
