@@ -15,27 +15,12 @@
 
 #### Display header message ####
 
-write_header () {
-  local h="$@"			          # make header specific to local variable
-  printf "%s\\n" "--------------------"
-  printf "%s\\n" "${h}" 		  # insert local variable in to header
-  printf "%s\\n" "--------------------"
+write_header() {
+  local name=$1; shift;
+  printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
+  printf "%s\\n" "$@"
+  printf "\\n"
 }
-
-#### TO REPLACE THE ABOVE ####
-#write_section() {
-#  local name=$1; shift;
-#  printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
-#  printf "%s\\n" "$@"
-#  printf "\\n"
-#}
-#### CALL WITH ####
-#operating_system () {
-#  local os=$(sw_vers -productVersion)
-#  
-#  write_section "OS Version" "$os" 
-#}
-#### TEST ##### 
 
 #### Retrieve Apple's marketing name for installed operating system. ####
 #### Extract end of regex following match with either OS X or macOS  ####
@@ -48,9 +33,8 @@ osx_name () {
     sed -nE 's/SOFTWARE LICENSE AGREEMENT FOR (OS X|macOS) ([A-Za-z ]+).*/\2/p' \
     '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf')
 
-  write_header "OS X Name"
-  printf "%s\\n" "${marketing}"
-  printf "%s\\n" ""
+  write_header "OS X Name" "$marketing" 
+
 }
 
 #### Retrieve operating system version ####		
@@ -59,9 +43,7 @@ operating_system () {
 
   local os=$(sw_vers -productVersion)
 
-  write_header "OS Version"
-  printf "%s\\n" "${os}"
-  printf "%s\\n" ""
+  write_header "OS Version" "$os"
 }
 
 ##### Retrieve hardware model				       ####
@@ -72,12 +54,11 @@ operating_system () {
 
 hardware_model () {
 
-  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
-  'CPU Names' |cut -sd '"' -f 4 |uniq)
+  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
+  |cut -sd '"' -f 4 \
+  |uniq)
 
-  write_header "Hardware Model"
-  printf "%s\\n" "${hardware_mod}"
-  printf "%s\\n" ""
+  write_header "Hardware Model" "$hardware_mod"
 }
 
 #### Retrieve processor information        ####
@@ -87,12 +68,12 @@ hardware_model () {
 
 processor () {
 
-local cpu=$(system_profiler SPHardwareDataType | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
-  | sort | xargs)
+local cpu=$(system_profiler SPHardwareDataType \
+  | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
+  | sort \
+  | xargs)
 
-  write_header "Processor"
-  printf "%s\\n" "${cpu}"
-  printf "%s\\n" ""
+  write_header "Processor" "$cpu"
 }
 
 #### Retrieve memory information 	  ####
@@ -107,15 +88,15 @@ local cpu=$(system_profiler SPHardwareDataType | awk '/Processor (Name|Speed):/ 
 
 memory () {
 
-  local ram=$(system_profiler SPHardwareDataType | awk '/Memory/{ sub(/^.*: /, ""); print; }')
+  local ram=$(system_profiler SPHardwareDataType \
+  | awk '/Memory/{ sub(/^.*: /, ""); print; }')
   
-  local type=$(system_profiler SPMemoryDataType | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }' \
-  | head -2| xargs)
+  local type=$(system_profiler SPMemoryDataType \
+  | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }' \
+  | head -2 \
+  | xargs)
 
-  write_header "Memory"
-  printf "%s\\n" "${ram}"
-  printf "%s\\n" "${type}"
-  printf "%s\\n" ""
+  write_header "Memory" "$ram" "$type"
 }
 
 #### Retrieve startup disk information 	     ####
