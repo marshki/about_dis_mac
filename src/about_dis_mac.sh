@@ -110,15 +110,16 @@ memory () {
 
 startup_disk () {
 
-  local disk=$(system_profiler SPStorageDataType | awk 'FNR == 3 {print}'| sed 's/[[:blank:]:]*//g')
+  local disk=$(system_profiler SPStorageDataType \
+  | awk 'FNR == 3 {print}'\
+  | sed 's/[[:blank:]:]*//g')
   
-  local mount=$(system_profiler SPStorageDataType | awk '/Mount Point/ { sub(/^.*: /, ""); print; }' | head -1)
+  local mount=$(system_profiler SPStorageDataType \
+  | awk '/Mount Point/ { sub(/^.*: /, ""); print; }' \
+  | head -1)
 
-  write_header "Startup Disk"
-  printf "%s\\n" "${disk}"
-  printf "%s\\n" "${mount}"
-  printf "%s\\n" ""
-}
+  write_header "Startup Disk" "$disk" "$mount"
+  }
 
 #### Retrieve graphics information 			             ####
 #### Use system_profiler to poll info; 			 	     ####
@@ -131,9 +132,7 @@ graphics () {
   | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
   | xargs)  
 
-  write_header "Graphics"
-  printf "%s\\n" "${gpu}"
-  printf "%s\\n" ""
+  write_header "Graphics" "$gpu"
 }
 
 #### Retrieve serial number 	          ####
@@ -145,9 +144,7 @@ serial_number () {
 
 	local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ { sub(/^.*: /, ""); print; }')
 
-	write_header "Serial Number"
-	printf "%s\\n" "${serialnum}"
-	printf "%s\\n" ""
+	write_header "Serial Number" "$serialnum"
 }
 
 #### Main logic ####
