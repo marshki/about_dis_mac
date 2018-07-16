@@ -56,7 +56,7 @@ operating_system () {
   write_header "OS Version" "$os"
 }
 
-##### Retrieve hardware model				        ####
+##### Retrieve hardware model ####
 #### --> awk can probably do this better <--####
 # read plist & extract 'CPU Names';
 # cut string inside of '"' (4th field)
@@ -90,8 +90,8 @@ local cpu=$(system_profiler SPHardwareDataType \
 # awk to extract 'Memory'
 # awk to extract 'Type' & 'Speed'
 # take top 2 lines
+# sort so numeric comes first
 # xargs to print to single line
-# --> Type output not precise <--  ####
 
 memory () {
 
@@ -101,6 +101,7 @@ memory () {
   local type=$(system_profiler SPMemoryDataType \
   | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }' \
   | head -2 \
+  | sort \
   | xargs)
 
   write_header "Memory" "$ram" "$type"
