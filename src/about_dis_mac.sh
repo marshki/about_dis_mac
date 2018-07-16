@@ -3,9 +3,9 @@
 
 ##################################################################
 #  Command line alternative to OS X's "About this Mac" feature. ##
-#  Retrieve information about: OS X "marketing" name; 		      ##
-#  OS version number; hardware model; processor; memory;	      ##
-#  startup disk; graphics; and serial number.			              ##
+#  Retrieve information about: OS X "marketing" name;           ##
+#  OS version number; hardware model; processor; memory;        ##
+#  startup disk; graphics; and serial number.                   ##
 ##################################################################
 
 # TODO:
@@ -14,9 +14,9 @@
 # `awk` function reuse?
 
 ###############################################################
-## This script frequently calls 			                       ##
+## This script frequently calls                              ##
 ## OS X's system_profiler to poll a data type, e.g.:         ##
-## system_profiler SP_Some_DataType \			                   ##
+## system_profiler SP_Some_DataType \                        ##
 ## | awk '/string_to_extract/{ sub(/^.*: /, ""); print; }')  ##
 ## where the output of the profiler is piped to `awk`;       ##
 ## a search string is extracted;                             ##
@@ -35,7 +35,7 @@ write_header() {
 #### Retrieve Apple's marketing name for installed operating system.  ####
 #### Extract end of regex following match with either OS X or macOS   ####
 #### from OSXSoftwareLicense.rtf.:wq                                  ####
-#### --> Replace w/ lookup table <---				                          ####
+#### --> Replace w/ lookup table <---                                 ####
 
 osx_name () {
 
