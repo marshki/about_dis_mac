@@ -1,4 +1,5 @@
 #!/bin/bash
+# Retrieve Apple's marketing name for installed operating system 
 
 # Take the number extracted from here; use it as a reference
 
@@ -16,6 +17,10 @@ OSX_MARKETING=(
 # Check if the number extracted is in array; 
 # if it is print marketing name
  
-if [[ -n "${OSX_MARKETING[$osx_num]}" ]]; then 
-  printf "%s\\n" "${OSX_MARKETING[$osx_num]}"
+osx_name () {
+  if [[ -n "${OSX_MARKETING[$osx_num]}" ]]; then 
+    printf "%s\\n" "${OSX_MARKETING[$osx_num]}"
 fi
+}
+
+osx_name
