@@ -10,8 +10,14 @@ OSX_MARKETING=(
 
 # Take the number extracted from here & use it as a reference,
 # e.g. "12"
-sw_vers -productVersion| awk -F '[.]' '{print $2}'
+osx_num=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
 
-[[ -n "${OSX_MARKETING[12]}" ]] && printf "%s\\n" "${OSX_MARKETING[12]}"
+#printf "%s\\n" "$osx_num"
 
-#printf "%s\\n" ${OSX_MARKETING[*]}
+# Check if the number extracted is in array (not there yet)
+
+if [[ -n "${OSX_MARKETING[$osx_num]}" ]]; then 
+  printf "%s\\n" "${OSX_MARKETING[$osx_num]}"
+fi
+
+#[[ -n "${OSX_MARKETING[12]}" ]] && printf "%s\\n" "${OSX_MARKETING[12]}"
