@@ -15,9 +15,6 @@ Tested on OS X:
 
 # TODO:
 
-- [ ] Alter the output of certain regular expressions--RAM, GPU--so that they correspond to the
-      About This Mac GUI and appear on the same line. 
-
 - [ ] Create a lookup table of OS X Versions/Names  (e.g. 10.12 --> Sierra) rather than iextract via regexp (Apple moved stuff).  
 
 - [ ] Code review and general clean up, esp. regexp (`awk` can do a lot on its own, e.g.)
