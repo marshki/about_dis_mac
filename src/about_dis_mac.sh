@@ -43,10 +43,12 @@ write_header() {
 osx_name () {
   
   local osx_num=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
-  
+ 
   if [[ -n "${OSX_MARKETING[$osx_num]}" ]]; then 
-    printf "%s\\n" "${OSX_MARKETING[$osx_num]}"
+    local osx_name="${OSX_MARKETING[$osx_num]}"    
 fi
+  
+  write_header "OS X Name" "$osx_name"
 }
 
 ####  Retrieve operating system version  ####
