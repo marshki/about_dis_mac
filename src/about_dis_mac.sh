@@ -20,7 +20,7 @@
 
 #### Lookup table for OS X marketing names ####
 
-OSX_MARKETING=(
+MARKETING_NAME=(
 ["10"]="Yosemite"
 ["11"]="El Capitan"
 ["12"]="Sierra"
@@ -33,19 +33,18 @@ write_header() {
   local name=$1; shift;
   printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
   printf "%s\\n" "$@"
-  #printf "\\n"
 }
 
 #### Retrieve Apple's marketing name for installed operating system.  ####
-# Take the number extracted from osx_num; use it as a reference
+# Take the number extracted from osx_number; use it as a reference
 # Check if the number extracted is in array; if it is print marketing name
 
 osx_name () {
   
-  local osx_num=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
+  local osx_number=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
  
-  if [[ -n "${OSX_MARKETING[$osx_num]}" ]]; then 
-    local osx_name="${OSX_MARKETING[$osx_num]}"    
+  if [[ -n "${MARKETING_NAME[$osx_number]}" ]]; then 
+    local osx_name="${MARKETING_NAME[$osx_number]}"    
 fi
   
   write_header "OS X Name" "$osx_name"
@@ -69,8 +68,8 @@ operating_system () {
 hardware_model () {
 
   local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
-  |cut -sd '"' -f 4 \
-  |uniq)
+  | cut -sd '"' -f 4 \
+  | uniq)
 
   write_header "Hardware Model" "$hardware_mod"
 }
@@ -130,7 +129,7 @@ startup_disk () {
   write_header "Startup Disk" "$disk" "$mount"
   }
 
-#### Retrieve graphics information  ####
+### Retrieve graphics information  ####
 # awk to extract 'Model', 'Max', 'Total'
 # xargs to print output to single line
 
