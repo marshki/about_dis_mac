@@ -8,11 +8,6 @@
 #  startup disk; graphics; and serial number.                   ##
 ##################################################################
 
-# TODO:
-# Re-work `osx_name` using, possibly, an array.
-# Refactoring where appropriate.
-# `awk` function reuse?
-
 ###############################################################
 ## This script frequently calls                              ##
 ## OS X's system_profiler to poll a data type, e.g.:         ##
@@ -22,6 +17,15 @@
 ## a search string is extracted;                             ##
 ## and characters to the right of `:` are printed            ##
 ###############################################################
+
+#### Lookup table for OS X marketing names ####
+
+OSX_MARKETING=(
+["10"]="Yosemite"
+["11"]="El Capitan"
+["12"]="Sierra"
+["13"]="High Sierra"
+)
 
 #### Display header message ####
 
@@ -33,18 +37,16 @@ write_header() {
 }
 
 #### Retrieve Apple's marketing name for installed operating system.  ####
-#### Extract end of regex following match with either OS X or macOS   ####
-#### from OSXSoftwareLicense.rtf.:wq                                  ####
-#### --> Replace w/ lookup table <---                                 ####
+# Take the number extracted from osx_num; use it as a reference
+# Check if the number extracted is in array; if it is print marketing name
 
 osx_name () {
-
-  local marketing=$(
-    sed -nE 's/SOFTWARE LICENSE AGREEMENT FOR (OS X|macOS) ([A-Za-z ]+).*/\2/p' \
-    '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf')
-
-  write_header "OS X Name" "$marketing"
-
+  
+  local osx_num=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
+  
+  if [[ -n "${OSX_MARKETING[$osx_num]}" ]]; then 
+    printf "%s\\n" "${OSX_MARKETING[$osx_num]}"
+fi
 }
 
 ####  Retrieve operating system version  ####
