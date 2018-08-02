@@ -121,13 +121,9 @@ startup_disk () {
   local disk=$(system_profiler SPStorageDataType \
   | awk 'FNR == 3 {print}'\
   | sed 's/[[:blank:]:]*//g')
-
-  local mount=$(system_profiler SPStorageDataType \
-  | awk '/Mount Point/ { sub(/^.*: /, ""); print; }' \
-  | head -1)
-
-  write_header "Startup Disk" "$disk" "$mount"
-  }
+  
+  write_header "Startup Disk" "$disk" 
+}
 
 ### Retrieve graphics information  ####
 # awk to extract 'Model', 'Max', 'Total'
