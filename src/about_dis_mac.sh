@@ -70,7 +70,8 @@ operating_system () {
 
 hardware_model () {
 
-  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
+  local hardware_mod
+  hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
   | cut -sd '"' -f 4 \
   | uniq)
 
@@ -84,7 +85,8 @@ hardware_model () {
 
 processor () {
 
-local cpu=$(system_profiler SPHardwareDataType \
+  local cpu  
+  cpu=$(system_profiler SPHardwareDataType \
   | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
   | sort \
   | xargs)
@@ -101,10 +103,12 @@ local cpu=$(system_profiler SPHardwareDataType \
 
 memory () {
 
-  local ram=$(system_profiler SPHardwareDataType \
+  local ram  
+  ram=$(system_profiler SPHardwareDataType \
   | awk '/Memory/{ sub(/^.*: /, ""); print; }')
 
-  local type=$(system_profiler SPMemoryDataType \
+  local type
+  type=$(system_profiler SPMemoryDataType \
   | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }' \
   | head -2 \
   | sort \
@@ -121,7 +125,8 @@ memory () {
 
 startup_disk () {
 
-  local disk=$(system_profiler SPStorageDataType \
+  local disk  
+  disk=$(system_profiler SPStorageDataType \
   | awk 'FNR == 3 {print}'\
   | sed 's/[[:blank:]:]*//g')
   
@@ -134,7 +139,8 @@ startup_disk () {
 
 graphics () {
 
-  local gpu=$(system_profiler SPDisplaysDataType \
+  local gpu  
+  gpu=$(system_profiler SPDisplaysDataType \
   | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
   | xargs)
 
@@ -146,7 +152,8 @@ graphics () {
 
 serial_number () {
 
-  local serialnum=$(system_profiler SPHardwareDataType \
+  local serialnum
+  serialnum=$(system_profiler SPHardwareDataType \
   | awk '/Serial/ { sub(/^.*: /, ""); print; }')
 
   write_header "Serial Number" "$serialnum"
