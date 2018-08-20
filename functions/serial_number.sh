@@ -2,7 +2,8 @@
 # Serial number 
 
 serial_number () {
-  local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ { sub(/^.*: /, ""); print; }')
+  local serialnum
+  serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ { sub(/^.*: /, ""); print; }')
   
   printf "%s\\n" "${serialnum}"
 }
