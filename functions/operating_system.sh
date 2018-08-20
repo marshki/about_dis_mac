@@ -2,7 +2,8 @@
 # OS version 
 
 operating_system () {
-  local os=$(sw_vers -productVersion)
+  os=$(sw_vers -productVersion)
+  export os 
 
   #write_header "OS Version"
   printf "%s\\n" "${os}"
