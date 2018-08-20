@@ -1,22 +1,22 @@
 #!/bin/bash
 # mjk 2018.07.09
 
-##################################################################
-#  Command line alternative to OS X's "About this Mac" feature. ##
-#  Retrieve information about: OS X "marketing" name;           ##
-#  OS version number; hardware model; processor; memory;        ##
-#  startup disk; graphics; and serial number.                   ##
-##################################################################
+#############################################################
+##  CLI alternative to OS X's "About this Mac" feature.    ##
+##  Retrieve information about: OS X "marketing" name;     ##
+##  OS version number; hardware model; processor; memory;  ##
+##  startup disk; graphics; and serial number.             ##
+#############################################################
 
-###############################################################
-## This script frequently calls                              ##
-## OS X's system_profiler to poll a data type, e.g.:         ##
-## system_profiler SP_Some_DataType \                        ##
-## | awk '/string_to_extract/{ sub(/^.*: /, ""); print; }')  ##
-## where the output of the profiler is piped to `awk`;       ##
-## a search string is extracted;                             ##
-## and characters to the right of `:` are printed            ##
-###############################################################
+#############################################################
+## This script frequently calls                            ##
+## OS X's system_profiler to poll a data type, e.g.:       ##
+## system_profiler SP_Some_DataType \                      ##
+## | awk '/string_to_extract/{ sub(/^.*: /, ""); print; }')##
+## where the output of the profiler is piped to `awk`;     ##
+## a search string is extracted;                           ##
+## and characters to the right of `:` are printed          ##
+#############################################################
 
 #### Lookup table for OS X marketing names ####
 
@@ -41,10 +41,12 @@ write_header() {
 
 osx_name () {
   
-  local osx_number=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
+  local osx_number 
+  osx_number=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
  
   if [[ -n "${MARKETING_NAME[$osx_number]}" ]]; then 
-    local osx_name="${MARKETING_NAME[$osx_number]}"    
+    local osx_name
+    osx_name="${MARKETING_NAME[$osx_number]}"    
 fi
   
   write_header "OS X Name" "$osx_name"
@@ -54,7 +56,8 @@ fi
 
 operating_system () {
 
-  local os=$(sw_vers -productVersion)
+  local os  
+  os=$(sw_vers -productVersion)
 
   write_header "OS Version" "$os"
 }
