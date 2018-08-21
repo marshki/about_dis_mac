@@ -8,7 +8,7 @@ memory () {
   ram=$(system_profiler SPHardwareDataType | awk '/Memory/{ sub(/^.*: /, ""); print; }')
   
   local type 
-  type=$(system_profiler SPMemoryDataType | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }'|head -2|xargs)
+  type=$(system_profiler SPMemoryDataType | awk '/(Type|Speed):/ { sub(/^.*: /, ""); print; }'|head -2 |sort| xargs)
   
   printf "%s\\n" "${ram}"
   printf "%s\\n" "${type}"
