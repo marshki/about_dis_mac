@@ -101,6 +101,8 @@ processor () {
 # sort so numeric comes first
 # xargs to print to single line
 
+# --> NEED TO UPDATE COMMENTS HERE <-- #
+
 memory () { 
 
   local ram 
