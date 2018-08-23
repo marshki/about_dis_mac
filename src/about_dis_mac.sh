@@ -95,13 +95,11 @@ processor () {
 }
 
 #### Retrieve memory information  ####
-# awk to extract 'Memory'
-# awk to extract 'Type' & 'Speed'
-# take top 2 lines
-# sort so numeric comes first
-# xargs to print to single line
-
-# --> NEED TO UPDATE COMMENTS HERE <-- #
+# pipe system_profiler * calls to awk, awk then:  
+# print sum of strings in 2nd column when `Size` is found in 1st column
+# print last value in 2nd column when `Speed` is found in 1st column
+# print last value in 2nd column when `Type` is found in 1st colum
+# ignore `Empty` string when found in 2nd column
 
 memory () { 
 
