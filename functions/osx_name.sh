@@ -1,7 +1,7 @@
 #!/bin/bash
 # Retrieve Apple's marketing name for installed operating system 
 
-# Take the number extracted from here; use it as a reference
+# Take the number extracted from here (in between the "."s; use it as a reference
 
 osx_num=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
 
