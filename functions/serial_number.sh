@@ -1,10 +1,11 @@
 #!/bin/bash
-# Serial number 
+# Retrieve serial number 
 
 serial_number () { 
 
 local serialnum 
 serialnum=$(
+
 awk '
   $1~/Serial/ {serial=$4}
   END {print serial}
