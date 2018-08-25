@@ -13,7 +13,6 @@ awk '
   END {print size " GB " speed " " type}
   ' <<< "$(system_profiler SPMemoryDataType)"
 )
-system_profiler
 printf "%s\\n" "${ram}"
 }
 
