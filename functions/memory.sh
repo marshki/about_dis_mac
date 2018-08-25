@@ -1,10 +1,11 @@
 #!/bin/bash
-# Retrieve memory information 
+# RAM 
 
 awk_memory () { 
 
 local ram 
 ram=$(
+
 awk '
   $1~/Size/ && $2!~/Empty/ {size+=$2}
   $1~/Speed/ && $2!~/Empty/ {speed=$2" "$3}
