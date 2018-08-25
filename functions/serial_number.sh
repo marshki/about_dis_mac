@@ -1,11 +1,17 @@
 #!/bin/bash
 # Serial number 
 
-serial_number () {
-  local serialnum
-  serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ { sub(/^.*: /, ""); print; }')
-  
-  printf "%s\\n" "${serialnum}"
+serial_number () { 
+
+local serialnum 
+serialnum=$(
+awk '
+  $1~/Serial/ {serial=$4}
+  END {print serial}
+  ' <<< "$(system_profiler SPHardwareDataType)"
+)
+
+printf "%s\\n" "${serialnum}"
 }
 
 serial_number
