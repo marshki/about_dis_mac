@@ -11,9 +11,9 @@ awk '
   $1~/Speed/ && $2!~/Empty/ {speed=$2" "$3}
   $1~/Type/ && $2!~/Empty/ {type=$2}
   END {print size " GB " speed " " type}
-  ' <<< "$(system_profiler SPHardwareDataType; system_profiler SPMemoryDataType)"
+  ' <<< "$(system_profiler SPMemoryDataType)"
 )
-
+system_profiler
 printf "%s\\n" "${ram}"
 }
 
