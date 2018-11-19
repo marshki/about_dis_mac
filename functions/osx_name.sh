@@ -12,6 +12,7 @@ OSX_MARKETING=(
 ["11"]="El Capitan"
 ["12"]="Sierra"
 ["13"]="High Sierra"
+["14"]="Mojave"
 )
 
 # Check if the number extracted is in array; 
