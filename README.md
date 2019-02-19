@@ -9,10 +9,11 @@ Bash shell script to mimic the "About This Mac" feature in OS X from a terminal.
 
 Tested to run on OS X:
 
+* 10.14 Mojave
 * 10.13 High Sierra
 * 10.12 Sierra
 * 10.11 El Capitan
-* 10.10 Yosemite
+* 10.10 Yosemite 
 
 GUI Output   | CLI Output
 ----------   | ----------
@@ -49,7 +50,3 @@ then call it:
 - [ ] Invetigate what creates: ` ~/Library/Preferences/com.apple.SystemProfiler.plist` --> this isn't accessible on a fresh install, e.g. 
       Script will need to generate this first for the regexp to work. Update: it is the GUI "About this Mac" that creates this plist. 
       Need to trigger it somehow. 
-
-- [ ] Test on 10.14 Mojave 
-
-- [ ] Update README.md
