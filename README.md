@@ -22,6 +22,28 @@ GUI Output   | CLI Output
 
 __Liftoff:__
 
+**For everyone:**
+
+You can run this script with: `bash about_dis_mac.sh`
+
+**For sysadmins:**
+
+Make this script accessible to all users by placing it in: `/`; 
+
+create a symbolic link for it: 
+
+`ln -s /about_dis_mac.sh /usr/bin/sysinfo`; 
+
+set the executable bit on the file:
+
+`chmod +x /about_dis_mac.sh`;   
+
+then call it:
+
+`aboutdismac`.  
+
+ 
+
 ## TODO:
 
 - [ ] Invetigate what creates: ` ~/Library/Preferences/com.apple.SystemProfiler.plist` --> this isn't accessible on a fresh install, e.g. 
