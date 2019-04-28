@@ -1,24 +1,24 @@
 #!/bin/bash
 # mjk 2018.07.09
 
-#############################################################
-##  CLI alternative to OS X's "About this Mac" feature.    ##
-##  Retrieve information about: OS X "marketing" name;     ##
-##  OS version number; hardware model; processor; memory;  ##
-##  startup disk; graphics; and serial number.             ##
-#############################################################
+#=======================================================
+#  CLI alternative to OS X's "About this Mac" feature.    
+#  Retrieve information about: OS X "marketing" name;    
+#  OS version number; hardware model; processor; memory; 
+#  startup disk; graphics; and serial number.           
+#=======================================================
 
-#############################################################
-## This script frequently calls                            ##
-## OS X's system_profiler to poll a data type, e.g.:       ##
-## system_profiler SP_Some_DataType \                      ##
-## | awk '/string_to_extract/{ sub(/^.*: /, ""); print; }')##
-## where the output of the profiler is piped to `awk`;     ##
-## a search string is extracted;                           ##
-## and characters to the right of `:` are printed          ##
-#############################################################
+#==========================================================
+# This script frequently calls                            
+# OS X's system_profiler to poll a data type, e.g.:       
+# system_profiler SP_Some_DataType \                     
+# | awk '/string_to_extract/{ sub(/^.*: /, ""); print; }')
+# where the output of the profiler is piped to `awk`;     
+# a search string is extracted;                           
+# and characters to the right of `:` are printed          
+#==========================================================
 
-#### Lookup table for OS X marketing names ####
+# Lookup table for OS X marketing names 
 
 MARKETING_NAME=(
 ["10"]="Yosemite"
@@ -28,7 +28,7 @@ MARKETING_NAME=(
 ["14"]="Mojave"
 )
 
-#### Display header message ####
+# Display header message
 
 write_header() {
   local name=$1; shift;
@@ -36,7 +36,7 @@ write_header() {
   printf "%s\\n" "$@"
 }
 
-#### Retrieve Apple's marketing name for installed operating system.  ####
+# Retrieve Apple's marketing name for installed operating system. 
 # Take the number extracted from osx_number; use it as a reference
 # Check if the number extracted is in array; if it is print marketing name
 
@@ -53,7 +53,7 @@ fi
   write_header "OS X Name" "$osx_name"
 }
 
-####  Retrieve operating system version  ####
+# Retrieve operating system version 
 
 operating_system () {
 
@@ -63,8 +63,8 @@ operating_system () {
   write_header "OS Version" "$os"
 }
 
-##### Retrieve hardware model ####
-#### --> awk can probably do this better <--####
+# Retrieve hardware model 
+# --> awk can probably do this better <--
 # read plist & extract 'CPU Names';
 # cut string inside of '"' (4th field)
 # print only unique string (no dupes)
@@ -79,7 +79,7 @@ hardware_model () {
   write_header "Hardware Model" "$hardware_mod"
 }
 
-#### Retrieve processor information  ####
+# Retrieve processor information 
 # awk to extract Processor{Name,Speed}
 # sort so numeric comes first
 # xargs to print to single line
@@ -95,7 +95,7 @@ processor () {
   write_header "Processor" "$cpu"
 }
 
-#### Retrieve memory information  ####
+# Retrieve memory information 
 # pipe system_profiler * calls to awk, awk then:  
 # print sum of strings in 2nd column when `Size` is found in 1st column
 # print last value in 2nd column when `Speed` is found in 1st column
@@ -117,7 +117,7 @@ memory () {
   write_header "Memory" "${ram}"
 }
 
-#### Retrieve startup disk information  ####
+# Retrieve startup disk information
 # awk to extract third field
 # sed to print string to the right of ':'
 # awk to extract 'Mount Point'
@@ -133,7 +133,7 @@ startup_disk () {
   write_header "Startup Disk" "$disk" 
 }
 
-### Retrieve graphics information  ####
+# Retrieve graphics information
 # awk to extract 'Model', 'Max', 'Total'
 # xargs to print output to single line
 
@@ -147,7 +147,7 @@ graphics () {
   write_header "Graphics" "$gpu"
 }
 
-#### Retrieve serial number  ####
+# Retrieve serial number
 # awk to extract `Serial`
 
 serial_number () {
@@ -159,7 +159,7 @@ serial_number () {
   write_header "Serial Number" "$serialnum"
 }
 
-#### Las entranas del programa ####
+# Las entranas del programa 
 
 main () {
 
