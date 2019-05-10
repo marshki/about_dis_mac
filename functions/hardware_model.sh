@@ -1,8 +1,8 @@
 #!/bin/bash
 # Hardware model
-# On some test installs OS X didn't have "com.apple.SystemProfiler.plist" -->
-# What generates this preference list? 
-# --> root user hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \
+# Read preference list, extracting 'CPU Names'
+# cut suppress lines w/out delimiter characters, use '"' as delimiter
+# print only inique string (no dupes)
 
 hardware_model () {
 
