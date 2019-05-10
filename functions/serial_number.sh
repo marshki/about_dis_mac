@@ -1,5 +1,6 @@
 #!/bin/bash
 # Retrieve serial number 
+# awk to extract `Serial` 
 
 serial_number () { 
 
