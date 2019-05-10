@@ -16,7 +16,7 @@ OSX_MARKETING=(
 )
 
 # Check if the number extracted is in array; 
-# if it is print marketing name
+# if it is, print marketing name
  
 osx_name () {
   if [[ -n "${OSX_MARKETING[$osx_num]}" ]]; then 
