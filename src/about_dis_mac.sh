@@ -37,8 +37,6 @@ write_header() {
 }
 
 # Retrieve Apple's marketing name for installed operating system. 
-# Take the number extracted from osx_number; use it as a reference
-# Check if the number extracted is in array; if it is print marketing name
 
 osx_name () {
   
@@ -64,10 +62,6 @@ operating_system () {
 }
 
 # Retrieve hardware model 
-# --> awk can probably do this better <--
-# read plist & extract 'CPU Names';
-# cut string inside of '"' (4th field)
-# print only unique string (no dupes)
 
 hardware_model () {
 
@@ -80,9 +74,6 @@ hardware_model () {
 }
 
 # Retrieve processor information 
-# awk to extract Processor{Name,Speed}
-# sort so numeric comes first
-# xargs to print to single line
 
 processor () {
 
@@ -96,11 +87,6 @@ processor () {
 }
 
 # Retrieve memory information 
-# pipe system_profiler * calls to awk, awk then:  
-# print sum of strings in 2nd column when `Size` is found in 1st column
-# print last value in 2nd column when `Speed` is found in 1st column
-# print last value in 2nd column when `Type` is found in 1st colum
-# ignore `Empty` string when found in 2nd column
 
 memory () { 
 
@@ -118,10 +104,6 @@ memory () {
 }
 
 # Retrieve startup disk information
-# awk to extract third field
-# sed to print string to the right of ':'
-# awk to extract 'Mount Point'
-# head to get primary drive
 
 startup_disk () {
 
@@ -134,8 +116,6 @@ startup_disk () {
 }
 
 # Retrieve graphics information
-# awk to extract 'Model', 'Max', 'Total'
-# xargs to print output to single line
 
 graphics () {
 
@@ -148,7 +128,6 @@ graphics () {
 }
 
 # Retrieve serial number
-# awk to extract `Serial`
 
 serial_number () {
 
