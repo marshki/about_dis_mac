@@ -1,6 +1,9 @@
 #!/bin/bash
-# Can `disk` be done purely `awk`? 
-# Output of both functions on single line? Does 'ATM' show both? Do we need `Mount Point`?   
+# Retrieve startup disk information
+# awk to extract third field
+# sed to print string to the right of ':'
+# awk to extract 'Mount Point'
+# head to get primary drive
  
 startup_disk () {
   local disk  
