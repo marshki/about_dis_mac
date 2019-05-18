@@ -1,6 +1,7 @@
 #!/bin/bash
-#Get the marketing model name from the plist!
-#Bash script written quickly and poorly by https://reddit.com/u/Thanksagainforlunch
+
+# fresh and clean!
+# new and improved! 
 
 device_id () {
 
@@ -19,6 +20,10 @@ hardware_model () {
 
 device_id 
 hardware_model
+
+
+#Get the marketing model name from the plist!
+#Bash script written quickly and poorly by https://reddit.com/u/Thanksagainforlunch
 
 #hardware_model 
 #uglymodel="$(system_profiler SPHardwareDataType | grep Identifier | awk -F: '{print $2}' | tr -d '[:space:]')"
