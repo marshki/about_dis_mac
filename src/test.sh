@@ -10,7 +10,9 @@ device_id () {
 
 hardware_model () { 
 
-  hardware_mod="$(/usr/libexec/PlistBuddy -c "Print $d_id" /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/English.lproj/SIMachineAttributes.plist |awk '/marketingModel/{ sub(/^.*= /, ""); print; }')" 
+  hardware_mod="$(/usr/libexec/PlistBuddy -c "Print $d_id" \
+  /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/English.lproj/SIMachineAttributes.plist \
+  |awk '/marketingModel/{ sub(/^.*= /, ""); print; }')" 
    
   printf "%s\n" "$hardware_mod" 
 } 
