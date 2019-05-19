@@ -22,5 +22,3 @@ hardware_model () {
 } 
 
 hardware_model
-
-#Bash script written quickly and poorly by https://reddit.com/u/Thanksagainforlunch
