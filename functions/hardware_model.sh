@@ -2,7 +2,7 @@
 # Hardware model
 # Read preference list, extracting 'CPU Names'
 # cut suppress lines w/out delimiter characters, use '"' as delimiter
-# print only inique string (no dupes)
+# print only unique string (no dupes)
 
 hardware_model () {
 
