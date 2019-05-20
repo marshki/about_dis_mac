@@ -43,10 +43,7 @@ then call it:
 
 `aboutdismac`.  
 
- 
+## Acknowledgements
 
-## TODO:
-
-- [ ] Invetigate what creates: ` ~/Library/Preferences/com.apple.SystemProfiler.plist` --> this isn't accessible on a fresh install, e.g. 
-      Script will need to generate this first for the regexp to work. Update: it is the GUI "About this Mac" that creates this plist. 
-      Need to trigger it somehow. 
+`hardware_model.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/) 
+Shout-out to: [https://reddit.com/u/Thanksagainforlunch](https://reddit.com/u/Thanksagainforlunch)  
