@@ -45,5 +45,6 @@ then call it:
 
 ## Acknowledgements
 
-`hardware_model.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/) 
+`hardware_model.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/). 
+ 
 Shout-out to: [https://reddit.com/u/Thanksagainforlunch](https://reddit.com/u/Thanksagainforlunch)  
