@@ -17,7 +17,7 @@ Tested to run on OS X:
 
 GUI Output   | CLI Output
 ----------   | ----------
-![Alt text](https://github.com/marshki/About-Dis-Mac/blob/master/docs/about_this.png "about_this_mac")   | ![Alt text](https://github.com/marshki/About-Dis-Mac/blob/master/docs/about_dis.png "about_dis_cli")
+![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/about_gui.png "about_this_mac")   | ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/about_cli.png "about_dis_cli")
 
 ## Getting Started 
 
