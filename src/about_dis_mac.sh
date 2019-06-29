@@ -2,15 +2,15 @@
 # mjk 2018.07.09
 
 #=======================================================
-#  CLI alternative to OS X's "About this Mac" feature.    
-#  Retrieve information about: OS X "marketing" name;    
-#  OS version number; hardware model; processor; memory; 
+#  CLI alternative to macOSs "About this Mac" feature.    
+#  Retrieve information about: macOS's "marketing" name;    
+#  version number; hardware model; processor; memory; 
 #  startup disk; graphics; and serial number.           
 #=======================================================
 
 #==========================================================
 # This script frequently calls                            
-# OS X's system_profiler to poll a data type, e.g.:       
+# macOS's system_profiler to poll a data type, e.g.:       
 # system_profiler SP_Some_DataType \                     
 # | awk '/string_to_extract/{ sub(/^.*: /, ""); print; }')
 # where the output of the profiler is piped to `awk`;     
@@ -18,7 +18,7 @@
 # and characters to the right of `:` are printed          
 #==========================================================
 
-# Lookup table for OS X marketing names 
+# Lookup table for macOS marketing names 
 
 MARKETING_NAME=(
 ["10"]="Yosemite"
@@ -48,7 +48,7 @@ osx_name () {
     osx_name="${MARKETING_NAME[$osx_number]}"    
 fi
   
-  write_header "OS X Name" "$osx_name"
+  write_header "macOS" "$osx_name"
 }
 
 # Retrieve operating system version 
