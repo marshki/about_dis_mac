@@ -58,7 +58,7 @@ operating_system () {
   local os  
   os=$(sw_vers -productVersion)
 
-  write_header "OS Version" "$os"
+  write_header "Version" "$os"
 }
 
 # Retrieve hardware model 
