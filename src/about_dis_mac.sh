@@ -2,8 +2,8 @@
 # mjk 2018.07.09
 
 #=======================================================
-#  CLI alternative to macOSs "About this Mac" feature.    
-#  Retrieve information about: macOS's "marketing" name;    
+#  CLI alternative to macOS's "About this Mac" feature.    
+#  Retrieve information about: macOS "marketing" name;    
 #  version number; hardware model; processor; memory; 
 #  startup disk; graphics; and serial number.           
 #=======================================================
@@ -38,17 +38,17 @@ write_header() {
 
 # Retrieve Apple's marketing name for installed operating system. 
 
-osx_name () {
+macOS_name () {
   
-  local osx_number 
-  osx_number=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
+  local macOS_number 
+  macOS_number=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
  
-  if [[ -n "${MARKETING_NAME[$osx_number]}" ]]; then 
-    local osx_name
-    osx_name="${MARKETING_NAME[$osx_number]}"    
+  if [[ -n "${MARKETING_NAME[$macOS_number]}" ]]; then 
+    local macOS_name
+    macOS_name="${MARKETING_NAME[$macOS_number]}"    
 fi
   
-  write_header "macOS" "$osx_name"
+  write_header "macOS" "$macOS_name"
 }
 
 # Retrieve operating system version 
@@ -143,7 +143,7 @@ serial_number () {
 
 main () {
 
-	osx_name
+	macOS_name
 	operating_system
 	hardware_model
 	processor
