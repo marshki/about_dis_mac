@@ -26,6 +26,7 @@ MARKETING_NAME=(
 ["12"]="Sierra"
 ["13"]="High Sierra"
 ["14"]="Mojave"
+["15"]="Catalina"
 )
 
 # Display header message
