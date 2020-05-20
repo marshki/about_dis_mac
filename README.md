@@ -10,11 +10,12 @@ Bash shell script to mimic the "About This Mac" feature in macOS from a terminal
 
 Tested to run on macOS:
 
+* 10.15 Catalina
 * 10.14 Mojave
 * 10.13 High Sierra
 * 10.12 Sierra
 
-Test to run on macOS, but no longer receives updates:
+Tested to run on macOS, but no longer receives updates:
 
 * 10.11 El Capitan
 * 10.10 Yosemite 
