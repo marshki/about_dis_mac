@@ -68,8 +68,10 @@ hardware_model () {
   
   device_id="$(system_profiler SPHardwareDataType \ |awk '/Identifier/{ sub(/^.*: /, ""); print; }')"
 
+  shopt -s extglob
+
   hardware_mod="$(/usr/libexec/PlistBuddy -c "Print $device_id" \
-  /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/English.lproj/SIMachineAttributes.plist \
+  /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/@(English|en).lproj/SIMachineAttributes.plist \
   |awk '/marketingModel/{ sub(/^.*= /, ""); print; }')" 
   
   write_header "Hardware Model" "$hardware_mod"
