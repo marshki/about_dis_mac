@@ -65,15 +65,11 @@ operating_system () {
 # Retrieve hardware model 
 
 hardware_model () { 
-  
-  device_id="$(system_profiler SPHardwareDataType \ |awk '/Identifier/{ sub(/^.*: /, ""); print; }')"
-
-  shopt -s extglob
-
-  hardware_mod="$(/usr/libexec/PlistBuddy -c "Print $device_id" \
-  /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/@(English|en).lproj/SIMachineAttributes.plist \
-  |awk '/marketingModel/{ sub(/^.*= /, ""); print; }')" 
-  
+ 
+  local hardware_mod
+  hardware_mod=$(defaults read /Users/$LOGNAME/Library/Preferences/com.apple.SystemProfiler.plist \
+  'CPU Names' | cut -sd '"' -f 4 | uniq) 
+    
   write_header "Hardware Model" "$hardware_mod"
 } 
 
