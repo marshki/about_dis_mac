@@ -15,18 +15,11 @@
 
 
 hardware_model () { 
-
-  
-  #device_id="$(system_profiler SPHardwareDataType \ |awk '/Identifier/{ sub(/^.*: /, ""); print; }')"
   
   shopt -s extglob
 
   hardware_model=$(/usr/libexec/PlistBuddy -c "print :$(sysctl -n hw.model):_LOCALIZABLE_:marketingModel" /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/@(English|en).lproj/SIMachineAttributes.plist)
-
-  #hardware_mod="$(/usr/libexec/PlistBuddy -c "Print $device_id" \
-  #/System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/@(English|en).lproj/SIMachineAttributes.plist \
-  #|awk '/marketingModel/{ sub(/^.*= /, ""); print; }')" 
-   
+  
   printf "%s\n" "$hardware_model" 
 } 
 
