@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
 
-# Extract hardware model.
+# Extract hardware "marketing" model name.
 # Read preference list, extracting 'CPU Names'
 # then do `sed` vodo. 
 # Alternatively: sed -n 's/^.*" = "\(.*\)".*$/\1/p'
