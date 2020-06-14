@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# Hardware model, too. 
+
+# Alternative to 'hardware_model.sh' in this directory, 
+# returns slighlty different hardware 'marketing' name. 
+
 # Adapted from this thread: 
 # https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/ 
 # Shout-out to: https://reddit.com/u/Thanksagainforlunch
 
-# Step 1: Get Apple Device ID, e.g. MacBookAir6,2
-# system_profiler to extract SPHardwareDataType,
-# then awk to get Identifier (stipping content to the left of the ":"
-# Step 2: use PlistBuddy to search for device_id
-# then awk to extract marketingModel (stripping content to the left of "="
 
-#shopt -s extglob
-#printf "%s\\n" @(English|en).lproj
+# Use plist buddy to extract marketing model name from .plist
+# The full path of the .plist file varies by version of macOS
+# Here we use: shopt -s extglob, and: @(English|en).lproj
+# so that we can catch either "English" or "en".
 
 hardware_model () { 
   
