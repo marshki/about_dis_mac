@@ -13,14 +13,14 @@
 #shopt -s extglob
 #printf "%s\\n" @(English|en).lproj
 
-
 hardware_model () { 
   
   shopt -s extglob
 
-  hardware_model=$(/usr/libexec/PlistBuddy -c "print :$(sysctl -n hw.model):_LOCALIZABLE_:marketingModel" /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/@(English|en).lproj/SIMachineAttributes.plist)
+  hardware_model=$(/usr/libexec/PlistBuddy -c "print :$(sysctl -n hw.model):_LOCALIZABLE_:marketingModel"\
+  /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/@(English|en).lproj/SIMachineAttributes.plist)
   
-  printf "%s\n" "$hardware_model" 
-} 
+  printf "%s\n" "$hardware_model"
+}
 
 hardware_model
