@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash 
+
 # Retrieve graphics information
 # awk to extract 'Model', 'Max', 'Total'
 # xargs to print output to single line
