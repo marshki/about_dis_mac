@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash 
+
 # OS version 
 
 operating_system () {
