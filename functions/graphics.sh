@@ -11,6 +11,7 @@
 graphics () {
 
   local gpu 
+
   gpu=$(system_profiler SPDisplaysDataType \
   | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
   | xargs)
