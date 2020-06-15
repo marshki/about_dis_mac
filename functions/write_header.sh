@@ -1,6 +1,7 @@
-#!/bin/bash 
-# Funtion to take values and print header 
+#!/usr/bin/env bash 
 
+# Funtion to take values and print header. 
+# OS and SN are for illustrative purposes only.
 
 write_header() {
   local name=$1; shift;
