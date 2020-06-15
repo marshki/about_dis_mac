@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # Retrieve serial number 
 # awk to extract `Serial` 
 
 serial_number () { 
 
 local serialnum 
+
 serialnum=$(
 
 awk '
