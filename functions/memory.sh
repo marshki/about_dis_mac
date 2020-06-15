@@ -1,5 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # RAM 
+# Extract size, speed, and type from SPmemoryDataType output
 
 awk_memory () { 
 
