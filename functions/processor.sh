@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # Retrieve processor information 
 # awk to extract Processor{Name,Speed}
 # sort so numeric comes first
@@ -7,6 +8,7 @@
 processor () {
 
   local cpu  
+
   cpu=$(system_profiler SPHardwareDataType \
   | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
   | sort \
