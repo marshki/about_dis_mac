@@ -10,8 +10,7 @@ To trigger this list, one needs to click on the "About This Mac" GUI in macOS,
 you'll receive an error re: the plist not being found.   
 
 If there's a way to trigger this from a terminal, it should be part of the
-script, else there should be check for the file which if not found, throws
-a warning.
+script, else there should be a check for the file which if not found, calls the function in hardware_model_too.sh 
 
 For reference:
 `hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist \)`
