@@ -14,9 +14,6 @@ Tested to run on macOS:
 * 10.14 Mojave
 * 10.13 High Sierra
 * 10.12 Sierra
-
-Tested to run on macOS, but no longer receives updates:
-
 * 10.11 El Capitan
 * 10.10 Yosemite 
 
@@ -40,6 +37,6 @@ then call it:
 
 ## Acknowledgements
 
-`hardware_model.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/). 
+`hardware_model_too.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/). 
  
 Shout-out to: [https://reddit.com/u/Thanksagainforlunch](https://reddit.com/u/Thanksagainforlunch) for the suggestion.  
