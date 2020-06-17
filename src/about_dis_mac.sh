@@ -31,7 +31,8 @@ write_header() {
 
 macOS_name () {
   
-  local macOS_number 
+  local macOS_number
+ 
   macOS_number=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
  
   if [[ -n "${MARKETING_NAME[$macOS_number]}" ]]; then 
@@ -47,6 +48,7 @@ fi
 operating_system () {
 
   local os  
+
   os=$(sw_vers -productVersion)
 
   write_header "Version" "$os"
@@ -57,8 +59,9 @@ operating_system () {
 hardware_model () { 
  
   local hardware_mod
-  hardware_mod=$(defaults read /Users/$LOGNAME/Library/Preferences/com.apple.SystemProfiler.plist \
-  'CPU Names' | cut -sd '"' -f 4 | uniq) 
+
+  hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
+  | sed -E '/=/!d; s/.*= "//; s/".*//;')
     
   write_header "Hardware Model" "$hardware_mod"
 } 
@@ -67,7 +70,8 @@ hardware_model () {
 
 processor () {
 
-  local cpu  
+  local cpu 
+ 
   cpu=$(system_profiler SPHardwareDataType \
   | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
   | sort \
@@ -81,6 +85,7 @@ processor () {
 memory () { 
 
   local ram 
+
   ram=$(
   awk '
     $1~/Size/ && $2!~/Empty/ {size+=$2}
@@ -97,7 +102,8 @@ memory () {
 
 startup_disk () {
 
-  local disk  
+  local disk
+  
   disk=$(system_profiler SPStorageDataType \
   | awk 'FNR == 3 {print}'\
   | sed 's/[[:blank:]:]*//g')
@@ -109,7 +115,8 @@ startup_disk () {
 
 graphics () {
 
-  local gpu  
+  local gpu
+  
   gpu=$(system_profiler SPDisplaysDataType \
   | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
   | xargs)
@@ -122,6 +129,7 @@ graphics () {
 serial_number () {
 
   local serialnum
+
   serialnum=$(system_profiler SPHardwareDataType \
   | awk '/Serial/ { sub(/^.*: /, ""); print; }')
 
