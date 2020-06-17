@@ -1,4 +1,5 @@
 # About 'Dis Mac  
+---
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/58a75e0d2563469f8a4a9ec4ad24df5d)](https://www.codacy.com/app/marshki/about_dis_mac?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=marshki/about_dis_mac&amp;utm_campaign=Badge_Grade)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
@@ -6,7 +7,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Bash shell script to mimic the "About This Mac" feature in macOS from a terminal.
+Bash shell script to mimic the "About This Mac" feature in macOS.
 
 Tested to run on macOS:
 
@@ -19,7 +20,7 @@ Tested to run on macOS:
 
 GUI Output   | CLI Output
 ----------   | ----------
-![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/about_gui.png "about_this_mac")   | ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/bout_cli.png "about_dis_cli")
+![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/cataling_gui.png "about_this_mac") | ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/catalina_cli.png "about_dis_cli")
 
 ## Getting Started 
 
