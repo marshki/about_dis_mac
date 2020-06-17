@@ -22,7 +22,9 @@ MARKETING_NAME=(
 # Display header message.
 
 write_header() {
+
   local name=$1; shift;
+
   printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
   printf "%s\\n" "$@"
 }
