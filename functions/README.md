@@ -1,4 +1,13 @@
-### NOTE TO SELF 
+### NOTES TO SELF 
+---
+
+This script frequently calls macOS's system_profiler to poll a data type, 
+e.g.: `system_profiler SP_Some_DataType \ 
+| awk '/string_to_extract/{ sub(/^.*: /, ""); print; }')`
+where the output of the profiler is piped to `awk`;
+a search string is extracted;
+and characters to the right of `:` are printed. 
+
 ---
 
 The output of this preference list ('plist'): 
