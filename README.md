@@ -30,11 +30,11 @@ Make this script accessible to all users by placing it in: `/usr/local/bin`;
 
 set the executable bit on the file:
 
-`chmod +x about_dis_mac.sh`;   
+`chmod +x aboutMe.sh`;   
 
 then call it:
 
-`bash about_dis_mac`.  
+`bash aboutMe.sh`.  
 
 ## Acknowledgements
 
