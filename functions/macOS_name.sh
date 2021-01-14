@@ -12,6 +12,7 @@ MACOS_MARKETING_NAME=(
 ["13"]="High Sierra"
 ["14"]="Mojave"
 ["15"]="Catalina"
+["16"]="Big Sur"
 )
 
 macOS_name () {
