@@ -17,7 +17,7 @@ MARKETING_NAME=(
 ["13"]="High Sierra"
 ["14"]="Mojave"
 ["15"]="Catalina"
-["16"]="Big Sur"
+["1"]="Big Sur"
 
 )
 
