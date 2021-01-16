@@ -11,6 +11,7 @@ Bash shell script to mimic the "About This Mac" feature in macOS.
 
 Tested to run on macOS:
 
+* 11.1  Big Sur
 * 10.15 Catalina
 * 10.14 Mojave
 * 10.13 High Sierra
