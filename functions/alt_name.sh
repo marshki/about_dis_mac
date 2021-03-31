@@ -3,9 +3,16 @@
 # Extract macOS software version number 
 # then lookup number in array and display marketing number.
 
-macOS_number=$(sw_vers -productVersion | awk -F '[.]' '{print $1, $2}')
 
+# macOS_number=$(sw_vers -productVersion | awk -F '[.]' '{print $1, $2}') 
+
+macOS_number=$(sw_vers -productVersion)
 printf "%s\\n" "$macOS_number"
+
+field_1=$(printf "%s" "$macOS_number" | awk -F '[.]' '{print $1}')
+field_2=$(printf "%s" "$macOS_number" | awk -F '[.]' '{print $2}')
+
+printf "%s\\n" "$field_1" "$field_2"
 
 # One way to deal with this: 
 # extract field 1 and assign; extract field 2 and assign 
@@ -13,7 +20,6 @@ printf "%s\\n" "$macOS_number"
 #   version = field #1 + 5 
 # else 
 #   version = field #2
-
 
 # Lookup table
 
