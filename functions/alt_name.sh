@@ -3,11 +3,12 @@
 # Extract macOS software version number 
 # then lookup number in array and display marketing number.
 
+# This works: 
+
 macOS_number=$(sw_vers -productVersion | awk -F '[.]' '{print $1, $2}')
 printf "%s\\n" "$macOS_number"
 
-
-
+# But there's a problem here, specifically with "11 2". Porque no los dos? 
 #MACOS_MARKETING_NAME=(
 #["10"]="Yosemite"
 #["11"]="El Capitan"
