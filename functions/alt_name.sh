@@ -7,6 +7,13 @@ macOS_number=$(sw_vers -productVersion | awk -F '[.]' '{print $1}')
 
 printf "%s\\n" "$macOS_number"
 
+# One way to deal with this: 
+# if field #1 > 10
+#   version = field #1 + 5 
+# else 
+#   version = field #2
+
+
 # Lookup table
 
 MACOS_MARKETING_NAME=(
