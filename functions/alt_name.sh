@@ -1,23 +1,25 @@
 #!/usr/bin/env bash
 
-# Extract macOS software version number 
+# Extract macOS software version number. 
 # then lookup number in array and display marketing number.
 
-# Old: 
-# macOS_number=$(sw_vers -productVersion | awk -F '[.]' '{print $1, $2}') 
-# printf "%s\\n" "$macOS_number"
+macOS_version=$(sw_vers -productVersion)
+printf "%s\\n" "$macOS_version"
+
+field_1,field_2=(printf "%s" "$macOS_version" |awk -F '[.]' '{print $1, $2}')
+
 
 # New:
-field_1=$(sw_vers -productVersion | awk -F '[.]' '{print $1}')
-field_2=$(sw_vers -productVersion | awk -F '[.]' '{print $2}')
+#field_1=$(sw_vers -productVersion | awk -F '[.]' '{print $1}')
+#field_2=$(sw_vers -productVersion | awk -F '[.]' '{print $2}')
 
 printf "%s\\n" "$field_1" "$field_2"
 
-if [[ "$field_1" -gt 10 ]]; then 
-  printf "%s\\n" "$field_1"
-else 
-  printf "%s\\n" "$field_2"
-fi  
+#if [[ "$field_1" -gt 10 ]]; then 
+#  printf "%s\\n" "$field_1"
+#else 
+#  printf "%s\\n" "$field_2"
+#fi  
 
 # One way to deal with this: 
 # extract field 1 and assign; extract field 2 and assign 
