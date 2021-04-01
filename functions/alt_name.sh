@@ -5,13 +5,19 @@
 
 # Old: 
 # macOS_number=$(sw_vers -productVersion | awk -F '[.]' '{print $1, $2}') 
-#printf "%s\\n" "$macOS_number"
+# printf "%s\\n" "$macOS_number"
 
 # New:
 field_1=$(sw_vers -productVersion | awk -F '[.]' '{print $1}')
 field_2=$(sw_vers -productVersion | awk -F '[.]' '{print $2}')
 
 printf "%s\\n" "$field_1" "$field_2"
+
+if [[ "$field_1" -gt 10 ]]; then 
+  printf "%s\\n" "$field_1"
+else 
+  printf "%s\\n" "$field_2"
+fi  
 
 # One way to deal with this: 
 # extract field 1 and assign; extract field 2 and assign 
