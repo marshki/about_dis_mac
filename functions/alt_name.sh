@@ -6,8 +6,7 @@
 macOS_version=$(sw_vers -productVersion)
 printf "%s\\n" "$macOS_version"
 
-field_1,field_2=(printf "%s" "$macOS_version" |awk -F '[.]' '{print $1, $2}')
-
+read -d  "\n" field_1 field_2 <<<$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')
 
 # New:
 #field_1=$(sw_vers -productVersion | awk -F '[.]' '{print $1}')
