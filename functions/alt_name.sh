@@ -8,13 +8,13 @@ printf "%s\\n" "$macOS_version"
 
 read -d  "\n" field_1 field_2 <<<$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')
 
-printf "%s\\n" "$field_1" "$field_2"
+#printf "%s\\n" "$field_1" "$field_2"
 
-#if [[ "$field_1" -gt 10 ]]; then 
-#  printf "%s\\n" "$field_1"
-#else 
-#  printf "%s\\n" "$field_2"
-#fi  
+if [[ "$field_1" -gt 10 ]]; then 
+  printf "%s\\n" "$field_1"
+else 
+  printf "%s\\n" "$field_2"
+fi  
 
 # One way to deal with this: 
 # extract field 1 and assign; extract field 2 and assign 
