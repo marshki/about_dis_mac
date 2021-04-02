@@ -8,10 +8,6 @@ printf "%s\\n" "$macOS_version"
 
 read -d  "\n" field_1 field_2 <<<$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')
 
-# New:
-#field_1=$(sw_vers -productVersion | awk -F '[.]' '{print $1}')
-#field_2=$(sw_vers -productVersion | awk -F '[.]' '{print $2}')
-
 printf "%s\\n" "$field_1" "$field_2"
 
 #if [[ "$field_1" -gt 10 ]]; then 
