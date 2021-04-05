@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Prior to macOS 11.x.x, this was the go to function.
+
 # Extract macOS software version number 
 # then lookup number in array and display marketing number.
 
@@ -12,7 +14,6 @@ MACOS_MARKETING_NAME=(
 ["13"]="High Sierra"
 ["14"]="Mojave"
 ["15"]="Catalina"
-["1"]="Big Sur"
 )
 
 macOS_name () {
