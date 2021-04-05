@@ -10,7 +10,7 @@ read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1
 printf "%s\\n" "$field_1" "$field_2"
 
 if [[ "$field_1" -gt 10 ]]; then 
-  macOS_version="$(($field_1 + 5))"
+  macOS_version=$(($field_1 + 5))
 
 else
   macOS_version="$(field_2)"
