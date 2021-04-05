@@ -6,14 +6,12 @@
 #macOS_version=$(sw_vers -productVersion)
 #printf "%s\\n" "$macOS_version"
 
-#Probably don't need the newline separator, 
-#and can get away with << not <<<
-
 read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
 printf "%s\\n" "$field_1" "$field_2"
 
 #This may potentially be cleaner: 
-#IFS=. read -r field_1 field_2 field_3 < <(sw_vers -productVersion)
+#IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
+#printf "%s\\n" "${IFS[@]}"
 
 #if [[ "$field_1" -gt 10 ]]; then 
 #  macOS_version="$($field_1 + 5)"
