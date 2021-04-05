@@ -11,11 +11,9 @@ printf "%s\\n" "$field_1" "$field_2"
 
 if [[ "$field_1" -gt 10 ]]; then 
   macOS_version=$(($field_1 + 5))
-
 else
-  macOS_version="$(field_2)"
-  printf "%s\\n" "$macOS_version"
-fi  
+  macOS_version=$(($field_2))
+fi 
 
 printf "%s\\n" "$macOS_version"
 
