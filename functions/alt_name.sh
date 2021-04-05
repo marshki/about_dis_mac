@@ -9,20 +9,15 @@ printf "%s\\n" "$macOS_version"
 read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
 printf "%s\\n" "$field_1" "$field_2"
 
-#if [[ "$field_1" -gt 10 ]]; then 
-#  macOS_version="$($field_1 + 5)"
-#else 
-#  macOS_version="$field_2"
-#fi  
+if [[ "$field_1" -gt 10 ]]; then 
+  macOS_version="$(($field_1 + 5))"
 
-#printf "%s\\n" "$macOS_version"
+else
+  macOS_version="$(field_2)"
+  printf "%s\\n" "$macOS_version"
+fi  
 
-# One way to deal with this: 
-# extract field 1 and assign; extract field 2 and assign 
-# if field #1 > 10
-#   version = field #1 + 5 
-# else 
-#   version = field #2
+printf "%s\\n" "$macOS_version"
 
 # Lookup table
 
