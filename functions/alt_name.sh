@@ -7,9 +7,9 @@ read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1
 printf "%s\\n" "$field_1" "$field_2"
 
 if [[ "$field_1" -gt 10 ]]; then 
-  macOS_number=$(($field_1 + 5))
+  macOS_number=$((field_1 + 5))
 else
-  macOS_number=$(($field_2))
+  macOS_number=$((field_2))
 fi 
 
 # Lookup table
