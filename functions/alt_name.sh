@@ -8,6 +8,11 @@
 
 read -rd  "\n" field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
 
+#Probably don't need the newline separator, 
+#and can get away with << not <<<
+#IFS=. read -r field_1 field_2 field_3 < <(sw_vers -productVersion)
+
+
 if [[ "$field_1" -gt 10 ]]; then 
   macOS_version="$($field_1 + 5)"
 else 
