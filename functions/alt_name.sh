@@ -4,9 +4,12 @@
 # Extract fields from macOS software version number,
 # then feed field to array, and display marketing name.
 
-regexp() { 
+parser() { 
   read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
   printf "%s\\n" "$field_1" "$field_2"
+}
+
+macOS_number () {
 
   if [[ "$field_1" -gt 10 ]]; then 
     macOS_number=$((field_1 + 5))
@@ -35,7 +38,8 @@ fi
 }
 
 main () {
-regexp
+parser
+macOS_number
 macOS_name
 }
 
