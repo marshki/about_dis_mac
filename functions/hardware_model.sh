@@ -1,4 +1,5 @@
 #!/usr/bin/env bash 
+# Production version.
 
 # Extract hardware "marketing" model name.
 # Read preference list, extracting 'CPU Names'
