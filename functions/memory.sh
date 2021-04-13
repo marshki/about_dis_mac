@@ -2,6 +2,8 @@
 
 # RAM 
 # Extract size, speed, and type from SPmemoryDataType output
+# Function expects no more than four (4) DIMMS. 
+# Feature request: accommodate more DIMMS. 
 
 awk_memory () { 
 
