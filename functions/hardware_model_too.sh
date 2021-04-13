@@ -7,7 +7,6 @@
 # https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/ 
 # Shout-out to: https://reddit.com/u/Thanksagainforlunch
 
-
 # Use plist buddy to extract marketing model name from .plist
 # The full path of the .plist file varies by version of macOS
 # Here we use: shopt -s extglob, and: @(English|en).lproj
