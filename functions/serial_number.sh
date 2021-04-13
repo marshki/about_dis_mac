@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Retrieve serial number 
-# awk to extract `Serial` 
+# Pipe info from system_profiler 
+# awk to extract `Serial` row, then field 4. 
 
 serial_number () { 
 
