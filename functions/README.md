@@ -1,4 +1,4 @@
-### NOTES TO SELF 
+### NOTES
 ---
 
 This script frequently calls macOS's system_profiler to poll a data type, 
