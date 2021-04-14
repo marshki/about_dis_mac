@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+# Production version
 
 # Post-macOS 11.x.x.
-# Extract fields from macOS software version number,
-# then feed field to array, and display marketing name.
+# Extract fields 1 and 2 from macOS software version number,
+# assign those fields to variables, 
+# run a number check, and display corresponding marketing name.
 
 # Lookup table
 
@@ -19,7 +21,6 @@ MACOS_MARKETING_NAME=(
 parser() { 
 
   read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
-  printf "%s\\n" "$field_1" "$field_2"
 }
 
 macOS_number () {
