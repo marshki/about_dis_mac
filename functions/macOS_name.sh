@@ -40,9 +40,11 @@ fi
 }
 
 main () {
-parser
-macOS_number
-macOS_name
+  parser
+  macOS_number
+  macOS_name
 }
+
+### Need to test w/out print statements!!!
 
 main "$@" 
