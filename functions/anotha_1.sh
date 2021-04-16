@@ -44,7 +44,8 @@ macOS_name () {
   local marketing_name
 
   if [[ -n "${MACOS_MARKETING_NAMES[$macOS_number]}" ]]; then
-    local marketing_name=$({MACOS_MARKETING_NAMES[$macOS_number]})
+    local marketing_name
+    marketing_name="${MACOS_MARKETING_NAMES[$macOS_number]}"
     printf "%s\\n" "$marketing_name"
 fi
 }
