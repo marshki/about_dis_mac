@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Pre macOS 11.x.x, this was the go-to function.
+# So fresh, so clean!
 
 # Extract macOS software version number
 # then lookup number in array and display marketing number.
