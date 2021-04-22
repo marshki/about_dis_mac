@@ -35,7 +35,9 @@ macOS_number () {
 macOS_name () {
 
   if [[ -n "${MACOS_MARKETING_NAME[$macOS_number]}" ]]; then
-    printf "%s\\n" "${MACOS_MARKETING_NAME[$macOS_number]}"
+    macOS_name=${MACOS_MARKETING_NAME[$macOS_number]}
+
+    printf "%s\\n" "$macOS_name"
 fi
 }
 
@@ -44,7 +46,5 @@ main () {
   macOS_number
   macOS_name
 }
-
-### Need to test w/out print statements!!!
 
 main "$@" 
