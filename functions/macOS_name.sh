@@ -18,6 +18,16 @@ MACOS_MARKETING_NAME=(
 ["16"]="Big Sur"
 )
 
+# Display header message.
+
+write_header() {
+
+  local name=$1; shift;
+
+  printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
+  printf "%s\\n" "$@"
+}
+
 parser() { 
 
   read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
@@ -36,9 +46,8 @@ macOS_name () {
 
   if [[ -n "${MACOS_MARKETING_NAME[$macOS_number]}" ]]; then
     macOS_name=${MACOS_MARKETING_NAME[$macOS_number]}
-
-    printf "%s\\n" "$macOS_name"
 fi
+    write_header "macOS" "$macOS_name"
 }
 
 main () {
