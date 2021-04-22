@@ -9,6 +9,7 @@
 # Lookup table
 
 MACOS_MARKETING_NAME=(
+
 ["10"]="Yosemite"
 ["11"]="El Capitan"
 ["12"]="Sierra"
@@ -16,6 +17,7 @@ MACOS_MARKETING_NAME=(
 ["14"]="Mojave"
 ["15"]="Catalina"
 ["16"]="Big Sur"
+
 )
 
 # Display header message.
@@ -28,13 +30,16 @@ write_header() {
   printf "%s\\n" "$@"
 }
 
+# Parse field 1, field 2 and assign to eponymous variables.
+
 parser() { 
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
   
-  # Alt. leaving for posterity. 
-  #read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
 }
+
+# If field_1 greater than 10, add five (5) to variable
+# else use field_2.
 
 macOS_number () {
 
@@ -45,6 +50,8 @@ macOS_number () {
   fi 
 }
 
+# If macOS_number in array, assign macOS_name to corresponding marketing name.  
+
 macOS_name () {
 
   if [[ -n "${MACOS_MARKETING_NAME[$macOS_number]}" ]]; then
@@ -52,6 +59,8 @@ macOS_name () {
 fi
     write_header "macOS" "$macOS_name"
 }
+
+# Wrapper.
 
 main () {
   parser
