@@ -5,19 +5,20 @@
 # CLI alternative to the macOS "About this Mac" feature.
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
-# Date: 2020.06.16
+# Date: 2021.04.22
 # License: MIT
 
-# Lookup table for macOS marketing names. 
+# Lookup table. 
 
 MARKETING_NAME=(
+
 ["10"]="Yosemite"
 ["11"]="El Capitan"
 ["12"]="Sierra"
 ["13"]="High Sierra"
 ["14"]="Mojave"
 ["15"]="Catalina"
-["1"]="Big Sur"
+["16"]="Big Sur"
 
 )
 
@@ -33,18 +34,33 @@ write_header() {
 
 # Retrieve Apple's marketing name for installed operating system. 
 
+parser() { 
+
+  IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
+  
+}
+
+macOS_number () {
+
+  if [[ "$field_1" -gt 10 ]]; then 
+    macOS_number=$((field_1 + 5))
+  else
+    macOS_number=$((field_2))
+  fi 
+}
+
 macOS_name () {
-  
-  local macOS_number
- 
-  macOS_number=$(sw_vers -productVersion| awk -F '[.]' '{print $2}')
- 
-  if [[ -n "${MARKETING_NAME[$macOS_number]}" ]]; then 
-    local macOS_name
-    macOS_name="${MARKETING_NAME[$macOS_number]}"    
+
+  if [[ -n "${MARKETING_NAME[$macOS_number]}" ]]; then
+    macOS_name=${MARKETING_NAME[$macOS_number]}
 fi
-  
-  write_header "macOS" "$macOS_name"
+    write_header "macOS" "$macOS_name"
+}
+
+macOS_name_wrapper () {
+  parser
+  macOS_number
+  macOS_name
 }
 
 # Retrieve operating system version.
@@ -144,7 +160,7 @@ serial_number () {
 
 main () {
 
-	macOS_name
+	macOS_name_wrapper
 	operating_system
 	hardware_model
 	processor
