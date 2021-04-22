@@ -30,7 +30,10 @@ write_header() {
 
 parser() { 
 
-  read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
+  IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
+  
+  # Alt. leaving for posterity. 
+  #read -r field_1 field_2 <<<"$(sw_vers -productVersion | awk -F '[.]' '{ print $1, $2 }')"
 }
 
 macOS_number () {
