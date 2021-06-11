@@ -30,12 +30,11 @@ write_header() {
   printf "%s\\n" "$@"
 }
 
-# Parse field 1, field 2 and assign to eponymous variables.
+# Parse field 1, field 2, field 3 and assign to eponymous variables.
 
-parser() { 
+parser() {
 
-  IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
-  
+  IFS=. read -r field_1 field_2 field_3 < <(sw_vers -productVersion)
 }
 
 # If field_1 greater than 10, add five (5) to variable
@@ -43,14 +42,14 @@ parser() {
 
 macOS_number () {
 
-  if [[ "$field_1" -gt 10 ]]; then 
+  if [[ "$field_1" -gt 10 ]]; then
     macOS_number=$((field_1 + 5))
   else
     macOS_number=$((field_2))
-  fi 
+  fi
 }
 
-# If macOS_number in array, assign macOS_name to corresponding marketing name.  
+# If macOS_number in array, assign macOS_name to corresponding marketing name.
 
 macOS_name () {
 
@@ -68,4 +67,4 @@ main () {
   macOS_name
 }
 
-main "$@" 
+main "$@"
