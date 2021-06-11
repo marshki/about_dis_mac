@@ -19,7 +19,6 @@ MARKETING_NAME=(
 ["14"]="Mojave"
 ["15"]="Catalina"
 ["16"]="Big Sur"
-
 )
 
 # Display header message.
@@ -36,8 +35,7 @@ write_header() {
 
 parser() { 
 
-  IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
-  
+  IFS=. read -r field_1 field_2 field_3 < <(sw_vers -productVersion)
 }
 
 macOS_number () {
@@ -58,6 +56,7 @@ fi
 }
 
 macOS_name_wrapper () {
+
   parser
   macOS_number
   macOS_name
@@ -156,7 +155,7 @@ serial_number () {
   write_header "Serial Number" "$serialnum"
 }
 
-# Las entranas del programa. 
+# Las entranas del programa.
 
 main () {
 
