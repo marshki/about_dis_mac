@@ -1,5 +1,4 @@
-#!/bin/bash
-# Email output of script 
+#!/usr/bin/env bash
+# E-mail me the results of this script. 
 
-
-bash bout_dis_mac.sh |tee output.txt |mail -s "About THIS Mac..." me@myemail.com
+bash aboutMe.sh |tee output.txt |mail -s "About THIS Mac..." me@myemail.com
