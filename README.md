@@ -37,6 +37,10 @@ then call it:
 
 `bash aboutMe.sh`.  
 
+
+## License
+[LICENSE](https://github.com/marshki/about_dis_mac/blob/master/LICENSE)
+
 ## Acknowledgements
 
 `hardware_model_too.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/). 
