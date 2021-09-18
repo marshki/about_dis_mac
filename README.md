@@ -37,8 +37,14 @@ then call it:
 
 `bash aboutMe.sh`.  
 
+## History
+
+v.0.2 05-APR-2021
+v.0.1 07-JUL-2018
+v.0.0 15-AUG-2017
 
 ## License
+
 [LICENSE](https://github.com/marshki/about_dis_mac/blob/master/LICENSE)
 
 ## Acknowledgements
