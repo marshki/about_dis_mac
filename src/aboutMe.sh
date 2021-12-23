@@ -19,6 +19,7 @@ MARKETING_NAME=(
 ["14"]="Mojave"
 ["15"]="Catalina"
 ["16"]="Big Sur"
+["17"]="Monterey"
 )
 
 # Display header message.
