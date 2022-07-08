@@ -1,6 +1,6 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
 
-# Funtion to take values and print header. 
+# Funtion to take values and print header.
 # OS and SN are for illustrative purposes only.
 
 write_header() {
@@ -11,15 +11,15 @@ write_header() {
 
 operating_system () {
   local os=$(sw_vers -productVersion)
-  
-  write_header "OS Version" "$os" 
+
+  write_header "OS Version" "$os"
 }
 
 serial_number () {
   local serialnum=$(system_profiler SPHardwareDataType \
   | awk '/Serial/ { sub(/^.*: /, ""); print; }')
- 
-  write_header "Serial Number" "$serialnum"  
+
+  write_header "Serial Number" "$serialnum"
 }
 
 main () {
