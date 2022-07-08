@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# Retrieve processor information 
+# Retrieve processor information
 # awk to extract Processor{Name,Speed}
 # sort so numeric comes first
 # xargs to print to single line
 
 processor () {
 
-  local cpu  
+  local cpu
 
   cpu=$(system_profiler SPHardwareDataType \
   | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
@@ -15,7 +15,7 @@ processor () {
   | xargs)
 
   printf "%s\\n" "${cpu}"
-} 
+}
 
 processor
 
