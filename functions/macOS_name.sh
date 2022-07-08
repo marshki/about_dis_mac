@@ -3,7 +3,7 @@
 
 # Post-macOS 11.x.x.
 # Extract fields 1 and 2 from macOS software version number,
-# assign those fields to variables, 
+# assign those fields to variables,
 # run a number check, and display corresponding marketing name.
 
 # Lookup table
