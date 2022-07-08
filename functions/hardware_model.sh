@@ -1,12 +1,12 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
 # Production version.
 
 # Extract hardware "marketing" model name.
 # Read preference list, extracting 'CPU Names'
-# then do `sed` vodo. 
+# then do `sed` vodo.
 # Alternatively: sed -n 's/^.*" = "\(.*\)".*$/\1/p'
 
-# `awk` should be able to do this cleanly, too. 
+# `awk` should be able to do this cleanly, too.
 
 hardware_model () {
 
