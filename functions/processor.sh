@@ -19,3 +19,5 @@ processor () {
 
 processor
 
+# Parse for "Chip" "Cores" & strip to the right of: ":"
+# awk '/Chip/ || /Cores/ { sub(/^.*: /, ""); print; }'\
