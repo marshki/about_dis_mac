@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# Retrieve serial number 
-# Pipe info from system_profiler 
-# awk to extract `Serial` row, then field 4. 
+# Retrieve serial number
+# Pipe info from system_profiler
+# awk to extract `Serial` row, then field 4.
 
-serial_number () { 
+serial_number () {
 
-local serialnum 
+local serialnum
 
 serialnum=$(
 
