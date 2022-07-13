@@ -21,3 +21,21 @@ printf "%s\\n" "${ram}"
 }
 
 awk_memory
+
+
+#awk_memory () { 
+
+#local ram 
+#ram=$(
+
+#awk '
+#  $1~/Memory/ && $2!~/Empty/ {Memory+=$2}
+#  END {print "Memory " Memory " GB"}
+#  ' <<< "$(system_profiler SPMemoryDataType)"
+#)
+#printf "%s\\n" "${ram}"
+#}
+
+#awk_memory 
+
+#Memory 8 GB
