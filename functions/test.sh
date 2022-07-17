@@ -25,7 +25,7 @@ write_header() {
   printf "%s\\n" "$@"
 }
 
-# Parse assign to eponymous variables.
+# Parse and assign to eponymous variable.
 
 parser() {
 
