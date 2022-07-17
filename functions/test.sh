@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Production version
+# Dev version
 
 # Note: Post-macOS 11.x.x.
 # Extract field 1 from macOS software version number,
