@@ -12,7 +12,7 @@ MACOS_MARKETING_NAME=(
 
 ["11"]="Big Sur"
 ["12"]="Monterey"
-["13"}="Ventura"
+["13"]="Ventura"
 )
 
 # Display header message.
