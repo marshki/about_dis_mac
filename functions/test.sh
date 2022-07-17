@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Production version
 
-# Post-macOS 11.x.x.
-# Extract fields 1 from macOS software version number,
-# assign fields to variable,
+# Note: Post-macOS 11.x.x.
+# Extract field 1 from macOS software version number,
+# assign field to variable,
 # run a number check, and display corresponding marketing name.
 
 # Lookup table
