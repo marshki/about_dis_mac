@@ -1,7 +1,7 @@
-!/usr/bin/env bash
-# Dev version
+#!/usr/bin/env bash
 
-# Note: Post-macOS 11.x.x.
+# Note: Intel, M1, post-macOS 11.x.x.
+
 # Extract field 1 from macOS software version number,
 # assign field to variable,
 # run a number check, and display corresponding marketing name.
@@ -31,9 +31,9 @@ parser() {
 
  parser=$(sw_vers -productVersion |awk -F '.' '{ print $1 }')
 
-} 
+}
 
-# If macOS_number in array, assign macOS_name to corresponding marketing name.
+# If $parser in array, assign macOS_name to corresponding marketing name.
 
 macOS_name () {
 
