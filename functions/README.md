@@ -1,6 +1,10 @@
 ### NOTES
 ---
 
+Test functions for Intel-, M1-based Macs.
+
+---
+
 This script frequently calls macOS's system_profiler to poll a data type,
 e.g.:
 
