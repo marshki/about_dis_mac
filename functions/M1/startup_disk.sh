@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Note: Intel, M1, post-macOS 11.x.x.
+
 # Retrieve startup disk information
 # awk to extract third field
 # sed to print string to the right of ':'
