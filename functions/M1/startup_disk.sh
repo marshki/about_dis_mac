@@ -5,8 +5,6 @@
 # Retrieve startup disk information
 # awk to extract third field
 # sed to print string to the right of ':'
-# awk to extract 'Mount Point'
-# head to get primary drive
 
 startup_disk () {
   local disk  
