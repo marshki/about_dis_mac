@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Note: Intel, M1, post-macOS 11.x.x.
+
 # Retrieve serial number
 # Pipe info from system_profiler
 # awk to extract `Serial` row, then field 4.
