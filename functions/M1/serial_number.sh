@@ -1,27 +1,16 @@
 #!/usr/bin/env bash
 
-# Note: Intel, M1, post-macOS 11.x.x.
-
-# Retrieve serial number
-# Pipe info from system_profiler
-# awk to extract `Serial` row, then field 4.
+# Retrieve serial number.
+# awk to extract `Serial` row, then field 4 from system_profiler SPHardwareType
 
 serial_number () {
 
-local serialnum
+  local serialnum
 
-serialnum=$(
+  serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 
-awk '
-  $1~/Serial/ {serial=$4}
-  END {print serial}
-  ' <<< "$(system_profiler SPHardwareDataType)"
-)
-
-printf "%s\\n" "${serialnum}"
-}
+  printf "%s\n" "${serialnum}"
+} 
 
 serial_number
 
-# Simplify: 
-# system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'
