@@ -10,7 +10,7 @@
 
 # Lookup table.
 
-MARKETING_NAME=(
+RELEASE_NAME=(
 
 ["11"]="Big Sur"
 ["12"]="Monterey"
@@ -19,7 +19,7 @@ MARKETING_NAME=(
 
 # Display header message.
 
-write_header() {
+write_header () {
 
   local name=$1; shift;
 
@@ -29,25 +29,32 @@ write_header() {
 
 # Parse 'short' product version and assign to variable.
 
-short_version() {
+parse_version () {
 
  short_version=$(sw_vers -productVersion |awk -F '.' '{ print $1 }')
-
 }
 
 # If $short_version in array, assign macOS_name to corresponding marketing name.
 
-macOS_name () {
+macOS_release_name () {
 
-  if [[ -n "${MARKETING_NAME[$short_version]}" ]]; then
-    macOS_name=${MARKETING_NAME[$short_version]}
+  if [[ -n "${RELEASE_NAME[$short_version]}" ]]; then
+    macOS_name=${RELEASE_NAME[$short_version]}
 fi
     write_header "macOS" "$macOS_name"
 }
 
+macOS_version () { 
+
+  long_version=$(sw_vers -productVersion) 
+  write_header "Version" "$long_version"
+
+} 
+
 macOS_name_wrapper () {
-  short_version
-  macOS_name
+  parse_version
+  macOS_release_name
+  macOS_version
 }
 
 macOS_name_wrapper
