@@ -31,17 +31,17 @@ write_header () {
 
 parse_version () {
 
- short_version=$(sw_vers -productVersion |awk -F '.' '{ print $1 }')
+  short_version=$(sw_vers -productVersion |awk -F '.' '{ print $1 }')
 }
 
-# If $short_version in array, assign macOS_name to corresponding marketing name.
+# If $short_version in table, assign macOS_name to corresponding marketing name.
 
 macOS_release_name () {
 
   if [[ -n "${RELEASE_NAME[$short_version]}" ]]; then
-    macOS_name=${RELEASE_NAME[$short_version]}
+    macOS_release_name=${RELEASE_NAME[$short_version]}
 fi
-    write_header "macOS" "$macOS_name"
+    write_header "macOS" "$macOS_release_name"
 }
 
 macOS_version () { 
