@@ -8,7 +8,7 @@
 # Date: 2022.07.25
 # License: MIT
 
-# Lookup table. 
+# Lookup table.
 
 MARKETING_NAME=(
 
@@ -27,26 +27,26 @@ write_header() {
   printf "%s\\n" "$@"
 }
 
-# Parse product version and assign to eponymous variable.
+# Parse 'short' product version and assign to variable.
 
-parse_version() {
+short_version() {
 
- version=$(sw_vers -productVersion |awk -F '.' '{ print $1 }')
+ short_version=$(sw_vers -productVersion |awk -F '.' '{ print $1 }')
 
-} 
+}
 
-# If $version in array, assign macOS_name to corresponding marketing name.
+# If $short_version in array, assign macOS_name to corresponding marketing name.
 
 macOS_name () {
 
-  if [[ -n "${MARKETING_NAME[$version]}" ]]; then
-    macOS_name=${MARKETING_NAME[$version]}
+  if [[ -n "${MARKETING_NAME[$short_version]}" ]]; then
+    macOS_name=${MARKETING_NAME[$short_version]}
 fi
     write_header "macOS" "$macOS_name"
 }
 
 macOS_name_wrapper () {
-  parse_version
+  short_version
   macOS_name
 }
 
