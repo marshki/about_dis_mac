@@ -44,17 +44,20 @@ fi
     write_header "macOS" "$macOS_release_name"
 }
 
+macOS_name_wrapper () {
+  parse_version
+  macOS_release_name
+}
+
 macOS_version () { 
 
   long_version=$(sw_vers -productVersion) 
   write_header "Version" "$long_version"
 
-} 
-
-macOS_name_wrapper () {
-  parse_version
-  macOS_release_name
-  macOS_version
 }
 
-macOS_name_wrapper
+
+
+
+# macOS_version
+ 
