@@ -46,6 +46,12 @@ fi
     write_header "macOS" "$macOS_release_name"
 }
 
+macOS_name_wrapper() {
+
+  parse_version
+  macOS_release_name
+}
+
 # macOS Version No.
 
 macOS_version () { 
@@ -56,8 +62,13 @@ macOS_version () {
   write_header "Version" "$long_version"
 }
 
-macOS_name_wrapper() {
-  parse_version
-  macOS_release_name
+# Las entranas del programa.
+
+main () {
+
+  macOS_name_wrapper
+  macOS_version
 }
- 
+
+main "$@"
+
