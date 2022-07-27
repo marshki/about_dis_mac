@@ -2,7 +2,7 @@
 #
 # aboutMe
 #
-# CLI alternative to the macOS "About This Mac" feature.
+# CLI alternative to the macOS "About This Mac" (M1 & ↑).
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
 # Date: 2022.07.25
@@ -71,4 +71,3 @@ main () {
 }
 
 main "$@"
-
