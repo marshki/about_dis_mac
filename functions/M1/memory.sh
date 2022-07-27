@@ -6,11 +6,9 @@
 # Extract size, speed, and type from SPmemoryDataType output
 # Function expects no more than four (4) DIMMS.
 
-awk_memory () { 
+memory () { 
 
-local ram
-
-ram=$(
+local ram=$(
 awk '
   $1~/Size/ && $2!~/Empty/ {size+=$2}
   $1~/Speed/ && $2!~/Empty/ {speed=$2" "$3}
@@ -21,4 +19,4 @@ awk '
 printf "%s\\n" "${ram}"
 }
 
-awk_memory
+memory
