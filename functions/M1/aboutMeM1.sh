@@ -59,6 +59,8 @@ macOS_version () {
   write_header "Version" "$long_version"
 }
 
+# 
+
 hardware_model () {
 
   local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
@@ -67,6 +69,21 @@ hardware_model () {
   write_header "Hardware Model" "$hardware_mod"
 }
 
+processor () {
+
+  local cpu=$(system_profiler SPHardwareDataType \
+  | awk '/Chip:/{ sub(/^.*: /, ""); print; }'\
+  | sort \
+  | xargs)
+
+  write_header "Processor" "$cpu"
+
+}
+
+
+
+
+
 # Las entranas del programa.
 
 main () {
@@ -74,6 +91,7 @@ main () {
   macOS_name_wrapper
   macOS_version
   hardware_model
+  processor
 }
 
 main "$@"
