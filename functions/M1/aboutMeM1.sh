@@ -85,6 +85,23 @@ processor () {
 
 }
 
+# Memory info.
+
+memory () { 
+
+  local ram=$(
+  awk '
+    $1~/Size/ && $2!~/Empty/ {size+=$2}
+    $1~/Speed/ && $2!~/Empty/ {speed=$2" "$3}
+    $1~/Type/ && $2!~/Empty/ {type=$2}
+    END {print size " GB " speed " " type}
+    ' <<< "$(system_profiler SPMemoryDataType)"
+)
+
+  write_header "Memory" "${ram}"
+
+}
+
 # Las entranas del programa.
 
 main () {
@@ -93,6 +110,7 @@ main () {
   macOS_version
   hardware_model
   processor
+  memory
 }
 
 main "$@"
