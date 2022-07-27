@@ -81,7 +81,7 @@ processor () {
   | sort \
   | xargs)
 
-  write_header "Processor" "$cpu"
+  write_header "Chip" "$cpu"
 
 }
 
