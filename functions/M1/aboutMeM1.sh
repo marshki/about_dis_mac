@@ -41,8 +41,11 @@ macOS_release_name() {
   if [[ -n "${RELEASE_NAME[$short_version]}" ]]; then
     local macOS_release_name=${RELEASE_NAME[$short_version]}
 fi
+
     write_header "macOS" "$macOS_release_name"
 }
+
+# Wrapper function.
 
 macOS_name_wrapper() {
 
@@ -50,16 +53,16 @@ macOS_name_wrapper() {
   macOS_release_name
 }
 
-# macOS Version No.
+# macOS version No.
 
-macOS_version () { 
+macOS_version () {
 
-  local long_version=$(sw_vers -productVersion) 
+  local long_version=$(sw_vers -productVersion)
 
   write_header "Version" "$long_version"
 }
 
-# 
+# Hardware model.
 
 hardware_model () {
 
@@ -68,6 +71,8 @@ hardware_model () {
 
   write_header "Hardware Model" "$hardware_mod"
 }
+
+# Processor info.
 
 processor () {
 
@@ -79,10 +84,6 @@ processor () {
   write_header "Processor" "$cpu"
 
 }
-
-
-
-
 
 # Las entranas del programa.
 
