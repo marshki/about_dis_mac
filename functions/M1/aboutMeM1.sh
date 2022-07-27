@@ -2,7 +2,7 @@
 #
 # aboutMe
 #
-# CLI alternative to the macOS "About This Mac" (M1 & ↑).
+# CLI alternative to the macOS "About This Mac" (M1 & ↑)
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
 # Date: 2022.07.25
@@ -38,10 +38,8 @@ parse_version() {
 
 macOS_release_name() {
 
-  local macOS_release_name
-
   if [[ -n "${RELEASE_NAME[$short_version]}" ]]; then
-    macOS_release_name=${RELEASE_NAME[$short_version]}
+    local macOS_release_name=${RELEASE_NAME[$short_version]}
 fi
     write_header "macOS" "$macOS_release_name"
 }
@@ -56,10 +54,17 @@ macOS_name_wrapper() {
 
 macOS_version () { 
 
-  local long_version
+  local long_version=$(sw_vers -productVersion) 
 
-  long_version=$(sw_vers -productVersion) 
   write_header "Version" "$long_version"
+}
+
+hardware_model () {
+
+  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
+  | sed -E '/=/!d; s/.*= "//; s/".*//;')
+
+  write_header "Hardware Model" "$hardware_mod"
 }
 
 # Las entranas del programa.
@@ -68,6 +73,7 @@ main () {
 
   macOS_name_wrapper
   macOS_version
+  hardware_model
 }
 
 main "$@"
