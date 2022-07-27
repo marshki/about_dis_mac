@@ -96,7 +96,7 @@ memory () {
     $1~/Type/ && $2!~/Empty/ {type=$2}
     END {print size " GB " speed " " type}
     ' <<< "$(system_profiler SPMemoryDataType)"
-)
+  )
 
   write_header "Memory" "${ram}"
 
