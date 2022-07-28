@@ -103,6 +103,7 @@ memory () {
 }
 
 # Startup disk. 
+
 # Serial No.
 
 # Las entranas del programa.
