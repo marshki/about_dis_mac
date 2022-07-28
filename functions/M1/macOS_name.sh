@@ -1,53 +1,42 @@
 #!/usr/bin/env bash
 
-# Note: Intel, M1, post-macOS 11.x.x.
+# Note: Post-macOS 11.x.x.
 
 # Extract field 1 from macOS software version number,
 # assign field to variable,
 # run a number check, and display corresponding marketing name.
 
-# Lookup table
-
-MACOS_MARKETING_NAME=(
+RELEASE_NAME=(
 
 ["11"]="Big Sur"
 ["12"]="Monterey"
 ["13"]="Ventura"
 )
 
-# Display header message.
+# Parse 'short' product version and assign to variable.
 
-write_header() {
+parse_version() {
 
-  local name=$1; shift;
-
-  printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
-  printf "%s\\n" "$@"
+  short_version=$(sw_vers -productVersion |awk -F '.' '{ print $1 }')
 }
 
-# Parse and assign to eponymous variable.
+# If $short_version in table, assign macOS_name to corresponding marketing name.
 
-parser() {
+macOS_release_name() {
 
- parser=$(sw_vers -productVersion |awk -F '.' '{ print $1 }')
-
-}
-
-# If $parser in array, assign macOS_name to corresponding marketing name.
-
-macOS_name () {
-
-  if [[ -n "${MACOS_MARKETING_NAME[$parser]}" ]]; then
-    macOS_name=${MACOS_MARKETING_NAME[$parser]}
+  if [[ -n "${RELEASE_NAME[$short_version]}" ]]; then
+    local macOS_release_name=${RELEASE_NAME[$short_version]}
 fi
-    write_header "macOS" "$macOS_name"
+
+    printf "%s\n" "macOS" "$macOS_release_name"
 }
 
-# Wrapper.
+# Wrapper function.
 
-main () {
-  parser
-  macOS_name
+macOS_name_wrapper() {
+
+  parse_version
+  macOS_release_name
 }
 
-main "$@"
+macOS_name_wrapper "$@"
