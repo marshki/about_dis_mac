@@ -1,7 +1,7 @@
 ### NOTES
 ---
 
-Test functions for Intel-, M1-based Macs.
+Test functions for Intel-, M*-based Macs.
 
 ---
 
