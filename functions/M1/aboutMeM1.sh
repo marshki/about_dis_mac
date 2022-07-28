@@ -78,8 +78,6 @@ processor () {
 
   local cpu=$(system_profiler SPHardwareDataType \
   | awk '/Chip:/{ sub(/^.*: /, ""); print; }'\
-  | sort \
-  | xargs)
 
   write_header "Chip" "$cpu"
 
