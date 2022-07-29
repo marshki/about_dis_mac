@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
 
-# macOS version No.
+# Extract macOS version no.
 
 macOS_version() {
 
