@@ -53,7 +53,7 @@ macOS_name_wrapper() {
   macOS_release_name
 }
 
-# macOS version No.
+# macOS version info.
 
 macOS_version () {
 
@@ -62,7 +62,7 @@ macOS_version () {
   write_header "Version" "$long_version"
 }
 
-# Hardware model.
+# Hardware model info.
 
 hardware_model () {
 
@@ -72,12 +72,10 @@ hardware_model () {
   write_header "Hardware Model" "$hardware_mod"
 }
 
-# Processor info.
-
 processor () {
 
   local cpu=$(system_profiler SPHardwareDataType \
-  | awk '/Chip:/{ sub(/^.*: /, ""); print; }'\
+  | awk '/Chip:/{ sub(/^.*: /, ""); print; }')
 
   write_header "Chip" "$cpu"
 
@@ -96,13 +94,27 @@ memory () {
     ' <<< "$(system_profiler SPMemoryDataType)"
   )
 
-  write_header "Memory" "${ram}"
+  write_header "Memory" "$ram"
 
 }
 
-# Startup disk. 
+# Startup disk info. 
 
-# Serial No.
+startup_disk () {
+
+  local disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
+  
+  write_header "Startup disk" "$disk"
+}
+
+# Serial number.
+
+serial_number () {
+
+  local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+
+  write_header "Serial Number" "$serialnum"
+} 
 
 # Las entranas del programa.
 
@@ -113,6 +125,8 @@ main () {
   hardware_model
   processor
   memory
+  startup_disk
+  serial_number
 }
 
 main "$@"
