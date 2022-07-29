@@ -2,7 +2,7 @@
 
 # Note: Intel, M1, post-macOS 11.x.x.
 
-# RAM.
+# Extract RAM info.
 # Extract size, speed, and type from SPmemoryDataType output.
 # Function expects no more than four (4) DIMMS.
 
