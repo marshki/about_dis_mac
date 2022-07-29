@@ -15,7 +15,8 @@ awk '
   $1~/Type/ && $2!~/Empty/ {type=$2}
   END {print size " GB " speed " " type}
   ' <<< "$(system_profiler SPMemoryDataType)"
-)
+  )
+
 printf "%s\\n" "${ram}"
 }
 
