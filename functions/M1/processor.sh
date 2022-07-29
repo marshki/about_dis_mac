@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Retrieve processor information.
-# awk to extract string to right of: 'Chip:' 
+# awk to extract string, strip string to right of: 'Chip:' 
 
 processor () {
 
