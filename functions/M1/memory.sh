@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
 
-# Note: Intel, M1, post-macOS 11.x.x.
+# Still WIP.
 
 # Extract RAM info.
 # Extract size, speed, and type from SPmemoryDataType output.
 # Function expects no more than four (4) DIMMS.
 
-memory () { 
+memory () {
 
 local ram=$(
 awk '
-  $1~/Size/ && $2!~/Empty/ {size+=$2}
-  $1~/Speed/ && $2!~/Empty/ {speed=$2" "$3}
-  $1~/Type/ && $2!~/Empty/ {type=$2}
-  END {print size " GB " speed " " type}
+  $1~/Memory/ && $2!~/Empty/ {size+=$2}
+  END {print size " GB " }
   ' <<< "$(system_profiler SPMemoryDataType)"
   )
 
