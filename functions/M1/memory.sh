@@ -19,3 +19,7 @@ printf "%s\\n" "${ram}"
 }
 
 memory
+
+
+# system_profiler SPMemoryDataType |awk -F ' ' /Size:/
+
