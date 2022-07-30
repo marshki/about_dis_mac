@@ -21,5 +21,9 @@ printf "%s\\n" "${ram}"
 memory
 
 
-# system_profiler SPMemoryDataType |awk -F ' ' /Size:/
+# system_profiler SPMemoryDataType |awk -F ' ' /Memory:/
+# system_profiler SPMemoryDataType |awk 'FNR ==3'
+
+
+
 
