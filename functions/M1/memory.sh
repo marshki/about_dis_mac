@@ -3,7 +3,7 @@
 # Still WIP.
 
 # Extract RAM info.
-# Extract size, speed, and type from SPmemoryDataType output.
+# Extract Memory from SPmemoryDataType output.
 # Function expects no more than four (4) DIMMS.
 
 memory () {
@@ -23,7 +23,3 @@ memory
 
 # system_profiler SPMemoryDataType |awk -F ' ' /Memory:/
 # system_profiler SPMemoryDataType |awk 'FNR ==3'
-
-
-
-
