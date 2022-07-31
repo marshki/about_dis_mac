@@ -20,16 +20,6 @@ MACOS_MARKETING_NAME=(
 
 )
 
-# Display header message.
-
-write_header() {
-
-  local name=$1; shift;
-
-  printf "%s\\n""--------------------\\n$name%s\\n--------------------\\n"
-  printf "%s\\n" "$@"
-}
-
 # Parse field 1, field 2, field 3 and assign to eponymous variables.
 
 parser() {
@@ -59,7 +49,7 @@ macOS_name () {
   if [[ -n "${MACOS_MARKETING_NAME[$macOS_number]}" ]]; then
     macOS_name=${MACOS_MARKETING_NAME[$macOS_number]}
 fi
-    write_header "macOS" "$macOS_name"
+    printf "%s\n" "macOS" "$macOS_name"
 }
 
 # Wrapper.
