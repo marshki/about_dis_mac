@@ -17,7 +17,8 @@ MACOS_MARKETING_NAME=(
 ["14"]="Mojave"
 ["15"]="Catalina"
 ["16"]="Big Sur"
-
+["17"]="Monterey"
+["18"]="Ventura"
 )
 
 # Parse field 1, field 2, field 3 and assign to eponymous variables.
