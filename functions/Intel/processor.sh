@@ -7,9 +7,7 @@
 
 processor () {
 
-  local cpu
-
-  cpu=$(system_profiler SPHardwareDataType \
+  local cpu=$(system_profiler SPHardwareDataType \
   | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
   | sort \
   | xargs)
