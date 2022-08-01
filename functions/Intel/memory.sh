@@ -8,6 +8,7 @@
 awk_memory () {
 
 local ram
+
 ram=$(
 
 awk '
