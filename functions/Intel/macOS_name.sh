@@ -21,11 +21,11 @@ MACOS_MARKETING_NAME=(
 ["18"]="Ventura"
 )
 
-# Parse field 1, field 2, field 3 and assign to eponymous variables.
+# Parse field 1, field 2, and assign to eponymous variables.
 
 parser() {
 
-  IFS=. read -r field_1 field_2 field_3 < <(sw_vers -productVersion)
+  IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
 
 # Can likely simplify all of this with this (test for Intel and M1s):
