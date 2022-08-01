@@ -3,7 +3,9 @@
 # OS version 
 
 operating_system () {
-  local os=$(sw_vers -productVersion)
+  local os
+
+  os=$(sw_vers -productVersion)
 
   printf "%s\\n" "${os}"
 }
