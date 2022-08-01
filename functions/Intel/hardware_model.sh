@@ -8,7 +8,9 @@
 
 hardware_model () {
 
-  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
+  local hardware_mod
+
+  hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
   | sed -E '/=/!d; s/.*= "//; s/".*//;')
 
   printf "%s\\n" "${hardware_mod}"
