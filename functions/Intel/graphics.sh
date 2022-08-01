@@ -9,8 +9,10 @@
 # regexp for `awk` should match Model AND either Max OR Total
 
 graphics () {
-   
-  local gpu=$(system_profiler SPDisplaysDataType \
+
+  local gpu    
+
+  gpu=$(system_profiler SPDisplaysDataType \
   | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
   | xargs)
 
