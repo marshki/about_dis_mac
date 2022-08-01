@@ -7,7 +7,9 @@
 
 processor () {
 
-  local cpu=$(system_profiler SPHardwareDataType \
+  local cpu
+
+  cpu=$(system_profiler SPHardwareDataType \
   | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
   | sort \
   | xargs)
@@ -17,6 +19,6 @@ processor () {
 
 processor
 
-# Parse for "Chip" "Cores" & strip to the right of: ":"
-# awk '/Chip:/{ sub(/^.*: /, ""); print; }'
 # Apple M1
+# Parse for "Chip" & strip to the right of: ":"
+# awk '/Chip:/{ sub(/^.*: /, ""); print; }'
