@@ -6,7 +6,9 @@
 
 serial_number () {
 
-local serialnum=$(
+local serialnum
+
+serialnum=$(
 
 awk '
   $1~/Serial/ {serial=$4}
