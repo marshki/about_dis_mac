@@ -3,28 +3,22 @@
 # Retrieve startup disk information
 # awk to extract third field
 # sed to print string to the right of ':'
+#
+# Retrieve mount point information 
 # awk to extract 'Mount Point'
 # head to get primary drive
 
 startup_disk () {
+  
+  local disk mount
 
-  local disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
+  disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
 
-  local mount=$(system_profiler SPStorageDataType | awk '/Mount Point/ { sub(/^.*: /, ""); print; }')
+  mount=$(system_profiler SPStorageDataType \
+   |awk '/Mount Point/ { sub(/^.*: /, ""); print; }' |head -1)
 
   printf "%s\\n" "${disk}"
   printf "%s\\n" "${mount}"
 }
 
 startup_disk
-
-
-#startup_disk () {
-#  local disk  
-
-#  disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
-  
-#  printf "%s\\n" "${disk}"
-#}
-
-#startup_disk
