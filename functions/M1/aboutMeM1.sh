@@ -91,7 +91,9 @@ processor () {
 
 memory () { 
 
-  local ram=$(
+  local ram
+
+  ram=$(
   awk '
     $1~/Memory/ && $2!~/Empty/ {size+=$2}
     END {print size ' GB'}
