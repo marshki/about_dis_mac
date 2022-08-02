@@ -57,7 +57,9 @@ macOS_name_wrapper() {
 
 macOS_version () {
 
-  local long_version=$(sw_vers -productVersion)
+  local long_version
+  
+  long_version=$(sw_vers -productVersion)
 
   write_header "Version" "$long_version"
 }
@@ -66,16 +68,20 @@ macOS_version () {
 
 hardware_model () {
 
-  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
-  | sed -E '/=/!d; s/.*= "//; s/".*//;')
+  local hardware_mod
+
+  hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
+    | sed -E '/=/!d; s/.*= "//; s/".*//;')
 
   write_header "Hardware Model" "$hardware_mod"
 }
 
 processor () {
 
-  local cpu=$(system_profiler SPHardwareDataType \
-  | awk '/Chip:/{ sub(/^.*: /, ""); print; }')
+  local cpu
+
+  cpu=$(system_profiler SPHardwareDataType \
+    | awk '/Chip:/{ sub(/^.*: /, ""); print; }')
 
   write_header "Chip" "$cpu"
 
@@ -85,7 +91,9 @@ processor () {
 
 memory () { 
 
-  local ram=$(
+  local ram
+
+  ram=$(
   awk '
     $1~/Memory/ && $2!~/Empty/ {size+=$2}
     END {print size ' GB'}
@@ -100,7 +108,9 @@ memory () {
 
 startup_disk () {
 
-  local disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
+  local disk
+
+  disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
   
   write_header "Startup disk" "$disk"
 }
@@ -109,7 +119,9 @@ startup_disk () {
 
 serial_number () {
 
-  local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+  local serialnum
+
+  serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 
   write_header "Serial Number" "$serialnum"
 } 
