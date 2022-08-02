@@ -4,7 +4,9 @@
 
 macOS_version() {
 
-  local long_version=$(sw_vers -productVersion)
+  local long_version
+
+  long_version=$(sw_vers -productVersion)
 
   printf "%s\n" "Version" "$long_version"
 }
