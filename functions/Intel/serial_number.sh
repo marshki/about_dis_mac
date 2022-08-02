@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Note: Leaving here for now, but possibly not needed.
+# More succinct version in dir: InCommon 
+
 # Retrieve serial number
 # Pipe info from system_profiler
 # awk to extract `Serial` row, then field 4.
