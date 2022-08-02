@@ -68,8 +68,10 @@ macOS_version () {
 
 hardware_model () {
 
-  local hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
-  | sed -E '/=/!d; s/.*= "//; s/".*//;')
+  local hardware_mod
+
+  hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
+    | sed -E '/=/!d; s/.*= "//; s/".*//;')
 
   write_header "Hardware Model" "$hardware_mod"
 }
