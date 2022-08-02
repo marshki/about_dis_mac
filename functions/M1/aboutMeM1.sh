@@ -57,7 +57,9 @@ macOS_name_wrapper() {
 
 macOS_version () {
 
-  local long_version=$(sw_vers -productVersion)
+  local long_version
+  
+  long_version=$(sw_vers -productVersion)
 
   write_header "Version" "$long_version"
 }
