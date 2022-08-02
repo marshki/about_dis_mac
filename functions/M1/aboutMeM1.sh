@@ -119,7 +119,9 @@ startup_disk () {
 
 serial_number () {
 
-  local serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+  local serialnum
+
+  serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 
   write_header "Serial Number" "$serialnum"
 } 
