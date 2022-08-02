@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Production version
 
-# Post-macOS 11.x.x.
+# Notes: Post-macOS 11.x.x. Intel, M1 chips.
+
 # Extract fields 1 and 2 from macOS software version number,
 # assign those fields to variables,
 # run a number check, and display corresponding marketing name.
