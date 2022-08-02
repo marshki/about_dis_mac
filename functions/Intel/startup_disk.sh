@@ -15,7 +15,7 @@ startup_disk () {
   disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
 
   mount=$(system_profiler SPStorageDataType \
-   |awk '/Mount Point/ { sub(/^.*: /, ""); print; }' |head -1)
+    |awk '/Mount Point/ { sub(/^.*: /, ""); print; }' |head -1)
 
   printf "%s\\n" "${disk}"
   printf "%s\\n" "${mount}"
