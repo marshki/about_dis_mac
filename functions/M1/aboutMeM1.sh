@@ -108,7 +108,9 @@ memory () {
 
 startup_disk () {
 
-  local disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
+  local disk
+
+  disk=$(system_profiler SPStorageDataType |awk 'FNR == 3 {print}'|sed 's/[[:blank:]:]*//g')
   
   write_header "Startup disk" "$disk"
 }
