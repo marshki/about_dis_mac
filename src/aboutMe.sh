@@ -8,7 +8,7 @@
 # Date: 2021.04.22
 # License: MIT
 
-# Lookup table. 
+# Lookup table.
 
 MARKETING_NAME=(
 
@@ -20,6 +20,7 @@ MARKETING_NAME=(
 ["15"]="Catalina"
 ["16"]="Big Sur"
 ["17"]="Monterey"
+["18"]="Ventura"
 )
 
 # Display header message.
