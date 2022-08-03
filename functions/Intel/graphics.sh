@@ -13,8 +13,8 @@ graphics () {
   local gpu    
 
   gpu=$(system_profiler SPDisplaysDataType \
-  | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
-  | xargs)
+    | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
+    | xargs)
 
   printf "%s\\n" "${gpu}"
 }
