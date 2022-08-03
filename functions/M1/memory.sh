@@ -5,7 +5,7 @@
 # Function expects no more than four (4) DIMMS.
 
 memory () {
-  local ran 
+  local ram 
 
 ram=$(
 awk '
