@@ -5,8 +5,10 @@
 
 processor () {
 
-  local cpu=$(system_profiler SPHardwareDataType \
-  | awk '/Chip:/{ sub(/^.*: /, ""); print; }')  
+  local cpu
+
+  cpu=$(system_profiler SPHardwareDataType \
+    | awk '/Chip:/{ sub(/^.*: /, ""); print; }')  
 
   printf "%s\\n" "${cpu}"
 } 
