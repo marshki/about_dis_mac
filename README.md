@@ -11,7 +11,8 @@ Bash shell script to mimic the "About This Mac" feature in macOS.
 
 Tested to run on macOS:
 
-* 11.1  Big Sur
+* 12.*  Monterey
+* 11.*  Big Sur
 * 10.15 Catalina
 * 10.14 Mojave
 * 10.13 High Sierra
@@ -39,6 +40,7 @@ then call it:
 
 ## History
 
+v.0.3 04-AUG-2022
 v.0.2 05-APR-2021
 v.0.1 07-JUL-2018
 v.0.0 15-AUG-2017
