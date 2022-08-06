@@ -29,9 +29,6 @@ parser() {
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
 
-# Can likely simplify all of this with this (test for Intel and M1s):
-# sw_vers -productVersion|awk -F '.' '{ print $1 }'
-
 # If field_1 greater than 10, add five (5) to variable
 # else use field_2.
 
