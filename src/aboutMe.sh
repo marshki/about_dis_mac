@@ -35,18 +35,18 @@ write_header() {
 
 # Retrieve Apple's release name for installed operating system.
 
-parse_version () { 
+parse_version () {
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
 
 macOS_release_number () {
 
-  if [[ "$field_1" -gt 10 ]]; then 
+  if [[ "$field_1" -gt 10 ]]; then
     macOS_release_number=$((field_1 + 5))
   else
     macOS_release_number=$((field_2))
-  fi 
+  fi
 }
 
 macOS_release_name () {
@@ -68,7 +68,7 @@ macOS_release_name_wrapper () {
 
 operating_system () {
 
-  local os  
+  local os
 
   os=$(sw_vers -productVersion)
 
@@ -77,7 +77,7 @@ operating_system () {
 
 # Retrieve hardware model.
 
-hardware_model () { 
+hardware_model () {
  
   local hardware_mod
 
@@ -85,13 +85,13 @@ hardware_model () {
     | sed -E '/=/!d; s/.*= "//; s/".*//;')
     
   write_header "Hardware Model" "$hardware_mod"
-} 
+}
 
-# Retrieve processor information. 
+# Retrieve processor information.
 
 processor () {
 
-  local cpu 
+  local cpu
  
   cpu=$(system_profiler SPHardwareDataType \
     | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
@@ -103,9 +103,9 @@ processor () {
 
 # Retrieve memory information.
 
-memory () { 
+memory () {
 
-  local ram 
+  local ram
 
   ram=$(
   awk '
@@ -129,7 +129,7 @@ startup_disk () {
     | awk 'FNR == 3 {print}'\
     | sed 's/[[:blank:]:]*//g')
   
-  write_header "Startup Disk" "$disk" 
+  write_header "Startup Disk" "$disk"
 }
 
 # Retrieve graphics info.
