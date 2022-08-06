@@ -10,7 +10,7 @@
 
 # Lookup table.
 
-MARKETING_NAME=(
+RELEASE_NAME=(
 
 ["10"]="Yosemite"
 ["11"]="El Capitan"
@@ -35,33 +35,33 @@ write_header() {
 
 # Retrieve Apple's marketing name for installed operating system. 
 
-parser () { 
+parse_version () { 
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
 
-macOS_number () {
+macOS_release_number () {
 
   if [[ "$field_1" -gt 10 ]]; then 
-    macOS_number=$((field_1 + 5))
+    macOS_release_number=$((field_1 + 5))
   else
-    macOS_number=$((field_2))
+    macOS_release_number=$((field_2))
   fi 
 }
 
-macOS_name () {
+macOS_release_name () {
 
-  if [[ -n "${MARKETING_NAME[$macOS_number]}" ]]; then
-    macOS_name=${MARKETING_NAME[$macOS_number]}
+  if [[ -n "${RELEASE_NAME[$macOS_release_number]}" ]]; then
+    macOS_release_name=${RELEASE_NAME[$macOS_release_number]}
 fi
-    write_header "macOS" "$macOS_name"
+    write_header "macOS" "$macOS_release_name"
 }
 
-macOS_name_wrapper () {
+macOS_release_name_wrapper () {
 
-  parser
-  macOS_number
-  macOS_name
+  parse_version
+  macOS_release_number
+  macOS_release_name
 }
 
 # Retrieve operating system version.
@@ -161,7 +161,7 @@ serial_number () {
 
 main () {
 
-	macOS_name_wrapper
+	macOS_release_name_wrapper
 	operating_system
 	hardware_model
 	processor
