@@ -35,7 +35,7 @@ write_header() {
 
 # Retrieve Apple's marketing name for installed operating system. 
 
-parser() { 
+parser () { 
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
