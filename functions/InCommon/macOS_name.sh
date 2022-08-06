@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Production version
-
 # Notes: Post-macOS 11.x.x. Intel, M1 chips.
 
 # Extract fields 1 and 2 from macOS software version number,
@@ -9,7 +7,7 @@
 
 # Lookup table
 
-MACOS_MARKETING_NAME=(
+RELEASE_NAME=(
 
 ["10"]="Yosemite"
 ["11"]="El Capitan"
@@ -24,7 +22,7 @@ MACOS_MARKETING_NAME=(
 
 # Parse field 1, field 2, and assign to eponymous variables.
 
-parser() {
+parse_version() {
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
@@ -32,31 +30,31 @@ parser() {
 # If field_1 greater than 10, add five (5) to variable
 # else use field_2.
 
-macOS_number () {
+macOS_release_number() {
 
   if [[ "$field_1" -gt 10 ]]; then
-    macOS_number=$((field_1 + 5))
+    macOS_release_number=$((field_1 + 5))
   else
-    macOS_number=$((field_2))
+    macOS_release_number=$((field_2))
   fi
 }
 
-# If macOS_number in array, assign macOS_name to corresponding marketing name.
+# If macOS_release_number in array, assign macOS_release_name to corresponding marketing name.
 
-macOS_name () {
+macOS_release_name() {
 
-  if [[ -n "${MACOS_MARKETING_NAME[$macOS_number]}" ]]; then
-    macOS_name=${MACOS_MARKETING_NAME[$macOS_number]}
+  if [[ -n "${RELEASE_NAME[$macOS_release_number]}" ]]; then
+    macOS_release_name=${RELEASE_NAME[$macOS_release_number]}
 fi
-    printf "%s\n" "macOS" "$macOS_name"
+    printf "%s\n" "macOS" "$macOS_release_name"
 }
 
 # Wrapper.
 
-main () {
-  parser
-  macOS_number
-  macOS_name
+main() {
+  parse_version
+  macOS_release_number
+  macOS_release_name
 }
 
 main "$@"
