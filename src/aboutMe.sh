@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# aboutMe
+# aboutMe (Intel-based)
 #
 # CLI alternative to the macOS "About this Mac" feature.
 #
@@ -33,7 +33,7 @@ write_header() {
   printf "%s\\n" "$@"
 }
 
-# Retrieve Apple's marketing name for installed operating system. 
+# Retrieve Apple's release name for installed operating system.
 
 parse_version () { 
 
