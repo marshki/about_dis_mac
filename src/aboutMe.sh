@@ -66,7 +66,7 @@ macOS_release_name_wrapper () {
 
 # Retrieve operating system version.
 
-operating_system () {
+macOS_version () {
 
   local os
 
@@ -162,7 +162,7 @@ serial_number () {
 main () {
 
 	macOS_release_name_wrapper
-	operating_system
+	macOS_version
 	hardware_model
 	processor
 	memory
