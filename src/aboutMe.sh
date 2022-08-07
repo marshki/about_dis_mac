@@ -35,12 +35,12 @@ write_header() {
 
 # Retrieve Apple's release name for installed operating system.
 
-parse_version () {
+parse_version() {
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
 
-macOS_release_number () {
+macOS_release_number() {
 
   if [[ "$field_1" -gt 10 ]]; then
     macOS_release_number=$((field_1 + 5))
@@ -49,7 +49,7 @@ macOS_release_number () {
   fi
 }
 
-macOS_release_name () {
+macOS_release_name() {
 
   if [[ -n "${RELEASE_NAME[$macOS_release_number]}" ]]; then
     macOS_release_name=${RELEASE_NAME[$macOS_release_number]}
@@ -57,7 +57,7 @@ fi
     write_header "macOS" "$macOS_release_name"
 }
 
-macOS_release_name_wrapper () {
+macOS_release_name_wrapper() {
 
   parse_version
   macOS_release_number
@@ -66,7 +66,7 @@ macOS_release_name_wrapper () {
 
 # Retrieve operating system version.
 
-macOS_version () {
+macOS_version() {
 
   local os
 
@@ -77,7 +77,7 @@ macOS_version () {
 
 # Retrieve hardware model.
 
-hardware_model () {
+hardware_model() {
  
   local hardware_mod
 
@@ -89,7 +89,7 @@ hardware_model () {
 
 # Retrieve processor information.
 
-processor () {
+processor() {
 
   local cpu
  
@@ -103,7 +103,7 @@ processor () {
 
 # Retrieve memory information.
 
-memory () {
+memory() {
 
   local ram
 
@@ -121,7 +121,7 @@ memory () {
 
 # Retrieve startup disk info.
 
-startup_disk () {
+startup_disk() {
 
   local disk
   
@@ -134,7 +134,7 @@ startup_disk () {
 
 # Retrieve graphics info.
 
-graphics () {
+graphics() {
 
   local gpu
   
@@ -147,7 +147,7 @@ graphics () {
 
 # Retrieve serial number.
 
-serial_number () {
+serial_number() {
 
   local serialnum
 
@@ -159,7 +159,7 @@ serial_number () {
 
 # Las entranas del programa.
 
-main () {
+main() {
 
 	macOS_release_name_wrapper
 	macOS_version
