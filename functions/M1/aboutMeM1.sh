@@ -96,7 +96,7 @@ memory () {
   ram=$(
     awk '
       $1~/Memory/ && $2!~/Empty/ {size+=$2}
-      END {print size " GB " }
+      END {print size " GB" }
       ' <<< "$(system_profiler SPMemoryDataType)"
   )
 
