@@ -55,7 +55,7 @@ macOS_name_wrapper() {
 
 # macOS version info.
 
-macOS_version () {
+macOS_version() {
 
   local long_version
   
@@ -66,7 +66,7 @@ macOS_version () {
 
 # Hardware model info.
 
-hardware_model () {
+hardware_model() {
 
   local hardware_mod
 
@@ -76,7 +76,7 @@ hardware_model () {
   write_header "Hardware Model" "$hardware_mod"
 }
 
-processor () {
+processor() {
 
   local cpu
 
@@ -89,7 +89,7 @@ processor () {
 
 # Memory info.
 
-memory () { 
+memory() { 
 
   local ram
 
@@ -106,7 +106,7 @@ memory () {
 
 # Startup disk info. 
 
-startup_disk () {
+startup_disk() {
 
   local disk
 
@@ -117,7 +117,7 @@ startup_disk () {
 
 # Serial number.
 
-serial_number () {
+serial_number() {
 
   local serialnum
 
@@ -128,7 +128,7 @@ serial_number () {
 
 # Las entranas del programa.
 
-main () {
+main() {
 
   macOS_name_wrapper
   macOS_version
