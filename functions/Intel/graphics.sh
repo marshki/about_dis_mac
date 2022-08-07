@@ -12,7 +12,7 @@ graphics () {
 
   local gpu    
 
-  gpu=$(system_profiler SPDisplaysDataType \
+  gpu=$(system_profiler SPDisplaysDataType 2>/dev/null \
     | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
     | xargs)
 
