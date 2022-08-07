@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# aboutMe
+# aboutMeM1
 #
 # CLI alternative to the macOS "About This Mac" (M1)
 #
