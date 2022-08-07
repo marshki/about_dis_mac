@@ -14,7 +14,7 @@ awk '
   ' <<< "$(system_profiler SPMemoryDataType)"
   )
 
-printf "%s\\n" "${ram}"
+  printf "%s\\n" "${ram}"
 }
 
 memory
