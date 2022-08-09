@@ -1,7 +1,7 @@
 ### NOTES
 ---
 
-Test functions for Intel-, M*-based Macs.
+Test functions for Intel-, M*-based Macs. "InCommon" dir contains cross-platform functions.
 
 ---
 
