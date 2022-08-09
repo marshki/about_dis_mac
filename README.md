@@ -7,7 +7,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Bash shell script to mimic the "About This Mac" feature in macOS.
+Bash shell script to mimic the "About This Mac" feature in macOS (Intel, M1).
 
 Tested to run on macOS:
 
@@ -18,13 +18,13 @@ Tested to run on macOS:
 * 10.13 High Sierra
 * 10.12 Sierra
 * 10.11 El Capitan
-* 10.10 Yosemite 
+* 10.10 Yosemite
 
 GUI Output   | CLI Output
 ----------   | ----------
 ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/catalina_gui.png "about_this_mac") | ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/catalina_cli.png "about_dis_cli")
 
-## Getting Started 
+## Getting Started
 
 __Liftoff:__
 
