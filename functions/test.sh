@@ -25,12 +25,12 @@ write_header() {
 
 # Retrieve Apple's marketing name for installed operating system. 
 
-parser () { 
+parser() { 
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
 
-macOS_number () {
+macOS_number() {
 
   if [[ "$field_1" -gt 10 ]]; then 
     macOS_number=$((field_1 + 5))
@@ -39,7 +39,7 @@ macOS_number () {
   fi 
 }
 
-macOS_name () {
+macOS_name() {
 
   if [[ -n "${MARKETING_NAME[$macOS_number]}" ]]; then
     macOS_name=${MARKETING_NAME[$macOS_number]}
@@ -47,11 +47,16 @@ fi
     write_header "macOS" "$macOS_name"
 }
 
-macOS_name_wrapper () {
+macOS_name_wrapper() {
 
   parser
   macOS_number
   macOS_name
 }
+
+decision_tree() { 
+
+} 
+
 
 macOS_name_wrapper
