@@ -1,5 +1,7 @@
 #!/usr/bin/env bash 
 
+# Detect system architecture (x86_64, M1).
+
 architecture() { 
 
   if [[ $(uname -m) == 'arm64' ]]; then
