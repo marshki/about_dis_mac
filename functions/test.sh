@@ -54,7 +54,7 @@ macOS_name_wrapper() {
   macOS_name
 }
 
-CPU_decision_tree() { 
+architecture() { 
 
   if [[ $(uname -m) == 'arm64' ]]; then
     printf "%s\n" "M1 architecture"
@@ -66,7 +66,3 @@ CPU_decision_tree() {
     printf "%s\n" "Unable to detect system architecture."
 fi
 }  
-
-# macOS_name_wrapper
-
-CPU_decision_tree
