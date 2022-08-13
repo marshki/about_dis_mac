@@ -64,7 +64,7 @@ macOS_name_wrapper() {
   macOS_name
 }
 
-architecture() { 
+detect_system_architecture() { 
 
   if [[ $(uname -m) == 'arm64' ]]; then
     printf "%s\n" "M1 architecture"
