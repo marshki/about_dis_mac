@@ -33,17 +33,15 @@ write_header() {
   printf "%s\\n" "$@"
 }
 
-# Retrieve Apple's release name for installed operating system.
-#
-
+# Retrieve Apple's "release" name for installed operating system.
 # Parse fields.
- 
+# Assign macOS release number.
+# Assign macOS release name based off of macOS release number.
+
 parser() { 
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
-
-# Assign macOS release number.
 
 macOS_release_number() {
 
@@ -53,8 +51,6 @@ macOS_release_number() {
     macOS_release_number=$((field_2))
   fi 
 }
-
-# Assign macOS release_name. 
 
 macOS_release_name() {
 
@@ -66,15 +62,16 @@ fi
 
 # Wrapper.
 
-macOS_name_wrapper() {
+release_name_wrapper() {
 
   parser
   macOS_release_number
   macOS_release_name
 }
 
-macOS_name_wrapper
-
+# Initiate corresponding wrapper function based on detected system_architecture.
+# Intel (release name, version, hardware model, processor, memory, startup disk, graphics, serial number)
+# M1 (release name, version, hardware model, processor, memory, startup disk, serial number) 
 
 
 detect_system_architecture() { 
