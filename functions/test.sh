@@ -1,4 +1,4 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
 #
 # aboutMe (cross-platform)
 #
@@ -34,9 +34,7 @@ write_header() {
 }
 
 # Retrieve Apple's "release" name for installed operating system.
-# Parse fields.
-# Assign macOS release number.
-# Assign macOS release name based off of macOS release number.
+# Parse fields -> Assign macOS release number -> Assign macOS release name.
 
 parser() { 
 
@@ -69,10 +67,59 @@ release_name_wrapper() {
   macOS_release_name
 }
 
+# Version.
+
+macOS_version() {
+
+  local long_version
+
+  long_version=$(sw_vers -productVersion)
+
+  printf "%s\n" "Version" "$long_version"
+}
+
+# Hardware_model.
+
+hardware_model () {
+
+  local hardware_mod
+
+  hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
+    | sed -E '/=/!d; s/.*= "//; s/".*//;')
+
+  printf "%s\\n" "${hardware_mod}"
+}
+
+# Intel.
+
+processor () {
+
+  local cpu
+
+  cpu=$(system_profiler SPHardwareDataType \
+  | awk '/Processor (Name|Speed):/ { sub(/^.*: /, ""); print; }'\
+  | sort \
+  | xargs)
+
+  printf "%s\\n" "${cpu}"
+}
+
+# M1.
+processor () {
+
+  local cpu
+
+  cpu=$(system_profiler SPHardwareDataType \
+    | awk '/Chip:/{ sub(/^.*: /, ""); print; }')  
+
+  printf "%s\\n" "${cpu}"
+} 
+
+
 # Initiate corresponding wrapper function based on detected system_architecture.
 # Intel (release name, version, hardware model, processor, memory, startup disk, graphics, serial number)
 # M1 (release name, version, hardware model, processor, memory, startup disk, serial number) 
-
+# Note: rename processor, memory functions to reflect alt. arch.
 
 detect_system_architecture() { 
 
