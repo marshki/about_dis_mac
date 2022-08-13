@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
 #
-# aboutMe (Cross-platform)
+# aboutMe (cross-platform)
 #
 # CLI alternative to the macOS "About this Mac" feature.
 #
@@ -10,7 +10,7 @@
 
 # Lookup table.
 
-MARKETING_NAME=(
+RELEASE_NAME=(
 
 ["10"]="Yosemite"
 ["11"]="El Capitan"
@@ -33,36 +33,49 @@ write_header() {
   printf "%s\\n" "$@"
 }
 
-# Retrieve Apple's marketing name for installed operating system. 
+# Retrieve Apple's release name for installed operating system.
+#
 
+# Parse fields.
+ 
 parser() { 
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
 
-macOS_number() {
+# Assign macOS release number.
+
+macOS_release_number() {
 
   if [[ "$field_1" -gt 10 ]]; then 
-    macOS_number=$((field_1 + 5))
+    macOS_release_number=$((field_1 + 5))
   else
-    macOS_number=$((field_2))
+    macOS_release_number=$((field_2))
   fi 
 }
 
-macOS_name() {
+# Assign macOS release_name. 
 
-  if [[ -n "${MARKETING_NAME[$macOS_number]}" ]]; then
-    macOS_name=${MARKETING_NAME[$macOS_number]}
+macOS_release_name() {
+
+  if [[ -n "${RELEASE_NAME[$macOS_release_number]}" ]]; then
+    macOS_name=${RELEASE_NAME[$macOS_release_number]}
 fi
     write_header "macOS" "$macOS_name"
 }
 
+# Wrapper.
+
 macOS_name_wrapper() {
 
   parser
-  macOS_number
-  macOS_name
+  macOS_release_number
+  macOS_release_name
 }
+
+macOS_name_wrapper
+
+
 
 detect_system_architecture() { 
 
