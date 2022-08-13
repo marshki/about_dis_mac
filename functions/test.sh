@@ -1,4 +1,14 @@
 #!/usr/bin/env bash 
+#
+# aboutMe (Cross-platform)
+#
+# CLI alternative to the macOS "About this Mac" feature.
+#
+# Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
+# Date: 2022.08.13
+# License: MIT
+
+# Lookup table.
 
 MARKETING_NAME=(
 
