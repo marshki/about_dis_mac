@@ -82,7 +82,7 @@ macOS_version() {
 
 # Hardware_model.
 
-hardware_model () {
+hardware_model() {
 
   local hardware_mod
 
@@ -94,7 +94,7 @@ hardware_model () {
 
 # Intel processor.
 
-processor () {
+processor() {
 
   local cpu
 
@@ -108,7 +108,7 @@ processor () {
 
 # M1 processor.
 
-processor () {
+processor() {
 
   local cpu
 
@@ -120,7 +120,7 @@ processor () {
 
 # Intel memory.
 
-awk_memory () {
+awk_memory() {
 
 local ram
 
@@ -138,7 +138,7 @@ printf "%s\\n" "${ram}"
 
 # M1 memory.
 
-memory () {
+memory() {
   local ram 
 
 ram=$(
@@ -153,7 +153,7 @@ awk '
 
 # Startup disk.
 
-startup_disk () {
+startup_disk() {
 
   local disk
 
@@ -165,7 +165,7 @@ startup_disk () {
 
 # Graphics.
 
-graphics () {
+graphics() {
 
   local gpu    
 
@@ -179,7 +179,7 @@ graphics () {
 
 # Serial number.
 
-serial_number () {
+serial_number() {
 
   local serialnum
 
@@ -188,9 +188,18 @@ serial_number () {
   printf "%s\n" "${serialnum}"
 }
 
-# Initiate corresponding wrapper function based on detected system_architecture.
-# Intel (release name, version, hardware model, processor, memory, startup disk, graphics, serial number)
-# M1 (release name, version, hardware model, processor, memory, startup disk, serial number) 
+# Intel wrapper.
+
+Intel_wrapper() {
+
+}
+
+# M1 wrapper.
+
+M1_wrapper() {
+
+} 
+
 # Note: rename processor, memory functions to reflect alt. arch.
 
 detect_system_architecture() { 
