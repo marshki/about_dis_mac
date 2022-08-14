@@ -117,6 +117,39 @@ processor () {
   printf "%s\\n" "${cpu}"
 } 
 
+# Intel.
+
+awk_memory () {
+
+local ram
+
+ram=$(
+
+awk '
+  $1~/Size/ && $2!~/Empty/ {size+=$2}
+  $1~/Speed/ && $2!~/Empty/ {speed=$2" "$3}
+  $1~/Type/ && $2!~/Empty/ {type=$2}
+  END {print size " GB " speed " " type}
+  ' <<< "$(system_profiler SPMemoryDataType)"
+)
+printf "%s\\n" "${ram}"
+}
+
+memory () {
+  local ram 
+
+ram=$(
+awk '
+  $1~/Memory/ && $2!~/Empty/ {size+=$2}
+  END {print size " GB " }
+  ' <<< "$(system_profiler SPMemoryDataType)"
+  )
+
+  printf "%s\\n" "${ram}"
+}
+
+
+
 
 # Initiate corresponding wrapper function based on detected system_architecture.
 # Intel (release name, version, hardware model, processor, memory, startup disk, graphics, serial number)
