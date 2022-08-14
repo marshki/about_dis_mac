@@ -77,7 +77,7 @@ macOS_version() {
 
   long_version=$(sw_vers -productVersion)
 
-  printf "%s\n" "Version" "$long_version"
+  write_header "Version" "$long_version"
 }
 
 # Hardware_model.
@@ -89,7 +89,7 @@ hardware_model() {
   hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
     | sed -E '/=/!d; s/.*= "//; s/".*//;')
 
-  printf "%s\\n" "${hardware_mod}"
+  "write_header" "$hardware_mod"
 }
 
 # Intel processor.
@@ -103,7 +103,7 @@ processor() {
   | sort \
   | xargs)
 
-  printf "%s\\n" "${cpu}"
+  "write_header" "$write_header"
 }
 
 # M1 processor.
@@ -115,7 +115,7 @@ processor() {
   cpu=$(system_profiler SPHardwareDataType \
     | awk '/Chip:/{ sub(/^.*: /, ""); print; }')  
 
-  printf "%s\\n" "${cpu}"
+  "write_header" "$cpu"
 } 
 
 # Intel memory.
@@ -133,7 +133,7 @@ awk '
   END {print size " GB " speed " " type}
   ' <<< "$(system_profiler SPMemoryDataType)"
 )
-printf "%s\\n" "${ram}"
+  write_header "$ram"
 }
 
 # M1 memory.
@@ -148,7 +148,7 @@ awk '
   ' <<< "$(system_profiler SPMemoryDataType)"
   )
 
-  printf "%s\\n" "${ram}"
+  write_header "$ram"
 }
 
 # Startup disk.
@@ -160,7 +160,7 @@ startup_disk() {
   disk=$(system_profiler SPStorageDataType \
    |awk 'FNR == 3 {print}' |sed 's/[[:blank:]:]*//g')
   
-  printf "%s\\n" "${disk}"
+  write_header "$disk"
 }
 
 # Graphics.
@@ -173,9 +173,8 @@ graphics() {
     | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
     | xargs)
 
-  printf "%s\\n" "${gpu}"
+  write_header "$gpu"
 }
-
 
 # Serial number.
 
@@ -185,7 +184,7 @@ serial_number() {
 
   serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 
-  printf "%s\n" "${serialnum}"
+  write_header "$serialnum"
 }
 
 # Intel wrapper.
