@@ -163,6 +163,22 @@ startup_disk () {
   printf "%s\\n" "${disk}"
 }
 
+# Graphics.
+
+graphics () {
+
+  local gpu    
+
+  gpu=$(system_profiler SPDisplaysDataType 2>/dev/null \
+    | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
+    | xargs)
+
+  printf "%s\\n" "${gpu}"
+}
+
+
+# Serial number.
+
 serial_number () {
 
   local serialnum
