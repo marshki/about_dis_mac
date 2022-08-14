@@ -92,7 +92,7 @@ hardware_model () {
   printf "%s\\n" "${hardware_mod}"
 }
 
-# Intel.
+# Intel processor.
 
 processor () {
 
@@ -106,7 +106,7 @@ processor () {
   printf "%s\\n" "${cpu}"
 }
 
-# M1.
+# M1 processor.
 
 processor () {
 
@@ -118,7 +118,7 @@ processor () {
   printf "%s\\n" "${cpu}"
 } 
 
-# Intel.
+# Intel memory.
 
 awk_memory () {
 
@@ -136,7 +136,7 @@ awk '
 printf "%s\\n" "${ram}"
 }
 
-# M1.
+# M1 memory.
 
 memory () {
   local ram 
@@ -153,7 +153,6 @@ awk '
 
 # Startup disk.
 
-
 startup_disk () {
 
   local disk
@@ -164,10 +163,14 @@ startup_disk () {
   printf "%s\\n" "${disk}"
 }
 
+serial_number () {
 
+  local serialnum
 
+  serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 
-
+  printf "%s\n" "${serialnum}"
+}
 
 # Initiate corresponding wrapper function based on detected system_architecture.
 # Intel (release name, version, hardware model, processor, memory, startup disk, graphics, serial number)
