@@ -67,6 +67,8 @@ release_name_wrapper() {
   macOS_release_name
 }
 
+release_name_wrapper
+
 # Version.
 
 macOS_version() {
