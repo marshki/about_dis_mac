@@ -107,6 +107,7 @@ processor () {
 }
 
 # M1.
+
 processor () {
 
   local cpu
@@ -135,6 +136,8 @@ awk '
 printf "%s\\n" "${ram}"
 }
 
+# M1.
+
 memory () {
   local ram 
 
@@ -147,6 +150,21 @@ awk '
 
   printf "%s\\n" "${ram}"
 }
+
+# Startup disk.
+
+
+startup_disk () {
+
+  local disk
+
+  disk=$(system_profiler SPStorageDataType \
+   |awk 'FNR == 3 {print}' |sed 's/[[:blank:]:]*//g')
+  
+  printf "%s\\n" "${disk}"
+}
+
+
 
 
 
