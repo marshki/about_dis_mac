@@ -94,7 +94,7 @@ hardware_model() {
 
 # Intel processor.
 
-processor() {
+Intel_processor() {
 
   local cpu
 
@@ -108,7 +108,7 @@ processor() {
 
 # M1 processor.
 
-processor() {
+M1_processor() {
 
   local cpu
 
@@ -120,7 +120,7 @@ processor() {
 
 # Intel memory.
 
-awk_memory() {
+Intel_memory() {
 
 local ram
 
@@ -138,7 +138,7 @@ awk '
 
 # M1 memory.
 
-memory() {
+M1_memory() {
   local ram 
 
 ram=$(
@@ -190,14 +190,21 @@ serial_number() {
 # Intel wrapper.
 
 Intel_wrapper() {
-
+  
+  release_name_wrapper
+  hardware_model
+  Intel_processor
+  Intel_memory
+  startup_disk
+  graphics
+  serial_number
 }
 
 # M1 wrapper.
 
-M1_wrapper() {
+#M1_wrapper() {
 
-} 
+#} 
 
 # Note: rename processor, memory functions to reflect alt. arch.
 
@@ -207,9 +214,12 @@ detect_system_architecture() {
     printf "%s\n" "M1 architecture"
 
   elif [[ $(uname -m) == 'x86_64' ]]; then
-    printf "%s\n" "Intel architecture"
+    # printf "%s\n" "Intel architecture"
+    Intel_wrapper
 
   else 
     printf "%s\n" "Unable to detect system architecture."
 fi
-}  
+} 
+
+detect_system_architecture 
