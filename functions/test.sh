@@ -91,7 +91,8 @@ hardware_model() {
   write_header "Hardware Model" "$hardware_mod"
 }
 
-# Intel processor.
+# Processor type.
+# Intel.
 
 Intel_processor() {
 
@@ -105,7 +106,7 @@ Intel_processor() {
   "write_header" "Processor" "$cpu"
 }
 
-# M1 processor.
+# M1.
 
 M1_processor() {
 
@@ -117,7 +118,8 @@ M1_processor() {
   "write_header" "Processor" "$cpu"
 } 
 
-# Intel memory.
+# Memory
+# Intel.
 
 Intel_memory() {
 
@@ -135,7 +137,7 @@ awk '
   write_header "Memory" "$ram"
 }
 
-# M1 memory.
+# M1.
 
 M1_memory() {
   local ram 
