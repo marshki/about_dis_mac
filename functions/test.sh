@@ -43,18 +43,19 @@ parser() {
 
 macOS_release_number() {
 
-  if [[ "$field_1" -gt 10 ]]; then 
+  if [[ "$field_1" -gt 10 ]]; then
     macOS_release_number=$((field_1 + 5))
   else
     macOS_release_number=$((field_2))
-  fi 
+  fi
 }
 
 macOS_release_name() {
 
   if [[ -n "${RELEASE_NAME[$macOS_release_number]}" ]]; then
     macOS_name=${RELEASE_NAME[$macOS_release_number]}
-fi
+  fi
+
     write_header "macOS" "$macOS_name"
 }
 
@@ -211,18 +212,19 @@ M1_wrapper() {
   serial_number
 } 
 
-detect_system_architecture() { 
+# Las entranas del programa.
+
+main() { 
 
   if [[ $(uname -m) == 'arm64' ]]; then
-    printf "%s\n" "M1 architecture"
+    M1_wrapper
 
   elif [[ $(uname -m) == 'x86_64' ]]; then
-    # printf "%s\n" "Intel architecture"
     Intel_wrapper
 
   else 
-    printf "%s\n" "Unable to detect system architecture."
+    printf "%s\n" "Unable to detect system architecture. Exiting."
 fi
-} 
+}
 
-detect_system_architecture
+main "$@"
