@@ -5,7 +5,7 @@
 # CLI alternative to the macOS "About this Mac" feature.
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
-# Date: 2022.08.13
+# Date: 2022.08.20
 # License: MIT
 
 # Lookup table.
@@ -36,7 +36,7 @@ write_header() {
 # Retrieve Apple's "release" name for installed operating system.
 # Parse fields -> Assign macOS release number -> Assign macOS release name.
 
-parser() { 
+parser() {
 
   IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
 }
@@ -59,7 +59,7 @@ macOS_release_name() {
     write_header "macOS" "$macOS_name"
 }
 
-# Wrapper.
+# Release name wrapper.
 
 release_name_wrapper() {
 
@@ -91,8 +91,7 @@ hardware_model() {
   write_header "Hardware Model" "$hardware_mod"
 }
 
-# Processor type.
-# Intel.
+# Processor (Intel, M1)
 
 Intel_processor() {
 
@@ -106,20 +105,19 @@ Intel_processor() {
   "write_header" "Processor" "$cpu"
 }
 
-# M1.
+# Processor (M1).
 
 M1_processor() {
 
   local cpu
 
   cpu=$(system_profiler SPHardwareDataType \
-    | awk '/Chip:/{ sub(/^.*: /, ""); print; }')  
+    | awk '/Chip:/{ sub(/^.*: /, ""); print; }')
 
   "write_header" "Processor" "$cpu"
-} 
+}
 
-# Memory
-# Intel.
+# Memory (Intel, M1)
 
 Intel_memory() {
 
@@ -136,8 +134,6 @@ awk '
 )
   write_header "Memory" "$ram"
 }
-
-# M1.
 
 M1_memory() {
   local ram 
@@ -192,7 +188,7 @@ serial_number() {
 
 Intel_wrapper() {
   
-  release_name_wrapper	
+  release_name_wrapper
   macOS_version
   hardware_model
   Intel_processor
@@ -212,11 +208,11 @@ M1_wrapper() {
   M1_memory
   startup_disk
   serial_number
-} 
+}
 
 # Las entranas del programa.
 
-main() { 
+main() {
 
   if [[ $(uname -m) == 'arm64' ]]; then
     M1_wrapper
@@ -224,7 +220,7 @@ main() {
   elif [[ $(uname -m) == 'x86_64' ]]; then
     Intel_wrapper
 
-  else 
+  else
     printf "%s\n" "Unable to detect system architecture. Exiting."
 fi
 }
