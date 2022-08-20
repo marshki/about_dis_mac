@@ -59,7 +59,7 @@ macOS_release_name() {
     write_header "macOS" "$macOS_name"
 }
 
-# Release name wrapper.
+# Wrapper (release name).
 
 release_name_wrapper() {
 
@@ -91,7 +91,7 @@ hardware_model() {
   write_header "Hardware Model" "$hardware_mod"
 }
 
-# Processor (Intel, M1)
+# Processor (Intel, M1).
 
 Intel_processor() {
 
@@ -104,8 +104,6 @@ Intel_processor() {
 
   "write_header" "Processor" "$cpu"
 }
-
-# Processor (M1).
 
 M1_processor() {
 
@@ -121,28 +119,29 @@ M1_processor() {
 
 Intel_memory() {
 
-local ram
+  local ram
 
-ram=$(
+  ram=$(
+  awk '
+    $1~/Size/ && $2!~/Empty/ {size+=$2}
+    $1~/Speed/ && $2!~/Empty/ {speed=$2" "$3}
+    $1~/Type/ && $2!~/Empty/ {type=$2}
+    END {print size " GB " speed " " type}
+    ' <<< "$(system_profiler SPMemoryDataType)"
+  )
 
-awk '
-  $1~/Size/ && $2!~/Empty/ {size+=$2}
-  $1~/Speed/ && $2!~/Empty/ {speed=$2" "$3}
-  $1~/Type/ && $2!~/Empty/ {type=$2}
-  END {print size " GB " speed " " type}
-  ' <<< "$(system_profiler SPMemoryDataType)"
-)
-  write_header "Memory" "$ram"
+  "write_header" "Memory" "$ram"
 }
 
 M1_memory() {
+
   local ram 
 
-ram=$(
-awk '
-  $1~/Memory/ && $2!~/Empty/ {size+=$2}
-  END {print size " GB " }
-  ' <<< "$(system_profiler SPMemoryDataType)"
+  ram=$(
+  awk '
+    $1~/Memory/ && $2!~/Empty/ {size+=$2}
+    END {print size " GB " }
+    ' <<< "$(system_profiler SPMemoryDataType)"
   )
 
   write_header "Memory" "$ram"
@@ -184,10 +183,10 @@ serial_number() {
   write_header "Serial Number" "$serialnum"
 }
 
-# Intel wrapper.
+# Architecture wrapper (Intel, M1).
 
 Intel_wrapper() {
-  
+
   release_name_wrapper
   macOS_version
   hardware_model
@@ -198,9 +197,8 @@ Intel_wrapper() {
   serial_number
 }
 
-# M1 wrapper.
-
 M1_wrapper() {
+
   release_name_wrapper
   macOS_version
   hardware_model
