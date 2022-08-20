@@ -189,7 +189,8 @@ serial_number() {
 
 Intel_wrapper() {
   
-  release_name_wrapper
+  release_name_wrapper	
+  macOS_version
   hardware_model
   Intel_processor
   Intel_memory
