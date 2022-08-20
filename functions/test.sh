@@ -67,8 +67,6 @@ release_name_wrapper() {
   macOS_release_name
 }
 
-release_name_wrapper
-
 # Version.
 
 macOS_version() {
@@ -89,7 +87,7 @@ hardware_model() {
   hardware_mod=$(defaults read ~/Library/Preferences/com.apple.SystemProfiler.plist 'CPU Names' \
     | sed -E '/=/!d; s/.*= "//; s/".*//;')
 
-  "write_header" "$hardware_mod"
+  write_header "Hardware Model" "$hardware_mod"
 }
 
 # Intel processor.
@@ -103,7 +101,7 @@ Intel_processor() {
   | sort \
   | xargs)
 
-  "write_header" "$write_header"
+  "write_header" "Processor" "$cpu"
 }
 
 # M1 processor.
@@ -115,7 +113,7 @@ M1_processor() {
   cpu=$(system_profiler SPHardwareDataType \
     | awk '/Chip:/{ sub(/^.*: /, ""); print; }')  
 
-  "write_header" "$cpu"
+  "write_header" "Processor" "$cpu"
 } 
 
 # Intel memory.
@@ -133,7 +131,7 @@ awk '
   END {print size " GB " speed " " type}
   ' <<< "$(system_profiler SPMemoryDataType)"
 )
-  write_header "$ram"
+  write_header "Memory" "$ram"
 }
 
 # M1 memory.
@@ -148,7 +146,7 @@ awk '
   ' <<< "$(system_profiler SPMemoryDataType)"
   )
 
-  write_header "$ram"
+  write_header "Memory" "$ram"
 }
 
 # Startup disk.
@@ -160,7 +158,7 @@ startup_disk() {
   disk=$(system_profiler SPStorageDataType \
    |awk 'FNR == 3 {print}' |sed 's/[[:blank:]:]*//g')
   
-  write_header "$disk"
+  write_header "Startup Disk" "$disk"
 }
 
 # Graphics.
@@ -173,7 +171,7 @@ graphics() {
     | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
     | xargs)
 
-  write_header "$gpu"
+  write_header "Graphics" "$gpu"
 }
 
 # Serial number.
@@ -184,7 +182,7 @@ serial_number() {
 
   serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 
-  write_header "$serialnum"
+  write_header "Serial Number" "$serialnum"
 }
 
 # Intel wrapper.
@@ -206,8 +204,6 @@ Intel_wrapper() {
 
 #} 
 
-# Note: rename processor, memory functions to reflect alt. arch.
-
 detect_system_architecture() { 
 
   if [[ $(uname -m) == 'arm64' ]]; then
@@ -222,4 +218,4 @@ detect_system_architecture() {
 fi
 } 
 
-detect_system_architecture 
+detect_system_architecture
