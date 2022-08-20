@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# aboutMe (cross-platform)
+# aboutMe (Intel, M1)
 #
 # CLI alternative to the macOS "About this Mac" feature.
 #
@@ -201,9 +201,15 @@ Intel_wrapper() {
 
 # M1 wrapper.
 
-#M1_wrapper() {
-
-#} 
+M1_wrapper() {
+  release_name_wrapper
+  macOS_version
+  hardware_model
+  M1_processor
+  M1_memory
+  startup_disk
+  serial_number
+} 
 
 detect_system_architecture() { 
 
