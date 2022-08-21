@@ -161,14 +161,14 @@ serial_number() {
 
 main() {
 
-	macOS_release_name_wrapper
-	macOS_version
-	hardware_model
-	processor
-	memory
-	startup_disk
-	graphics
-	serial_number
+  macOS_release_name_wrapper
+  macOS_version
+  hardware_model
+  processor
+  memory
+  startup_disk
+  graphics
+  serial_number
 }
 
 main "$@"
