@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# E-mail me the results of this script. 
+
+bash aboutMe.sh |tee output.txt |mail -s "About THIS Mac..." me@myemail.com
