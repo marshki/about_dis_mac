@@ -89,7 +89,7 @@ processor() {
 
 # Memory info.
 
-memory() { 
+memory() {
 
   local ram
 
@@ -104,7 +104,7 @@ memory() {
 
 }
 
-# Startup disk info. 
+# Startup disk info.
 
 startup_disk() {
 
@@ -124,7 +124,7 @@ serial_number() {
   serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 
   write_header "Serial Number" "$serialnum"
-} 
+}
 
 # Las entranas del programa.
 
