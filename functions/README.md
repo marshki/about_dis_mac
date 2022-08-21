@@ -1,7 +1,11 @@
 ### NOTES
 ---
 
-Test functions for Intel-, M*-based Macs. "InCommon" dir contains cross-platform functions.
+This directory contains test functions for Apple hardware using the following architecture:
+
+  * Intel
+  * M1
+  * "InCommon" (cross-platform)
 
 ---
 
