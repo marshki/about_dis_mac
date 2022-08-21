@@ -23,6 +23,9 @@ Tested to run on macOS:
 GUI Output   | CLI Output
 ----------   | ----------
 ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/catalina_gui.png "about_this_mac") | ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/catalina_cli.png "about_dis_cli")
+![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/bigSur_gui.png "about_this_mac")   | ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/bigSur_cli.png "about_dis_cli")
+
+
 
 ## Getting Started
 
