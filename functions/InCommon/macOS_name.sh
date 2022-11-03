@@ -24,7 +24,7 @@ RELEASE_NAME=(
 
 parse_version() {
 
-  IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
+  IFS=. read -r field_1 field_2 field_3 < <(sw_vers -productVersion)
 }
 
 # If field_1 greater than 10, add five (5) to variable
