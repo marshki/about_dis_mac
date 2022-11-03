@@ -37,7 +37,7 @@ write_header() {
 
 parse_version() {
 
-  IFS=. read -r field_1 field_2 < <(sw_vers -productVersion)
+  IFS=. read -r field_1 field_2 field_3 < <(sw_vers -productVersion)
 }
 
 macOS_release_number() {
