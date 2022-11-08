@@ -4,7 +4,7 @@
 This directory contains test functions for Apple hardware using the following architecture:
 
   * Intel
-  * M1
+  * Apple Silicon (e.g. M1, M1 Max, M2)
   * "InCommon" (cross-platform)
 
 ---
