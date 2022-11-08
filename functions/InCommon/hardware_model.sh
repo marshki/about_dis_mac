@@ -5,6 +5,10 @@
 # then do `sed` vodo.
 # Alternatively: sed -n 's/^.*" = "\(.*\)".*$/\1/p'
 
+# Preference list did not appear in some Apple Silicon-based machines
+# may need to look here: system_profiler SPHardwareDataType as an alternative. 
+
+
 hardware_model () {
 
   local hardware_mod
