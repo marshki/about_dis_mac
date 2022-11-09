@@ -7,8 +7,7 @@
 
 # Preference list did not appear in some Apple Silicon-based machines
 # may need to look here: system_profiler SPHardwareDataType as an alternative. 
-# Of possible interest: 
-# https://apple.stackexchange.com/questions/98080/can-a-macs-model-year-be-determined-with-a-terminal-command
+# Added derp.sh function as an alternative.
 
 hardware_model () {
 
