@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Notes: Post-macOS 11.x.x. Intel, M1 chips.
+# Notes: Post-macOS 11.x.x. Intel, Apple Silicon chips.
 
 # Extract fields 1 and 2 from macOS software version number,
 # assign those fields to variables,
