@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# aboutMe (Intel, Apple Silicon, e.g. M1, M2)
+# aboutMe (Intel; Apple Silicon, e.g. M1, M2)
 #
 # CLI alternative to the macOS "About this Mac" feature.
 #
