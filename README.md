@@ -21,10 +21,47 @@ Tested to run on macOS:
 * 10.11 El Capitan
 * 10.10 Yosemite
 
-GUI Output   | CLI Output
-----------   | ----------
-![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/catalina_gui.png "about_this_mac") | ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/catalina_cli.png "about_dis_cli")
-![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/bigSur_gui.png "about_this_mac")   | ![Alt text](https://github.com/marshki/about_dis_mac/blob/master/docs/bigSur_cli.png "about_dis_cli")
+Sample output: 
+
+    --------------------
+    macOS
+    --------------------
+    Big Sur
+
+    --------------------
+    Version
+    --------------------
+    11.7.3
+
+    --------------------
+    Hardware Model
+    --------------------
+    iMac (Retina 5K, 27-inch, 2020)
+
+    --------------------
+    Processor
+    --------------------
+    3.3 GHz 6-Core Intel Core i5
+
+    --------------------
+    Memory
+    --------------------
+    16 GB 2667 MHz DDR4
+
+    --------------------
+    Startup Disk
+    --------------------
+    MacintoshHD-Data
+
+    --------------------
+    Graphics
+    --------------------
+    AMD Radeon Pro 5300 4 GB
+
+    --------------------
+    Serial Number
+    --------------------
+    H4TFJ019PN78
 
 ## Getting Started
 
