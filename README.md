@@ -79,13 +79,12 @@ then call it:
 
 ## History
 
-v.0.3 04-AUG-2022
-
-v.0.2 05-APR-2021
-
-v.0.1 07-JUL-2018
-
-v.0.0 15-AUG-2017
+| Version| Relase Date|     
+| ---    | ---        |
+| v.0.3  |04-AUG-2022 |   
+| v.0.2  |05-APR-2021 |   
+| v.0.2  |07-JUL-2018 |   
+| v.0.0  |15-AUG-2017 |
 
 ## License
 
