@@ -9,7 +9,7 @@
 
 Bash shell script to mimic the [About This Mac](https://support.apple.com/en-us/HT201581) feature in macOS (Apple sillicon, Intel).
 
-Sample output:
+## Sample output
 
     --------------------
     macOS
