@@ -7,9 +7,9 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Bash shell script to mimic the "About This Mac" feature in macOS (Intel, M1).
+Bash shell script to mimic the [About This Mac](https://support.apple.com/en-us/HT201581) feature in macOS (Apple sillicon, Intel).
 
-Sample output: 
+Sample output:
 
     --------------------
     macOS
@@ -69,23 +69,23 @@ Sample output:
 
 __Liftoff:__
 
-Make this script accessible to all users by placing it in: `/usr/local/bin`; 
+Make this script accessible to all users by placing it in: `/usr/local/bin`;
 
 set the executable bit on the file:
 
-`chmod +x aboutMe.sh`;   
+`chmod +x aboutMe.sh`;
 
 then call it:
 
-`bash aboutMe.sh`.  
+`bash aboutMe.sh`.
 
 ## History
 
-| Version| Relase Date|     
+| Version| Relase Date|
 | ---    | ---        |
-| v.0.3  |04-AUG-2022 |   
-| v.0.2  |05-APR-2021 |   
-| v.0.2  |07-JUL-2018 |   
+| v.0.3  |04-AUG-2022 |
+| v.0.2  |05-APR-2021 |
+| v.0.2  |07-JUL-2018 |
 | v.0.0  |15-AUG-2017 |
 
 ## License
@@ -94,6 +94,6 @@ then call it:
 
 ## Acknowledgements
 
-`hardware_model_too.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/). 
+`hardware_model_too.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/).
  
-Shout-out to: [https://reddit.com/u/Thanksagainforlunch](https://reddit.com/u/Thanksagainforlunch) for the suggestion.  
+Shout-out to: [https://reddit.com/u/Thanksagainforlunch](https://reddit.com/u/Thanksagainforlunch) for the suggestion.
