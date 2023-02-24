@@ -9,17 +9,20 @@
 
 Bash shell script to mimic the "About This Mac" feature in macOS (Intel, M1).
 
-Tested to run on macOS:
+Tested to run on:
 
-* 13.*  Ventura
-* 12.*  Monterey
-* 11.*  Big Sur
-* 10.15 Catalina
-* 10.14 Mojave
-* 10.13 High Sierra
-* 10.12 Sierra
-* 10.11 El Capitan
-* 10.10 Yosemite
+
+|macOS Version    |
+|---              |
+|13.* Ventura     |
+|12.* Monterey    |
+|11.* Big Sur     |
+|10.15 Catalina   |
+|10.14 Mojave     |
+|10.13 High Sierra|
+|10.12 Sierra     |
+|10.11 El Capitan |
+|10.10 Yosemite   |
 
 Sample output: 
 
