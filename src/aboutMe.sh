@@ -102,7 +102,7 @@ Intel_processor() {
   | sort \
   | xargs)
 
-  "write_header" "Processor" "$cpu"
+  write_header "Processor" "$cpu"
 }
 
 M1_processor() {
@@ -112,7 +112,7 @@ M1_processor() {
   cpu=$(system_profiler SPHardwareDataType \
     | awk '/Chip:/{ sub(/^.*: /, ""); print; }')
 
-  "write_header" "Processor" "$cpu"
+  write_header "Processor" "$cpu"
 }
 
 # Memory (Intel, M1)
@@ -130,7 +130,7 @@ Intel_memory() {
     ' <<< "$(system_profiler SPMemoryDataType)"
   )
 
-  "write_header" "Memory" "$ram"
+  write_header "Memory" "$ram"
 }
 
 M1_memory() {
