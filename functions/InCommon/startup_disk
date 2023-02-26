@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Retrieve startup disk information
 # awk to extract third field
 # sed to print string to the right of ':'
