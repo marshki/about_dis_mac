@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Retrieve startup disk information
 # awk to extract third field
 # sed to print string to the right of ':'
@@ -8,7 +7,7 @@
 # awk to extract 'Mount Point'
 # head to get primary drive
 
-startup_disk () {
+startup_disk_too () {
   
   local disk mount
 
@@ -21,4 +20,4 @@ startup_disk () {
   printf "%s\\n" "${mount}"
 }
 
-startup_disk
+startup_disk_too
