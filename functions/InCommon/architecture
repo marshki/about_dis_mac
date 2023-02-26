@@ -1,5 +1,4 @@
 #!/usr/bin/env bash 
-
 # Detect system architecture (x86_64, Apple Silicon).
 
 architecture() { 
