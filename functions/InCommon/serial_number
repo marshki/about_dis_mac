@@ -2,7 +2,7 @@
 # Retrieve serial number.
 # awk to extract `Serial` row, then field 4 from system_profiler SPHardwareType
 
-serial_number () {
+serial_number() {
 
   local serialnum
 
