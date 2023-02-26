@@ -6,7 +6,8 @@
 
 # Preference list did not appear in some Apple Silicon-based machines
 # may need to look here: system_profiler SPHardwareDataType as an alternative.
-# Added hardware_model_too function as an alternative.
+
+# hardware_model_too function in this directory is an alternative.
 
 hardware_model () {
 
