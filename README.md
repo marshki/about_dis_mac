@@ -73,11 +73,11 @@ Make this script accessible to all users by placing it in: `/usr/local/bin`;
 
 set the executable bit on the file:
 
-`chmod +x aboutMe.sh`;
+`chmod +x aboutMe`;
 
 then call it:
 
-`bash aboutMe.sh`.
+`bash aboutMe`.
 
 ## History
 
