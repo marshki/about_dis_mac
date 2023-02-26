@@ -91,7 +91,7 @@ hardware_model() {
   write_header "Hardware Model" "$hardware_mod"
 }
 
-# Processor (Intel, M1).
+# Processor (Intel, Apple Silicon).
 
 Intel_processor() {
 
@@ -115,7 +115,7 @@ apple_silicon_processor() {
   write_header "Processor" "$cpu"
 }
 
-# Memory (Intel, M1)
+# Memory (Intel, Apple Silicon)
 
 Intel_memory() {
 
