@@ -1,6 +1,6 @@
 #!/usr/local/bin/env bash
-# Alt approach to retrieve hardware model
-# if preference list from other function is not present.
+# Alt approach to retrieve hardware_model contained in 'functions' directory.
+# Use if preference list from other function is not present.
 
 hardware_model_too () {
   local hardware_model
