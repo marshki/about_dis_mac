@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Extract RAM info.
 # Extract Memory from SPmemoryDataType output.
 # Function expects no more than four (4) DIMMS.
