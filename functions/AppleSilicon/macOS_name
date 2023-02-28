@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Notes: Post-macOS 11.x.x. M1 chips.
+# Notes: Post-macOS 11.x.x. Apple silicon.
 
 # Extract field 1 from macOS software version number,
 # assign field to variable,
