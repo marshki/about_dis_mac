@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Retrieve processor information
 # awk to extract Processor{Name,Speed}
 # sort so numeric comes first
@@ -18,7 +17,3 @@ processor () {
 }
 
 processor
-
-# Apple M1
-# Parse for "Chip" & strip to the right of: ":"
-# awk '/Chip:/{ sub(/^.*: /, ""); print; }'
