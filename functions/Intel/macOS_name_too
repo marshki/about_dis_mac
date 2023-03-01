@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 # Notes: Pre macOS 11.x.x, this was the go-to function.
+# This is Intel-only stuff.
 # So fresh, so clean!
 
 # Extract macOS software version number
