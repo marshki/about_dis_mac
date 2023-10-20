@@ -18,6 +18,7 @@ RELEASE_NAME=(
 ["16"]="Big Sur"
 ["17"]="Monterey"
 ["18"]="Ventura"
+["19"]="Sonoma"
 )
 
 # Parse field 1, field 2, and assign to eponymous variables.
