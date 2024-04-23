@@ -98,3 +98,7 @@ then call it:
 `hardware_model_too.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/).
  
 Shout-out to: [https://reddit.com/u/Thanksagainforlunch](https://reddit.com/u/Thanksagainforlunch) for the suggestion.
+
+## Issues
+
+[A list of issues for this repository](https://github.com/marshki/about_dis_mac/issues)
