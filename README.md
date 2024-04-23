@@ -55,6 +55,7 @@ Bash shell script to mimic the [About This Mac](https://support.apple.com/en-us/
 
 |macOS|Version    |
 |---  |---        |
+|14.* |Sonoma     |
 |13.* |Ventura    |
 |12.* |Monterey   |
 |11.* |Big Sur    |
