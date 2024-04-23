@@ -101,4 +101,4 @@ Shout-out to: [https://reddit.com/u/Thanksagainforlunch](https://reddit.com/u/Th
 
 ## Issues
 
-[A list of issues for this repository](https://github.com/marshki/about_dis_mac/issues)
+[A list of issues for this repository.](https://github.com/marshki/about_dis_mac/issues)
