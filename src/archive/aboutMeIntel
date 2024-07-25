@@ -21,6 +21,7 @@ RELEASE_NAME=(
 ["16"]="Big Sur"
 ["17"]="Monterey"
 ["18"]="Ventura"
+["19"]="Sonoma"
 )
 
 # Display header message.
