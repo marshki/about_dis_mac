@@ -1,12 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
+#
+# macOS marketing name and full version number.
 # 
-# Extract masOS system version information 
+ 
+# Lookup table.
 
-# Extract field 1 from macOS software version number,
-# assign field to variable,
-# run a number check, and display corresponding marketing name.
-
-RELEASE_NAME=(
+declare -A RELEASE_NAME=(
 ["11"]="Big Sur"
 ["12"]="Monterey"
 ["13"]="Ventura"
@@ -15,29 +14,35 @@ RELEASE_NAME=(
 ["26"]="Tahoe"
 )
 
-# Parse 'short' product version and assign to variable.
+# Use `sw_vers` to extract product version, e.g.:
+# full_version: 26.4.1
+# major_version: 26
 
 parse_version() {
-  long_version=$(sw_vers -productVersion)
-  short_version=$(printf "%s" "$long_version" |awk -F '.' '{ print $1 }')
+  full_version=$(sw_vers -productVersion)
+  major_version=$(printf "%s" "$full_version" |awk -F '.' '{ print $1 }')
 }
 
-# If $short_version in table, assign macOS_name to corresponding marketing name.
+# If major_version is in lookup table,
+# assign corresponding marketing name to macOS_name.
 
-macOS_release_name() {
-  if [[ -n "${RELEASE_NAME[$short_version]}" ]]; then
-    macOS_release_name=${RELEASE_NAME[$short_version]}
+macOS_name() {
+  if [[ -n "${RELEASE_NAME[$major_version]}" ]]; then
+    macOS_name=${RELEASE_NAME[$major_version]}
   fi
 }
 
+# Print macOS marketing name and full version number.
+
 macOS_version() { 
-  printf "%s\n" "$macOS_release_name $long_version"
+  printf "%s\n" "$macOS_name $full_version"
 }
 
 # Wrapper function.
+
 macOS_name_wrapper() {
   parse_version
-  macOS_release_name
+  macOS_name
   macOS_version
 }
 
