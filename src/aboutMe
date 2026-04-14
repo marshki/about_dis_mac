@@ -22,6 +22,8 @@ RELEASE_NAME=(
 ["17"]="Monterey"
 ["18"]="Ventura"
 ["19"]="Sonoma"
+["20"]="Sequoia"
+["26"]="Tahoe"
 )
 
 # Display header message.
