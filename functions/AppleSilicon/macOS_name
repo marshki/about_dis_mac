@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 #
 # macOS marketing name and full version number.
 # 
@@ -16,7 +16,7 @@ declare -A RELEASE_NAME=(
 
 # Use `sw_vers` to extract product version, e.g.:
 # full_version: 26.4.1
-# major_version: 26
+# major_version: 26 (via awk)
 
 parse_version() {
   full_version=$(sw_vers -productVersion)
@@ -38,7 +38,7 @@ macOS_version() {
   printf "%s\n" "$macOS_name $full_version"
 }
 
-# Wrapper function.
+# Wrapper.
 
 macOS_name_wrapper() {
   parse_version
