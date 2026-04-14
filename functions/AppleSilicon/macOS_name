@@ -28,14 +28,14 @@ parse_version() {
 
 macOS_name() {
   if [[ -n "${RELEASE_NAME[$major_version]}" ]]; then
-    macOS_name=${RELEASE_NAME[$major_version]}
+    macOS_release_name=${RELEASE_NAME[$major_version]}
   fi
 }
 
 # Print macOS marketing name and full version number.
 
 macOS_version() { 
-  printf "%s\n" "$macOS_name $full_version"
+  printf "%s\n" "$macOS_release_name $full_version"
 }
 
 # Wrapper.
