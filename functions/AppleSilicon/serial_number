@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/zsh
+#
 # Retrieve serial number.
-# awk to extract `Serial` row, then field 4 from system_profiler SPHardwareType
+#
+
+# awk to pattern match `Serial` and print last field of that string.
 
 serial_number() {
-
   local serialnum
-
-  serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
-
+  serialnum=$(system_profiler SPHardwareDataType 2>/dev/null | awk '/Serial/ {print $NF}')
   printf "%s\n" "${serialnum}"
 } 
 
