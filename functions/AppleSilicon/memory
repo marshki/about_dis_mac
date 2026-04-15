@@ -1,19 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/zsh
+#
 # Extract RAM info.
-# Extract Memory from SPmemoryDataType output.
-# Function expects no more than four (4) DIMMS.
+#
 
 memory () {
   local ram 
-
-ram=$(
-awk '
-  $1~/Memory/ && $2!~/Empty/ {size+=$2}
-  END {print size " GB " }
-  ' <<< "$(system_profiler SPMemoryDataType)"
-  )
-
-  printf "%s\\n" "${ram}"
+  ram=$(system_profiler SPMemoryDataType | awk '/GB/ {print $2, $3}')
+  printf "%s\n" "$ram"
 }
 
 memory
