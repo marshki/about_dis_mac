@@ -7,7 +7,7 @@
 
 serial_number() {
   local serialnum
-  serialnum=$(system_profiler SPHardwareDataType 2>/dev/null | awk '/Serial/ {print $NF}')
+  serialnum=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $NF}')
   printf "%s\n" "${serialnum}"
 } 
 
