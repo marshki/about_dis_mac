@@ -3,6 +3,8 @@
 # Extract RAM info.
 #
 
+# awk to parse 2nd, 3rd field of system_profiles output.
+
 memory () {
   local ram 
   ram=$(system_profiler SPMemoryDataType | awk '/GB/ {print $2, $3}')
