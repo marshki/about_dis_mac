@@ -1,18 +1,18 @@
-#!/usr/bin/env bash
+#!/bin/zsh
+#
 # Retrieve processor information.
+#
+
 # awk to extract string, strip string to right of: 'Chip:' 
 
-processor () {
-
+processor() {
   local cpu
-
   cpu=$(system_profiler SPHardwareDataType \
-    | awk '/Chip:/{ sub(/^.*: /, ""); print; }')  
-
+    | awk '/Chip:/{ sub(/^.*: /, ""); print; }')
   printf "%s\\n" "${cpu}"
-} 
+}
 
 processor
 
-# Note to self: 
+# Extended CPU info can be parsed with this:
 # awk '/Chip/ || /Cores/ { sub(/^.*: /, ""); print; }'\
