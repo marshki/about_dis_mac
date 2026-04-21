@@ -1,7 +1,5 @@
 #!/bin/zsh
-
-startup_disk
-#!/usr/bin/env bash
+#
 # Retrieve startup disk information
 
 startup_disk() {
