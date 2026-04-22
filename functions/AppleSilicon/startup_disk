@@ -1,6 +1,7 @@
 #!/bin/zsh
 #
 # Retrieve startup disk information
+#
 
 # awk to match indendeted section headers ending in ":"
 # print stored name when startup volume is identified by mount point
