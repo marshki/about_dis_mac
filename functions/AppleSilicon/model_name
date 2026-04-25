@@ -3,14 +3,12 @@
 # Retrieve model name.
 #
 
-# awk to pattern match `Model Name` 
-# sub to strip everything up to and including the colon and space
+HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 
+# awk to pattern match `Model Name`
+# sub to strip everything up to and including the colon and space
 model_name() {
-  local modname
-  modname=$(system_profiler SPHardwareDataType \
-    | awk '/Model Name/ {sub(/.*: /, ""); print}') 
-  printf "%s\n" "${modname}"
-} 
+  awk '/Model Name/ {sub(/.*: /, ""); print}' <<< "$HW_INFO"
+}
 
 model_name
