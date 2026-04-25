@@ -1,19 +1,21 @@
 #!/bin/zsh
 #
-# Retrieve startup disk information
+# Retrieve startup disk information.
 #
+
+DISK_INFO=$(system_profiler SPStorageDataType)
 
 # awk to match indendeted section headers ending in ":"
 # print stored name when startup volume is identified by mount point
-
 startup_disk() {
-  system_profiler SPStorageDataType |
-  awk '/^[[:space:]]+[^[:space:]].*:$/ {
-         sub(/^[[:space:]]+/, "")
-         sub(/:$/, "")
-         n=$0
-       }
-       /Mount Point: \/$/ {print n; exit}'
+  awk '
+    /^[[:space:]]+[^[:space:]].*:$/ {
+      sub(/^[[:space:]]+/, "")
+      sub(/:$/, "")
+      n=$0
+    }
+    /Mount Point: \/$/ {print n; exit}
+  ' <<< "$DISK_INFO"
 }
 
 startup_disk
