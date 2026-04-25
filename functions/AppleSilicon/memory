@@ -3,12 +3,11 @@
 # Extract RAM info.
 #
 
-# awk to parse 2nd, 3rd field of system_profiles output.
+HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 
-memory () {
-  local ram 
-  ram=$(system_profiler SPMemoryDataType | awk '/GB/ {print $2, $3}')
-  printf "%s\n" "$ram"
+# awk to parse 2nd, 3rd field after GB
+memory() {
+  awk '/GB/ {print $2, $3}' <<< "$HW_INFO"
 }
 
 memory
