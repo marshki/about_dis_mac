@@ -3,16 +3,12 @@
 # Retrieve processor information.
 #
 
-# awk to extract string, strip string to right of: 'Chip:' 
+HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
+
+# awk to extract string, strip string to right of: 'Chip:'
 
 processor() {
-  local cpu
-  cpu=$(system_profiler SPHardwareDataType \
-    | awk '/Chip:/{ sub(/^.*: /, ""); print; }')
-  printf "%s\\n" "${cpu}"
+    awk '/Chip:/{ sub(/^.*: /, ""); print; }' <<< "$HW_INFO"
 }
 
 processor
-
-# Extended CPU info can be parsed with this:
-# awk '/Chip/ || /Cores/ { sub(/^.*: /, ""); print; }'\
