@@ -1,10 +1,17 @@
 #!/bin/zsh
 #
 # macOS marketing name and full version number.
-# 
- 
-# Lookup table.
+#
 
+OS_INFO=$(sw_vers -productVersion)
+
+# Use `sw_vers` to extract product version, e.g.:
+# full_version: 26.4.
+# major_version: 26 (awk field separator . and print first field
+full_version=$OS_INFO
+major_version=$(awk -F '.' '{print $1}' <<< "$OS_INFO")
+ 
+# Lookup table
 declare -A RELEASE_NAME=(
 ["11"]="Big Sur"
 ["12"]="Monterey"
@@ -14,36 +21,8 @@ declare -A RELEASE_NAME=(
 ["26"]="Tahoe"
 )
 
-# Use `sw_vers` to extract product version, e.g.:
-# full_version: 26.4.1
-# major_version: 26 (via awk)
-
-parse_version() {
-  full_version=$(sw_vers -productVersion)
-  major_version=$(printf "%s" "$full_version" |awk -F '.' '{ print $1 }')
-}
-
-# If major_version is in lookup table,
-# assign corresponding marketing name to macOS_name.
-
 macOS_name() {
-  if [[ -n "${RELEASE_NAME[$major_version]}" ]]; then
-    macOS_release_name=${RELEASE_NAME[$major_version]}
-  fi
+  printf "%s\\n" "${RELEASE_NAME[$major_version]} $full_version"
 }
 
-# Print macOS marketing name and full version number.
-
-macOS_version() { 
-  printf "%s\n" "$macOS_release_name $full_version"
-}
-
-# Wrapper.
-
-macOS_name_wrapper() {
-  parse_version
-  macOS_name
-  macOS_version
-}
-
-macOS_name_wrapper "$@"
+macOS_name
