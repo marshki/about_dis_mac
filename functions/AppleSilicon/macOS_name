@@ -5,9 +5,9 @@
 
 OS_INFO=$(sw_vers -productVersion)
 
-# Use `sw_vers` to extract product version, e.g.:
-# full_version: 26.4.
-# major_version: 26 (awk field separator . and print first field
+# Use `sw_vers` to extract product version
+# e.g.: full_version: 15.4.1
+#       major_version: 15 (awk splits on `.` and prints first field)
 full_version=$OS_INFO
 major_version=$(awk -F '.' '{print $1}' <<< "$OS_INFO")
  
@@ -21,8 +21,10 @@ declare -A RELEASE_NAME=(
 ["26"]="Tahoe"
 )
 
+# Combine release name from lookup table with full version number
+# e.g.: Sequoia 15.4.1
 macOS_name() {
-  printf "%s\\n" "${RELEASE_NAME[$major_version]} $full_version"
+  printf "%s\n" "${RELEASE_NAME[$major_version]} $full_version"
 }
 
 macOS_name
