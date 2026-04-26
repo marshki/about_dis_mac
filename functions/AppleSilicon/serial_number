@@ -5,8 +5,9 @@
 HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 
 # awk to pattern match `Serial` and print last field of that string
+# e.g.: Serial Number (system): 2WYWQHLFW9
 serial_number() {
-  awk '/Serial/ {print $NF}' <<< "$HW_INFO"
-} 
+  awk '/Serial Number/ {print $NF}' <<< "$HW_INFO"
+}
 
 serial_number
