@@ -1,14 +1,15 @@
 #!/bin/zsh
 #
-# Retrieve processor information.
+# Retrieve chip (processor) information.
 #
 
 HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 
-# awk to extract string, strip string to right of: 'Chip:'
-
-processor() {
-    awk '/Chip:/{ sub(/^.*: /, ""); print; }' <<< "$HW_INFO"
+# awk to pattern match `Chip`
+# sub to strip everything up to and including the colon and space
+# e.g.: Chip: Apple A18 Pro
+chip() {
+    awk '/Chip:/{ sub(/.*: /, ""); print; }' <<< "$HW_INFO"
 }
 
-processor
+chip
