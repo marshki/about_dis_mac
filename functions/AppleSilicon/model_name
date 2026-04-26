@@ -7,6 +7,7 @@ HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 
 # awk to pattern match `Model Name`
 # sub to strip everything up to and including the colon and space
+# e.g.: Model Name: MacBook Neo
 model_name() {
   awk '/Model Name/ {sub(/.*: /, ""); print}' <<< "$HW_INFO"
 }
