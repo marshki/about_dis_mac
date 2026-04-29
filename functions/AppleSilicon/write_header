@@ -1,0 +1,17 @@
+#!/bin/zsh
+#
+# Print a formatted header and output.
+#
+
+# e.g.:
+# --------------------
+# Sample Header
+# --------------------
+# Sample Output
+write_header() {
+  local name=$1; shift;
+  printf "--------------------\n%s\n--------------------\n" "$name"
+  printf "%s\n" "$@"
+}
+
+write_header "Sample Header" "Sample Output"
