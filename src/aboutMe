@@ -1,28 +1,22 @@
-#!/usr/bin/env bash
+#!bin/zsh
 #
-# aboutMe (Intel; Apple Silicon, e.g. M1, M2)
+# aboutMe (Apple Silicon)
 #
 # CLI alternative to the macOS "About this Mac" feature.
 #
 # Author: M. Krinitz <mjk235 [at] nyu [dot] edu>
-# Date: 2022.08.20
+# Date: 2026.05.02
 # License: MIT
 
-# Lookup table.
+OS_INFO=$(sw_vers -productVersion)
 
-RELEASE_NAME=(
-
-["10"]="Yosemite"
-["11"]="El Capitan"
-["12"]="Sierra"
-["13"]="High Sierra"
-["14"]="Mojave"
-["15"]="Catalina"
-["16"]="Big Sur"
-["17"]="Monterey"
-["18"]="Ventura"
-["19"]="Sonoma"
-["20"]="Sequoia"
+# Lookup table
+declare -A RELEASE_NAME=(
+["11"]="Big Sur"
+["12"]="Monterey"
+["13"]="Ventura"
+["14"]="Sonoma"
+["15"]="Sequoia"
 ["26"]="Tahoe"
 )
 
