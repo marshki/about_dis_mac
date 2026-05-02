@@ -1,12 +1,13 @@
 ###
 ---
 
-This directory contains archived versions of "About 'dis Mac":
+This directory contains archived versions of "About 'dis Mac" 
+for the following architectures:  
 
-- (1) for Apple Silicon
-- (1) for Intel
+* Apple Silicon
+* Intel
 
-They ran on the architecture they were designed for, but are no longer maintained.
+On older versions of macOS, these scripts ran, but are no longer maintained.
 Your mileage may vary.
 
 ---
