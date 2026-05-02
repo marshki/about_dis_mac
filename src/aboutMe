@@ -1,4 +1,4 @@
-#!bin/zsh
+#!/bin/zsh
 #
 # aboutMe (Apple Silicon)
 #
@@ -8,11 +8,14 @@
 # Date: 2026.05.02
 # License: MIT
 
-# System profiler
-OS_INFO=$(sw_vers -productVersion)
-
+# Hardware profiler
+HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 # Disk profiler
 DISK_INFO=$(system_profiler SPStorageDataType)
+# OS version
+OS_INFO=$(sw_vers -productVersion)
+full_version=$OS_INFO
+major_version=$(awk -F '.' '{print $1}' <<< "$OS_INFO")
 
 # Lookup table
 declare -A RELEASE_NAME=(
@@ -67,7 +70,6 @@ serial_number() {
 macOS_name() {
   printf "%s\n" "${RELEASE_NAME[$major_version]} $full_version"
 }
-
 
 # Las entranas del programa.
 main() {
