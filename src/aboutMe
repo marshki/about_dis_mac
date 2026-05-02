@@ -68,44 +68,15 @@ macOS_name() {
   printf "%s\n" "${RELEASE_NAME[$major_version]} $full_version"
 }
 
-# Architecture wrapper (Intel, Apple Silicon).
-
-Intel_wrapper() {
-
-  release_name_wrapper
-  macOS_version
-  hardware_model
-  Intel_processor
-  Intel_memory
-  startup_disk
-  graphics
-  serial_number
-}
-
-Apple_silicon_wrapper() {
-
-  release_name_wrapper
-  macOS_version
-  hardware_model
-  apple_silicon_processor
-  apple_silicon_memory
-  startup_disk
-  serial_number
-}
 
 # Las entranas del programa.
-
 main() {
-
-  if [[ $(uname -m) == 'arm64' ]]; then
-    Apple_silicon_wrapper
-
-  elif [[ $(uname -m) == 'x86_64' ]]; then
-    Intel_wrapper
-
-  else
-    printf "%s\n" "Unable to detect system architecture. Exiting."
-fi
+  write_header "Model Name" "$(model_name)"
+  write_header "Chip" "$(chip)"
+  write_header "Memory" "$(memory)"
+  write_header "Serial Number" "$(serial_number)"
+  write_header "Startup Disk" "$(startup_disk)"
+  write_header "macOS" "$(macOS_name)"
 }
 
 main "$@"
