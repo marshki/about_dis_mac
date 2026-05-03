@@ -7,49 +7,18 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Bash shell script to mimic the [About This Mac](https://support.apple.com/en-us/HT201581) feature in macOS (Apple sillicon, Intel).
+Zsh script to mimic the [About This Mac](https://support.apple.com/en-us/HT201581) feature in macOS (Apple Sillicon).
 
 ## Sample Output
 
-    --------------------
-    macOS
-    --------------------
-    Big Sur
+---
 
-    --------------------
-    Version
-    --------------------
-    11.7.3
-
-    --------------------
-    Hardware Model
-    --------------------
-    iMac (Retina 5K, 27-inch, 2020)
-
-    --------------------
-    Processor
-    --------------------
-    3.3 GHz 6-Core Intel Core i5
-
-    --------------------
-    Memory
-    --------------------
-    16 GB 2667 MHz DDR4
-
-    --------------------
-    Startup Disk
-    --------------------
-    MacintoshHD-Data
-
-    --------------------
-    Graphics
-    --------------------
-    AMD Radeon Pro 5300 4 GB
-
-    --------------------
-    Serial Number
-    --------------------
-    H4TFJ019PN78
+          Model Name: MacBook Neo
+                Chip: Apple A18 Pro
+              Memory: 8 GB
+       Serial Number: XXXXXXXXXX
+        Startup Disk: Macintosh HD
+               macOS: Tahoe 26.4.1
 
 ## Supported Versions of macOS
 
