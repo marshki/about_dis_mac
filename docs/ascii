@@ -1,0 +1,12 @@
+# ASCII Apple logo
+apple() {
+  printf "          .:'\n"
+  printf "      __ :'__\n"
+  printf "   .'\`__\`-'__\`\`.\n"
+  printf "  :__________.-'\n"
+  printf "  :_________:\n"
+  printf "   :_________\`-;\n"
+  printf "    \`.__.-.__.' \n"
+}
+
+apple
