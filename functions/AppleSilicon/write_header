@@ -1,17 +1,13 @@
 #!/bin/zsh
 #
-# Print a formatted header and output.
+# Print a label/value pair.
 #
 
-# e.g.:
-# --------------------
-# Sample Header
-# --------------------
-# Sample Output
+# Right-justify label in 20-character field, followed by value
+# e.g.: 
+#       Sample label: Sample value
 write_header() {
-  local name=$1; shift;
-  printf "--------------------\n%s\n--------------------\n" "$name"
-  printf "%s\n" "$@"
+  printf "%20s: %s\n" "$1" "$2"
 }
 
-write_header "Sample Header" "Sample Output"
+write_header "Sample label" "Sample value"
