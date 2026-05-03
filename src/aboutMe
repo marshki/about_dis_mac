@@ -27,11 +27,9 @@ declare -A RELEASE_NAME=(
 ["26"]="Tahoe"
 )
 
-# Display header message
+# Display label/value pair
 write_header() {
-  local name=$1; shift;
-  printf "--------------------\n%s\n--------------------\n" "$name"
-  printf "%s\n" "$@"
+  printf "%20s: %s\n" "$1" "$2"
 }
 
 # Model name
