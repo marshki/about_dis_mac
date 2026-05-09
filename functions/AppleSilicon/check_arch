@@ -1,0 +1,11 @@
+#!/bin/zsh
+#
+# Verify Apple Silicon
+#
+
+check_arch() {
+  if [[ $(uname -m) != "arm64" ]]; then
+    printf "Error: This script requires Apple Silicon.\n" >&2
+    exit 1
+  fi
+}
