@@ -24,16 +24,12 @@ Zsh script to mimic the [About This Mac](https://support.apple.com/en-us/HT20158
 
 |macOS|Version    |
 |---  |---        |
+|26 * |Tahoe      |
+|15 * |Sequoia    |
 |14.* |Sonoma     |
 |13.* |Ventura    |
 |12.* |Monterey   |
 |11.* |Big Sur    |
-|10.15|Catalina   |
-|10.14|Mojave     |
-|10.13|High Sierra|
-|10.12|Sierra     |
-|10.11|El Capitan |
-|10.10|Yosemite   |
 
 ## Getting Started
 
@@ -53,6 +49,7 @@ then call it:
 
 | Version| Relase Date|
 | ---    | ---        |
+| v.0.4  |10-MAY-2026 |
 | v.0.3  |04-AUG-2022 |
 | v.0.2  |05-APR-2021 |
 | v.0.1  |07-JUL-2018 |
