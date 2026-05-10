@@ -5,6 +5,11 @@
 # Feature request: accommodate more DIMMS.
 # 
 
+# Adds up all Memory Slot “Size” values
+# keeps the last seen Speed value
+# keeps the last seen Type value
+# prints: total GB speed type
+# e.g.: 32 GB 2667 MHz DDR4
 awk_memory () {
 local ram
 ram=$(
@@ -15,7 +20,7 @@ awk '
   END {print size " GB " speed " " type}
   ' <<< "$(system_profiler SPMemoryDataType)"
 )
-printf "%s\\n" "${ram}"
+printf "%s\n" "${ram}"
 }
 
 awk_memory
