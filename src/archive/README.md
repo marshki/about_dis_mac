@@ -7,7 +7,7 @@ for the following architectures:
 * Apple Silicon
 * Intel
 
-On older versions of macOS, these scripts ran, but are no longer maintained.
+On older versions of macOS, these scripts ran, but they are no longer maintained.
 Your mileage may vary.
 
 ---
