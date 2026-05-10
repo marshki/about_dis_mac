@@ -1,13 +1,12 @@
-#!/usr/bin/env bash 
+#!/bin/bash 
+# 
 # Extract macOS version no.
 # For use in macOS_name function.
+#
 
 macOS_version() {
-
   local long_version
-
   long_version=$(sw_vers -productVersion)
-
   printf "%s\n" "Version" "$long_version"
 }
 
