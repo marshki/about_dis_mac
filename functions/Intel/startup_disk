@@ -1,14 +1,25 @@
-#!/usr/bin/env bash
+#!/bin/bash
+# 
 # Retrieve startup disk information
+# 
 
+# Get current volume/device heading
+# & when Mount Point: / is found,
+# print.
 startup_disk() {
   system_profiler SPStorageDataType |
-  awk '/^[[:space:]]+[^[:space:]].*:$/ {
-         sub(/^[[:space:]]+/, "")
-         sub(/:$/, "")
-         n=$0
-       }
-       /Mount Point: \/$/ {print n; exit}'
+    awk '
+      /^[[:space:]]+[^[:space:]].*:$/ {
+        sub(/^[[:space:]]+/, "")
+        sub(/:$/, "")
+        disk = $0
+      }
+
+      /Mount Point: \/$/ {
+        print disk
+        exit
+      }
+    '
 }
 
 startup_disk
