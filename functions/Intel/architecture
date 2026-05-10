@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 #
 # Detect system architecture (Apple Silicon, x86_64).
 #
