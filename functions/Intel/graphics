@@ -12,7 +12,7 @@ graphics () {
   gpu=$(system_profiler SPDisplaysDataType 2>/dev/null \
     | awk '/(Model|Max\)|Total\)):/ { sub(/^.*: /, ""); print; }' \
     | xargs)
-  printf "%s\\n" "${gpu}"
+  printf "%s\n" "${gpu}"
 }
 
 graphics
