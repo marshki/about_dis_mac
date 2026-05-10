@@ -1,6 +1,6 @@
 #!/bin/zsh
 #
-# Detect system architecture (x86_64, Apple Silicon).
+# Detect system architecture (Apple Silicon, x86_64).
 #
 
 architecture() { 
