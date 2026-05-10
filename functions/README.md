@@ -12,5 +12,5 @@ to extract strings.
 
 This project--like the About This Mac feature--has evolved over time. 
 At present, as Apple's support for Intel-based architecture is waning, 
-the contents of that directory are for historical purposes only, i.e.
-they did work, but you may need to make some modifications.
+the contents of that directory are for historical purposes, i.e. they 
+did work, but have not been tested.
