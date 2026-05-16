@@ -19,6 +19,11 @@ Zsh script to mimic the [About This Mac](https://support.apple.com/en-us/HT20158
        Serial Number: XXXXXXXXXX
         Startup Disk: Macintosh HD
                macOS: Tahoe 26.4.1
+---
+
+| GUI      | TUI      |
+| :---     | :---:    |
+| ![GUI](https://github.com/marshki/about_dis_mac/blob/master/docs/about_this_mac_output.png) | ![TUI](https://github.com/marshki/about_dis_mac/blob/master/docs/about_dis_mac_output.png) |
 
 ## Supported Versions of macOS
 
