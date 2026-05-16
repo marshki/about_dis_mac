@@ -27,6 +27,14 @@ declare -A RELEASE_NAME=(
 ["26"]="Tahoe"
 )
 
+# Verify Apple Silicon
+check_arch() {
+  if [[ $(uname -m) != "arm64" ]]; then
+    printf "Error: This script requires Apple Silicon.\n" >&2
+    exit 1
+  fi
+}
+
 # Display label/value pair
 write_header() {
   printf "%20s: %s\n" "$1" "$2"
@@ -71,6 +79,7 @@ macOS_name() {
 
 # Las entranas del programa.
 main() {
+  check_arch
   write_header "Model Name" "$(model_name)"
   write_header "Chip" "$(chip)"
   write_header "Memory" "$(memory)"
