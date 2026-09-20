@@ -9,7 +9,7 @@ HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 # sub to strip everything up to and including the colon and space
 # e.g.: Chip: Apple A18 Pro
 chip() {
-    awk '/Chip:/{ sub(/.*: /, ""); print; }' <<< "$HW_INFO"
+  awk '/Chip:/{ sub(/.*: /, ""); print; }' <<< "$HW_INFO"
 }
 
 chip
