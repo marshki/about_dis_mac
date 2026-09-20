@@ -47,7 +47,7 @@ model_name() {
 
 # Chip name
 chip() {
-    awk '/Chip:/{ sub(/.*: /, ""); print; }' <<< "$HW_INFO"
+  awk '/Chip:/{ sub(/.*: /, ""); print; }' <<< "$HW_INFO"
 }
 
 # Memory
