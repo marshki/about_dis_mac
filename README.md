@@ -47,7 +47,7 @@ set the executable bit on the file:
 
 then call it:
 
-`zsh aboutMe`.
+`aboutMe`.
 
 ## History
 
