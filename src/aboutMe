@@ -11,7 +11,7 @@
 # Hardware profiler
 HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 # Disk profiler
-DISK_INFO=$(system_profiler SPStorageDataType)
+DISK_INFO=$(system_profiler SPStorageDataType 2>/dev/null)
 # OS version
 OS_INFO=$(sw_vers -productVersion)
 full_version=$OS_INFO
