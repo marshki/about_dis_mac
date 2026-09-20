@@ -52,7 +52,7 @@ chip() {
 
 # Memory
 memory() {
-  awk '/GB/ {print $2, $3}' <<< "$HW_INFO"
+  awk '/Memory/ {print $2, $3}' <<< "$HW_INFO"
 }
 
 # Startup disk
