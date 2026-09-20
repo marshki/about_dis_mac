@@ -1,7 +1,9 @@
 #!/bin/zsh
 #
 # Assign output of `system_profiler SPHardwareDataType`
-# to HW_INO. Send stderr noise to /dev/null.
+# to HW_INFO. Send stderr noise to /dev/null.
 #
 
 HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
+
+echo "$HW_INFO"
