@@ -28,8 +28,8 @@ Zsh script to mimic the [About This Mac](https://support.apple.com/en-us/HT20158
 
 |macOS|Version    |
 |---  |---        |
-|26 * |Tahoe      |
-|15 * |Sequoia    |
+|26.* |Tahoe      |
+|15.* |Sequoia    |
 |14.* |Sonoma     |
 |13.* |Ventura    |
 |12.* |Monterey   |
