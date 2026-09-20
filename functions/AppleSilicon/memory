@@ -5,11 +5,11 @@
 
 HW_INFO=$(system_profiler SPHardwareDataType 2>/dev/null)
 
-# awk to pattern match GB
+# awk to pattern match Memory
 # print size and unit
 # e.g.: Memory: 8 GB
 memory() {
-  awk '/GB/ {print $2, $3}' <<< "$HW_INFO"
+  awk '/Memory:/ {print $2, $3}' <<< "$HW_INFO"
 }
 
 memory
