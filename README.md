@@ -7,7 +7,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Zsh script to mimic the [About This Mac](https://support.apple.com/en-us/HT201581) feature in macOS (Apple Sillicon).
+Zsh script to mimic the [About This Mac](https://support.apple.com/en-us/HT201581) feature in macOS (Apple Silicon).
 
 ## Sample Output
 
@@ -52,13 +52,13 @@ then call it:
 
 ## History
 
-| Version| Relase Date|
-| ---    | ---        |
-| v.0.4  |10-MAY-2026 |
-| v.0.3  |04-AUG-2022 |
-| v.0.2  |05-APR-2021 |
-| v.0.1  |07-JUL-2018 |
-| v.0.0  |15-AUG-2017 |
+| Version| Release Date|
+| ---    | ---         |
+| v.0.4  |10-MAY-2026  |
+| v.0.3  |04-AUG-2022  |
+| v.0.2  |05-APR-2021  |
+| v.0.1  |07-JUL-2018  |
+| v.0.0  |15-AUG-2017  |
 
 ## License
 
@@ -66,7 +66,7 @@ then call it:
 
 ## Acknowledgements
 
-`hardware_model_too.sh` adpated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/).
+`hardware_model_too.sh` adapated from [this thread](https://www.reddit.com/r/macsysadmin/comments/bmycmz/submission_about_this_mac_command_line_edition/).
  
 Shout-out to: [https://reddit.com/u/Thanksagainforlunch](https://reddit.com/u/Thanksagainforlunch) for the suggestion.
 
